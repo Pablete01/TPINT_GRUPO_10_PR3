@@ -10,52 +10,65 @@
             height: 249px;
             width: 848px;
         }
+
         .auto-style2 {
-            width: 338px;
+            width: 232px;
+        }
+
+        .auto-style4 {
+            width: 277px;
+        }
+        .auto-style5 {
+            height: 208px;
+            width: 35%;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
 
-        <table border="1" align="center" style="height:100vh; width:100%;">
+        <table border="1" align="center" class="auto-style5">
             <tr>
                 <td align="center" valign="middle" class="auto-style1">
 
                     <table border="0" cellpadding="5" class="auto-style2" style="border-width: 1px">
                         <tr>
-                            <td colspan="2" align="center">
+                            <td colspan="2" align="center" class="auto-style4">
+                                <asp:Image ID="Image1" runat="server" Height="67px" ImageUrl="~/Imagenes/loginIcon.png" Width="99px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center" class="auto-style4">
                                 <asp:Label ID="lblClinica" runat="server" Text="Clínica &quot;Grupo 10&quot;" Font-Size="16pt"></asp:Label>
                             </td>
                         </tr>
 
                         <tr>
-                            <td align="right">
+                            <td align="left" class="auto-style4">
                                 <asp:Label ID="lblUsuario" runat="server" Text="Usuario:" />
-                            </td>
-                            <td>
+                                <br />
                                 <asp:TextBox ID="tbUsuario" runat="server" Width="200px" />
                             </td>
                         </tr>
 
                         <tr>
-                            <td align="right">
+                            <td align="left" class="auto-style4">
                                 <asp:Label ID="lblContrasena" runat="server" Text="Contraseña:" />
-                            </td>
-                            <td>
+                                <br />
                                 <asp:TextBox ID="tbContrasena" runat="server" TextMode="Password" Width="200px" />
                             </td>
                         </tr>
 
+
                         <tr>
-                            <td colspan="2" align="center">
+                            <td colspan="2" align="center" class="auto-style4">
                                 <asp:Button ID="btnLogin" runat="server" Text="Iniciar sesión"
                                     BackColor="#99CCFF" Width="120px" OnClick="btnLogin_Click" />
                             </td>
                         </tr>
 
                         <tr>
-                            <td colspan="2" align="center">
+                            <td colspan="2" align="center" class="auto-style4">
                                 <asp:Label ID="lblError" runat="server" ForeColor="Red" Font-Bold="True" />
                             </td>
                         </tr>
