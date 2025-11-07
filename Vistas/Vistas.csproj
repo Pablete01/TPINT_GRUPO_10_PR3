@@ -67,9 +67,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Imagenes\alta.png" />
+    <Content Include="Imagenes\informes.png" />
     <Content Include="Imagenes\loginIcon.png" />
+    <Content Include="Imagenes\medico.png" />
+    <Content Include="Imagenes\paciente.png" />
+    <Content Include="Imagenes\turno.png" />
+    <Content Include="Imagenes\user.png" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
+    <Content Include="Administrador.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +86,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrador.aspx.cs">
+      <DependentUpon>Administrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrador.aspx.designer.cs">
+      <DependentUpon>Administrador.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
