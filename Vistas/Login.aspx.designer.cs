@@ -15,13 +15,13 @@ namespace Vistas
     {
 
         /// <summary>
-        /// lblUsuario control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm lblUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
         /// lblClinica control.
@@ -33,13 +33,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblClinica;
 
         /// <summary>
-        /// Label1 control.
+        /// lblUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblUsuario;
 
         /// <summary>
         /// tbUsuario control.
