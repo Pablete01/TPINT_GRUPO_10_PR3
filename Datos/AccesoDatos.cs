@@ -53,6 +53,8 @@ namespace Dao
             return ds.Tables[NombreTabla];
         }
 
+
+
         public int AgregarPaciente(SqlCommand comandoSQL, string spInsertarPaciente, out string mensaje)
         {
             mensaje = "";
@@ -84,6 +86,23 @@ namespace Dao
             {
                 cn.Close();
             }
+        }
+
+        public DataTable ObtenerTablaSP(string nombreTabla, string nombreSP, SqlParameter[] parametros)
+        {
+            SqlConnection conexion = ObtenerConexion();
+            SqlCommand comando = new SqlCommand(nombreSP, conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            if (parametros != null)
+                comando.Parameters.AddRange(parametros);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            DataTable tabla = new DataTable(nombreTabla);
+            da.Fill(tabla);
+            conexion.Close();
+
+            return tabla;
         }
 
         public int ActualizarPaciente(SqlCommand comandoSQL, string spActualizarPaciente)

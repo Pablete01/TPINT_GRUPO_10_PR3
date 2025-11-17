@@ -14,12 +14,14 @@ namespace Vistas
     public partial class GestionMedico : System.Web.UI.Page
     {
         NegocioMedicos negocioMedicos = new NegocioMedicos();
+        NegocioLocalidades negocioLocalidad = new NegocioLocalidades();
+        NegocioProvincia negocioProvincia = new NegocioProvincia();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)  
+            if (!IsPostBack)
             {
-               lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
-               MostrarMedicos();
+                MostrarMedicos();
             }
         }
 
@@ -32,10 +34,7 @@ namespace Vistas
 
 
 
-        protected void btnAgregarMedico_Click(object sender, EventArgs e)
-        {
 
-        }
 
         protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -81,7 +80,21 @@ namespace Vistas
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            string txt = txtBuscar.Text.Trim();
 
+            NegocioMedicos negocio = new NegocioMedicos();
+            grdMedico.DataSource = negocio.BuscarMedicos(txt);
+            grdMedico.DataBind();
+        }
+
+        protected void btnAgregarMedico_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FormularioAddMedico.aspx");
+        }
+
+        protected void btnInicio_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("Administrador.aspx");
         }
     }
 }

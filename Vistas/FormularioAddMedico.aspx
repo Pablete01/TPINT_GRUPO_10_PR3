@@ -113,7 +113,7 @@
        
         <div class="header">
             <div class="header-left">
-                <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" />
+                <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" OnClick="btnInicio_Click" />
             </div>
 
             <div class="header-right">
@@ -165,18 +165,22 @@
                 </tr>
 
                 <tr>
-                    <td><label for="txtDireccion">Dirección:</label></td>
-                    <td><asp:TextBox ID="txtDireccion" runat="server" /></td>
+                    <td><label for="txtDireccion">Provincia:</label></td>
+                    <td>
+                        <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
+                    </td>
                 </tr>
 
                 <tr>
                     <td><label for="txtLocalidad">Localidad:</label></td>
-                    <td><asp:TextBox ID="txtLocalidad" runat="server" /></td>
+                    <td>
+                        <asp:DropDownList ID="ddlLocalidad" runat="server"></asp:DropDownList>
+                    </td>
                 </tr>
 
                 <tr>
-                    <td><label for="txtProvincia">Provincia:</label></td>
-                    <td><asp:TextBox ID="txtProvincia" runat="server" /></td>
+                    <td><label for="txtDireccion">Dirección</label><label for="txtProvincia">:</label></td>
+                    <td><asp:TextBox ID="txtDireccion" runat="server" /></td>
                 </tr>
 
                 <tr>
@@ -195,7 +199,7 @@
             </table>
 
             <div class="btn-container">
-                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn" />
+                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn" OnClick="btnAceptar_Click" />
             </div>
         </div>
     </form>

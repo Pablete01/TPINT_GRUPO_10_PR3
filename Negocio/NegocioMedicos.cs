@@ -20,9 +20,66 @@ namespace Negocio
             DataTable dt = dao.GetTablaMedicos();
             return dt;
         }
-    }  
 
-    
+        public DataTable BuscarMedicos(string texto)
+        {
+            return dao.BuscarMedicos(texto);
+        }
+
+        public DataTable GetEspecialidades()
+        {
+            DaoMedicos dao = new DaoMedicos();
+            return dao.GetTablaEspecialidades();
+        }
+
+        public DataTable GetProvincias()
+        {
+            DaoMedicos dao = new DaoMedicos();
+            return dao.GetTablaProvincias();
+        }
+
+        public DataTable GetLocalidadesPorProvincia(int idProvincia)
+        {
+            DaoMedicos dao = new DaoMedicos();
+            return dao.GetTablaLocalidadesPorProvincia(idProvincia);
+        }
+
+        public int AgregarMedico(MedicoAdm m)
+        {
+            // Cálculo de valores automáticos
+
+            // 1) Contrasena = DNI
+            //m.Contrasena = m.DNI;
+
+            // 2) Legajo inicial (lo completará el SP con M10 + ID_Persona)
+            m.Legajo = "TEMP";
+
+            DaoMedicos dm = new DaoMedicos();
+            return dm.AgregarMedico(m);
+        }
+
+        public bool AgregarPersona(MedicoAdm m)
+        {
+            DaoMedicos datos = new DaoMedicos();
+            return datos.InsertarPersona(m);
+        }
+
+        public bool AgregarPersonaYUsuario(MedicoAdm m)
+        {
+            DaoMedicos dat = new DaoMedicos();
+            return dat.InsertarPersonaYUsuario(m);
+        }
+
+        public bool RegistrarMedico(MedicoAdm m)
+        {
+            DaoMedicos datos = new DaoMedicos();
+            return datos.AgregarMedicoCompleto(m);
+        }
+
+
+    }
+
+
 
 
 }
