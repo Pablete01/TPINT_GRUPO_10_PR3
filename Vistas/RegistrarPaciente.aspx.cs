@@ -41,10 +41,7 @@ namespace Vistas
             {
                 sexo = "Masculino";
             }
-            else if(rbOtro.Checked)
-            {
-                sexo = "Otro";
-            }
+            
 
             Paciente paciente = new Paciente();
             paciente.dni = int.Parse(TxtDni.Text);
@@ -56,7 +53,6 @@ namespace Vistas
             paciente.telefono = int.Parse(txtTelefono.Text);
             paciente.direccion = txtDireccion.Text;
             paciente.localidad = int.Parse(ddlLocalidades.SelectedValue);
-            paciente.provincia = int.Parse(DropDlistProv.SelectedValue);
             paciente.email = txtEmail.Text;
             paciente.perfil = 3; 
             paciente.estado = 1; 
@@ -67,7 +63,9 @@ namespace Vistas
 
             if(filasAfectadas > 0)
             {
-                lblMensaje.Text = "Paciente registrado con éxito.";
+                lblMensaje.Text = "Paciente registrado con éxito";
+                btnCancelar.Text = "Cerrar";
+                BtAceptar.Visible = false;
             }
             else
             {
@@ -87,6 +85,11 @@ namespace Vistas
                 ddlLocalidades.DataBind();
                 ddlLocalidades.Items.Insert(0, new ListItem("--Seleccione una localidad--", "0"));
             }
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GestionPacientes.aspx");
         }
     }
 }

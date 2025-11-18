@@ -10,21 +10,66 @@ using Negocio;
 
 namespace Vistas
 {
+
     public partial class FormularioAddMedico : System.Web.UI.Page
     {
-        NegocioProvincia negocioProvincia = new NegocioProvincia();
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+            //ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
-                lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
                 CargarSexo();
                 CargarEspecialidades();
                 CargarProvincias();
+
+                // 🔹 Si viene un ID por la URL → modo edición
+                if (Request.QueryString["ID_Medico"] != null)
+                {
+                    int idMedico = int.Parse(Request.QueryString["ID_Medico"]);
+                    CargarMedico(idMedico);
+                }
             }
 
         }
+
+        private void CargarMedico(int idMedico)
+        {
+            NegocioMedicos neg = new NegocioMedicos();
+            MedicoAdm m = neg.ObtenerMedicoPorID(idMedico);
+
+            if (m != null)
+            {
+                txtNombre.Text = m.Nombre;
+                txtApellido.Text = m.Apellido;
+                txtDNI.Text = m.DNI;
+                ddlSexo.SelectedValue = m.Sexo;
+                txtNacionalidad.Text = m.Nacionalidad;
+                txtFechaNac.Text = m.FechaNacimiento.ToString("yyyy-MM-dd");
+                txtTelefono.Text = m.Telefono;
+                txtDireccion.Text = m.Direccion;
+
+                // 🔹 Provincias y Localidades (cargar en combo)
+                ddlProvincia.SelectedValue = m.ID_Provincia.ToString();
+                CargarLocalidades(); // carga localidades según provincia
+                ddlLocalidad.SelectedValue = m.ID_Localidad.ToString();
+
+                // 🔹 Email y clave (clave = DNI)
+                txtEmail.Text = m.Email;
+                //txtContrasena.Text = m.Contrasena; // igual al DNI
+
+                // 🔹 Especialidad
+                ddlEspecialidad.SelectedValue = m.ID_Especialidad.ToString();
+
+                // Guardamos el ID en un hiddenfield para la modificación
+                hiddenIdMedico.Value = m.ID_Medico.ToString();
+            }
+        }
+
 
         private void CargarSexo()
         {
@@ -44,7 +89,7 @@ namespace Vistas
 
         private void CargarProvincias()
         {
-            NegocioMedicos neg = new NegocioMedicos();
+            NegocioProvincia negocioProvincia = new NegocioProvincia();
             ddlProvincia.DataSource = negocioProvincia.cargarProvincias();
             ddlProvincia.DataValueField = "ID_Provincia";
             ddlProvincia.DataTextField = "NombreProvincia";
@@ -56,31 +101,46 @@ namespace Vistas
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            MedicoAdm m = new MedicoAdm
+            try
             {
-                Nombre = txtNombre.Text,
-                Apellido = txtApellido.Text,
-                DNI = txtDNI.Text,
-                Sexo = ddlSexo.SelectedItem.Text,
-                Nacionalidad = txtNacionalidad.Text,
-                FechaNacimiento = DateTime.Parse(txtFechaNac.Text),
-                Telefono = txtTelefono.Text,
-                Direccion = txtDireccion.Text,
-                ID_Localidad = int.Parse(ddlLocalidad.SelectedValue),
-                // 🔹 Nuevos campos requeridos
-                Email = txtEmail.Text,
-                Contrasena = txtDNI.Text, // CONTRASEÑA = DNI
-                ID_Especialidad = int.Parse(ddlEspecialidad.SelectedValue)
-            };
+                MedicoAdm m = new MedicoAdm
+                {
+                    ID_Medico = string.IsNullOrEmpty(hiddenIdMedico.Value) ? 0 : int.Parse(hiddenIdMedico.Value),
+                    Nombre = txtNombre.Text,
+                    Apellido = txtApellido.Text,
+                    DNI = txtDNI.Text,
+                    Sexo = ddlSexo.SelectedItem.Text,
+                    Nacionalidad = txtNacionalidad.Text,
+                    FechaNacimiento = DateTime.Parse(txtFechaNac.Text),
+                    Telefono = txtTelefono.Text,
+                    Direccion = txtDireccion.Text,
+                    ID_Localidad = int.Parse(ddlLocalidad.SelectedValue),
+                    Email = txtEmail.Text,
+                    Contrasena = txtDNI.Text, // contraseña = DNI
+                    ID_Especialidad = int.Parse(ddlEspecialidad.SelectedValue)
+                };
 
-            NegocioMedicos neg = new NegocioMedicos();
-            bool ok = neg.RegistrarMedico(m);
+                NegocioMedicos neg = new NegocioMedicos();
+                bool ok;
 
-            if (ok)
-                Response.Write("<script>alert('Médico dado de alta  con éxito');</script>");
-            else
-                Response.Write("<script>alert('Error al insertar');</script>");
+                if (m.ID_Medico > 0) // modo edición
+                    ok = neg.ModificarMedico(m);
+                else // modo alta
+                    ok = neg.RegistrarMedico(m);
 
+                if (ok)
+                {
+                    lblMensaje.Text = "Medico guardado con éxito.";
+                    btnCancelar.Text = "Cerrar";
+                    btnAceptar.Visible = false;
+                }
+                else
+                    lblMensaje.Text = "Error al guardar el médico. DNI o email ya registrado.";
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Text = ex.Message;// "Error: Verifique los datos ingresados";
+            }
         }
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,19 +151,21 @@ namespace Vistas
         private void CargarLocalidades()
         {
             int idProv = int.Parse(ddlProvincia.SelectedValue);
-            ddlLocalidad.Items.Clear();
-            if (ddlProvincia.SelectedValue != "0")
-            {
-                NegocioLocalidades negocioLocalidad = new NegocioLocalidades();
-                ddlLocalidad.DataSource = negocioLocalidad.cargarLocalidades(int.Parse(ddlProvincia.SelectedValue));
-                ddlLocalidad.DataValueField = "ID_Localidad";
-                ddlLocalidad.DataTextField = "NombreLocalidad";
-                ddlLocalidad.DataBind();
-                ddlLocalidad.Items.Insert(0, new ListItem("--Seleccione una localidad--", "0"));
-            }
+
+            NegocioLocalidades negocioLocalidad = new NegocioLocalidades();
+            ddlLocalidad.DataSource = negocioLocalidad.cargarLocalidades(int.Parse(ddlProvincia.SelectedValue));
+            ddlLocalidad.DataValueField = "ID_Localidad";
+            ddlLocalidad.DataTextField = "NombreLocalidad";
+            ddlLocalidad.DataBind();
+            ddlLocalidad.Items.Insert(0, new ListItem("--Seleccione una localidad--", "0"));
         }
 
         protected void btnInicio_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("GestionMedico.aspx");
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("GestionMedico.aspx");
         }

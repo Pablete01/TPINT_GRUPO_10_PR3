@@ -73,7 +73,7 @@ namespace Dao
 
                 if (ex.Number == 2627 || ex.Number == 2601)
                 {
-
+                  
                     mensaje = "Ya existe un registro con ese DNI o Email.";
                 }
                 else

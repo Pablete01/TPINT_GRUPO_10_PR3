@@ -50,7 +50,6 @@
             <br />
             <asp:RadioButton ID="rbFemenino" runat="server" Text="Femenino" GroupName="Sexo"  style="margin-right: 20px;" />
             <asp:RadioButton ID="rbMasculino" runat="server" Text="Masculino" GroupName="Sexo"  style="margin-right: 20px;" />
-            <asp:RadioButton ID="rbOtro" runat="server" Text="Otro" GroupName="Sexo" style="margin-right: 20px;" />
             <br />
             <br />
 
@@ -97,6 +96,10 @@
             <asp:Button ID="BtAceptar" runat="server" Text="Aceptar" Width="150px"
                 style="background-color: #81C784; color: white; border: none; 
                 padding: 8px 0; border-radius: 6px; cursor: pointer; font-weight: bold;" OnClick="BtAceptar_Click" />
+            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" Width="150px"
+                 style="background-color: #81C784; color: white; border: none; 
+ padding: 8px 0; border-radius: 6px; cursor: pointer; font-weight: bold;" OnClick="btnCancelar_Click" />
+
         </div>
     </form>
 </body>

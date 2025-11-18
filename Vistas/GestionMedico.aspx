@@ -85,19 +85,17 @@
 
         <!-- Barra superior -->
         <div class="header">
-    <div class="header-left">
-        <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" />
-        <asp:HyperLink ID="HLVolver" runat="server" NavigateUrl="~/Administrador.aspx" >VOLVER</asp:HyperLink>
-    </div>
+            <div class="header-left">
+                <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" OnClick="btnInicio_Click" />
+            </div>
 
-    <div class="header-right">
-        <div class="user-section">
-            <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Gestión Médicos"></asp:Label>
-            <asp:ImageButton ID="btnUsuario" runat="server" ImageUrl="~/Imagenes/user.png" Width="40px" Height="40px" />
-            <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="user-label"></asp:Label>
+            <div class="header-right">
+                <div class="user-section">
+                    <asp:ImageButton ID="btnUsuario" runat="server" ImageUrl="~/Imagenes/user.png" Width="40px" Height="40px" />
+                    <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="user-label"></asp:Label>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
         <!-- Contenedor principal -->
         <asp:Panel ID="PanelPrincipal" runat="server" HorizontalAlign="Center">
@@ -117,10 +115,20 @@
             </div>
 
             <div class="grid-container">
-                <asp:GridView ID="grdMedico" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" CssClass="grid" ForeColor="#333333" GridLines="None" OnPageIndexChanging="grdMedico_PageIndexChanging" OnRowCancelingEdit="grdMedico_RowCancelingEdit" OnRowDataBound="grdMedico_RowDataBound" OnRowEditing="grdMedico_RowEditing" OnRowUpdating="grdMedico_RowUpdating" PageSize="5" Width="509px">
+                <asp:GridView ID="grdMedico" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" CssClass="grid" ForeColor="#333333" GridLines="None" OnPageIndexChanging="grdMedico_PageIndexChanging" OnRowCancelingEdit="grdMedico_RowCancelingEdit" OnRowDataBound="grdMedico_RowDataBound" OnRowEditing="grdMedico_RowEditing" OnRowUpdating="grdMedico_RowUpdating" PageSize="5" Width="509px" OnRowCommand="grdMedico_RowCommand" DataKeyNames="ID_Medico">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:CommandField DeleteText="" EditText="Modificar" ShowEditButton="True" ValidationGroup="5" />
+                    <asp:BoundField DataField="ID_Medico" Visible="False" />
+                    <asp:TemplateField HeaderText="Acciones">
+                        <ItemTemplate>
+                            <asp:Button ID="btnModificar" 
+                                runat="server" 
+                                Text="Modificar" 
+                                CommandName="Modificar"
+                                CommandArgument='<%# Eval("ID_Medico") %>' 
+                                CssClass="btn btn-warning" />
+                        </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Legajo">
                             <EditItemTemplate>
                                 <asp:Label ID="lblLegajoE" runat="server" Text='<%# Bind("Legajo") %>'></asp:Label>

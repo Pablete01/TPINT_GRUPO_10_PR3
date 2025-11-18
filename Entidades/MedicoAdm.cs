@@ -9,6 +9,9 @@ namespace Entidades
     public class MedicoAdm
     {
         // Datos de Persona
+
+        public int ID_Medico { get; set; }
+        public int ID_Persona { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string DNI { get; set; }
@@ -18,6 +21,7 @@ namespace Entidades
         public string Telefono { get; set; }
         public string Direccion { get; set; }
         public int ID_Localidad { get; set; }
+        public int ID_Provincia { get; set; }
 
         // Datos de Usuario
         public string Email { get; set; }

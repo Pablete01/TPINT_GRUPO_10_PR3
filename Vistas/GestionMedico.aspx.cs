@@ -14,12 +14,9 @@ namespace Vistas
     public partial class GestionMedico : System.Web.UI.Page
     {
         NegocioMedicos negocioMedicos = new NegocioMedicos();
-        NegocioLocalidades negocioLocalidad = new NegocioLocalidades();
-        NegocioProvincia negocioProvincia = new NegocioProvincia();
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!IsPostBack)  
             {
                 MostrarMedicos();
             }
@@ -95,6 +92,15 @@ namespace Vistas
         protected void btnInicio_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("Administrador.aspx");
+        }
+
+        protected void grdMedico_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Modificar")
+            {
+                string id = e.CommandArgument.ToString();
+                Response.Redirect("FormularioAddMedico.aspx?ID_Medico=" + id);
+            }
         }
     }
 }
