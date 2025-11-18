@@ -141,31 +141,31 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblGenero;
 
         /// <summary>
-        /// RadBtnFemenino control.
+        /// rbFemenino control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadBtnFemenino;
+        protected global::System.Web.UI.WebControls.RadioButton rbFemenino;
 
         /// <summary>
-        /// RadBtnMasculino control.
+        /// rbMasculino control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadBtnMasculino;
+        protected global::System.Web.UI.WebControls.RadioButton rbMasculino;
 
         /// <summary>
-        /// RadBtnOtro control.
+        /// rbOtro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadBtnOtro;
+        protected global::System.Web.UI.WebControls.RadioButton rbOtro;
 
         /// <summary>
         /// Label8 control.
@@ -204,13 +204,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblLocalidad;
 
         /// <summary>
-        /// txtLocalidad control.
+        /// ddlLocalidades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLocalidad;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocalidades;
 
         /// <summary>
         /// lblProvincia control.
@@ -240,13 +240,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label Label12;
 
         /// <summary>
-        /// TextBox7 control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox7;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
         /// lblTelefono control.
@@ -265,6 +265,15 @@ namespace Vistas
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTelefono;
+
+        /// <summary>
+        /// lblMensaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
         /// BtAceptar control.

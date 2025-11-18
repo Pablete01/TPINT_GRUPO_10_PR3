@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using Entidades;
+using Dao;
+
 
 namespace Negocio
 {
     public class NegocioLogin
     {
-        public bool validarBoton(string usuario, string contrasena)
-        {
-            return !string.IsNullOrWhiteSpace(usuario) && !string.IsNullOrWhiteSpace (contrasena);
+       private UsuarioDao dao = new UsuarioDao();
 
-        }
-
-        public void validarLogin()
+        public Usuario Login(string usuario, string contrasena)
         {
-// ACA VA LA LOGICA DE VALIDAR EL USUARIO
+           var user = dao.ValidarUsuario(usuario, contrasena);
+            return user;
         }
 
     }

@@ -11,7 +11,7 @@ namespace Vistas
 {
 
 
-    public partial class WebForm1
+    public partial class Informes
     {
 
         /// <summary>
@@ -24,13 +24,40 @@ namespace Vistas
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lblTitulo control.
+        /// btnInicio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitulo;
+        protected global::System.Web.UI.WebControls.ImageButton btnInicio;
+
+        /// <summary>
+        /// HLVolver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HLVolver;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// btnUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnUsuario;
 
         /// <summary>
         /// lblUsuario control.
@@ -42,93 +69,120 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblUsuario;
 
         /// <summary>
-        /// btnCerrarSesion control.
+        /// lblTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerrarSesion;
+        protected global::System.Web.UI.WebControls.Label lblTitulo;
 
         /// <summary>
-        /// user control.
+        /// lblDesde control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image user;
+        protected global::System.Web.UI.WebControls.Label lblDesde;
 
         /// <summary>
-        /// btnGestionarMedicos control.
+        /// txtDesde control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnGestionarMedicos;
+        protected global::System.Web.UI.WebControls.TextBox txtDesde;
 
         /// <summary>
-        /// btnAltaPaciente control.
+        /// lblHasta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnAltaPaciente;
+        protected global::System.Web.UI.WebControls.Label lblHasta;
 
         /// <summary>
-        /// btnTurnos control.
+        /// txtHasta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnTurnos;
+        protected global::System.Web.UI.WebControls.TextBox txtHasta;
 
         /// <summary>
-        /// btnInformes control.
+        /// btnFiltrar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnInformes;
+        protected global::System.Web.UI.WebControls.Button btnFiltrar;
 
         /// <summary>
-        /// lblMedico control.
+        /// lblPacientesPresentes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMedico;
+        protected global::System.Web.UI.WebControls.Label lblPacientesPresentes;
 
         /// <summary>
-        /// lblAltaPacientes control.
+        /// lblPorcentajePresentes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAltaPacientes;
+        protected global::System.Web.UI.WebControls.Label lblPorcentajePresentes;
 
         /// <summary>
-        /// lblTurnos control.
+        /// lblCantidadPresentes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTurnos;
+        protected global::System.Web.UI.WebControls.Label lblCantidadPresentes;
 
         /// <summary>
-        /// lblInformes control.
+        /// lblPacientesAusentes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInformes;
+        protected global::System.Web.UI.WebControls.Label lblPacientesAusentes;
+
+        /// <summary>
+        /// lblPorcentajeAusentes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPorcentajeAusentes;
+
+        /// <summary>
+        /// lblCantidadAusentes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCantidadAusentes;
+
+        /// <summary>
+        /// GridViewPersonas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewPersonas;
     }
 }

@@ -39,23 +39,25 @@
                         </tr>
                         <tr>
                             <td colspan="2" align="center" class="auto-style4">
-                                <asp:Label ID="lblClinica" runat="server" Text="Clínica &quot;Grupo 10&quot;" Font-Size="16pt"></asp:Label>
+                                <asp:Label ID="lblClinica" runat="server" Text="Clínica &quot;Grupo 10&quot;" Font-Size="16pt" Font-Names="Segoe UI"></asp:Label>
                             </td>
                         </tr>
 
                         <tr>
                             <td align="left" class="auto-style4">
-                                <asp:Label ID="lblUsuario" runat="server" Text="Usuario:" />
+                                <asp:Label ID="lblUsuario" runat="server" Text="Usuario:" Font-Names="Segoe UI" />
                                 <br />
                                 <asp:TextBox ID="tbUsuario" runat="server" Width="200px" />
+                                <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="tbUsuario" ErrorMessage="Debe ingresar un nombre de usuario" ForeColor="Red"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
 
                         <tr>
                             <td align="left" class="auto-style4">
-                                <asp:Label ID="lblContrasena" runat="server" Text="Contraseña:" />
+                                <asp:Label ID="lblContrasena" runat="server" Text="Contraseña:" Font-Names="Segoe UI" />
                                 <br />
                                 <asp:TextBox ID="tbContrasena" runat="server" TextMode="Password" Width="200px" />
+                                <asp:RequiredFieldValidator ID="rfvContrasena" runat="server" ControlToValidate="tbContrasena" ErrorMessage="Debe ingresar la contraseña" ForeColor="Red"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
 
@@ -63,13 +65,13 @@
                         <tr>
                             <td colspan="2" align="center" class="auto-style4">
                                 <asp:Button ID="btnLogin" runat="server" Text="Iniciar sesión"
-                                    BackColor="#99CCFF" Width="120px" OnClick="btnLogin_Click" />
+                                    BackColor="#99CCFF" Width="120px" OnClick="btnLogin_Click" Font-Bold="True" Font-Names="Segoe UI" />
                             </td>
                         </tr>
 
                         <tr>
                             <td colspan="2" align="center" class="auto-style4">
-                                <asp:Label ID="lblError" runat="server" ForeColor="Red" Font-Bold="True" />
+                                <asp:Label ID="lblError" runat="server" ForeColor="Red" Font-Bold="True" Font-Names="Segoe UI" />
                             </td>
                         </tr>
                     </table>

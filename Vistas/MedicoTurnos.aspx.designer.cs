@@ -11,7 +11,7 @@ namespace Vistas
 {
 
 
-    public partial class WebForm1
+    public partial class MedicoTurnos
     {
 
         /// <summary>
@@ -24,13 +24,13 @@ namespace Vistas
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lblTitulo control.
+        /// lbltitulo1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitulo;
+        protected global::System.Web.UI.WebControls.Label lbltitulo1;
 
         /// <summary>
         /// lblUsuario control.
@@ -42,93 +42,66 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblUsuario;
 
         /// <summary>
-        /// btnCerrarSesion control.
+        /// btnCerrarsesion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerrarSesion;
+        protected global::System.Web.UI.WebControls.Button btnCerrarsesion;
 
         /// <summary>
-        /// user control.
+        /// txtDNIPaciente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image user;
+        protected global::System.Web.UI.WebControls.TextBox txtDNIPaciente;
 
         /// <summary>
-        /// btnGestionarMedicos control.
+        /// btnBuscarDNI control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnGestionarMedicos;
+        protected global::System.Web.UI.WebControls.Button btnBuscarDNI;
 
         /// <summary>
-        /// btnAltaPaciente control.
+        /// txtNombrePaciente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnAltaPaciente;
+        protected global::System.Web.UI.WebControls.TextBox txtNombrePaciente;
 
         /// <summary>
-        /// btnTurnos control.
+        /// btnBuscarNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnTurnos;
+        protected global::System.Web.UI.WebControls.Button btnBuscarNombre;
 
         /// <summary>
-        /// btnInformes control.
+        /// btnTodos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnInformes;
+        protected global::System.Web.UI.WebControls.Button btnTodos;
 
         /// <summary>
-        /// lblMedico control.
+        /// gvTurnos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMedico;
-
-        /// <summary>
-        /// lblAltaPacientes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAltaPacientes;
-
-        /// <summary>
-        /// lblTurnos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTurnos;
-
-        /// <summary>
-        /// lblInformes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInformes;
+        protected global::System.Web.UI.WebControls.GridView gvTurnos;
     }
 }

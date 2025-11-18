@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GestionPaciente.aspx.cs" Inherits="Vistas.GestionPaciente" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrarPaciente.aspx.cs" Inherits="Vistas.GestionPaciente" %>
 
 <!DOCTYPE html>
 
@@ -40,7 +40,7 @@
         </div>
             <br />
             <asp:Label ID="lblNacimiento" runat="server" Text="Fecha de Nacimiento"></asp:Label><br />
-            <asp:TextBox ID="txtFechaNacimiento" runat="server" TextMode="Date" style="margin-top: 5px; padding: 5px; width: 38%;"></asp:TextBox>
+            <asp:TextBox ID="txtFechaNacimiento" runat="server" TextMode="Date" style="margin-top: 5px; padding: 5px; " Width="267px"></asp:TextBox>
             <br />
             <br />
 
@@ -48,9 +48,9 @@
             <asp:Label ID="lblGenero" runat="server" Text="Género"></asp:Label><br />
             <br />
             <br />
-            <asp:RadioButton ID="RadBtnFemenino" runat="server" Text="Femenino"  style="margin-right: 20px;" />
-            <asp:RadioButton ID="RadBtnMasculino" runat="server" Text="Masculino"  style="margin-right: 20px;" />
-            <asp:RadioButton ID="RadBtnOtro" runat="server" Text="Otro" />
+            <asp:RadioButton ID="rbFemenino" runat="server" Text="Femenino" GroupName="Sexo"  style="margin-right: 20px;" />
+            <asp:RadioButton ID="rbMasculino" runat="server" Text="Masculino" GroupName="Sexo"  style="margin-right: 20px;" />
+            <asp:RadioButton ID="rbOtro" runat="server" Text="Otro" GroupName="Sexo" style="margin-right: 20px;" />
             <br />
             <br />
 
@@ -66,21 +66,23 @@
                 <asp:TextBox ID="txtDireccion" runat="server" Width="80%"></asp:TextBox>
             </div>
             <div style="display: inline-block; width: 48%;">
-                <asp:Label ID="lblLocalidad" runat="server" Text="Localidad:"></asp:Label><br />
-                <asp:TextBox ID="txtLocalidad" runat="server" Width="80%"></asp:TextBox>
+                <asp:Label ID="lblLocalidad" runat="server" Text="Localidad:"></asp:Label>
+                <asp:DropDownList ID="ddlLocalidades" runat="server" Height="21px" Width="282px">
+                </asp:DropDownList>
+                <br />
              </div>
          </div>
             <br />
          <div style="display: inline-block; width: 48%; height: 66px;">
             <asp:Label ID="lblProvincia" runat="server" Text="Provincia:"></asp:Label>
             <br />
-            <asp:DropDownList ID="DropDlistProv" runat="server" Width="80%"></asp:DropDownList>
+            <asp:DropDownList ID="DropDlistProv" runat="server" AutoPostBack="true" Width="80%" OnSelectedIndexChanged="DropDlistProv_SelectedIndexChanged"></asp:DropDownList>
          </div>
             <br />
          <div style="margin-top: 15px;">  
             <asp:Label ID="Label12" runat="server" Text="Correo Electrónico"></asp:Label>
             <br />
-            <asp:TextBox ID="TextBox7" runat="server" Height="26px" Width="592px"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" runat="server" Height="26px" Width="592px"></asp:TextBox>
         </div>
             <br />
             <div style="display: inline-block; width: 48%; height: 66px;">
@@ -91,9 +93,10 @@
             <br />
         </div>
         <div style="width: 700px; margin: 20px auto; text-align: right;">
+            <asp:Label ID="lblMensaje" runat="server"></asp:Label>
             <asp:Button ID="BtAceptar" runat="server" Text="Aceptar" Width="150px"
                 style="background-color: #81C784; color: white; border: none; 
-                padding: 8px 0; border-radius: 6px; cursor: pointer; font-weight: bold;" />
+                padding: 8px 0; border-radius: 6px; cursor: pointer; font-weight: bold;" OnClick="BtAceptar_Click" />
         </div>
     </form>
 </body>
