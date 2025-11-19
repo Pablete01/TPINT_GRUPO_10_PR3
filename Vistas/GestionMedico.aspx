@@ -121,12 +121,23 @@
                     <asp:BoundField DataField="ID_Medico" Visible="False" />
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
-                            <asp:Button ID="btnModificar" 
-                                runat="server" 
-                                Text="Modificar" 
-                                CommandName="Modificar"
-                                CommandArgument='<%# Eval("ID_Medico") %>' 
-                                CssClass="btn btn-warning" />
+                            <div class="d-flex gap-2">
+                                <asp:LinkButton 
+                                    ID="btnModificar"
+                                    runat="server"
+                                    Text="Modificar"
+                                    CommandName="Modificar"
+                                    CommandArgument='<%# Eval("ID_Medico") %>'
+                                    CssClass="btn btn-warning btn-sm" />
+
+                                <asp:LinkButton 
+                                    ID="btnEliminar"
+                                    runat="server"
+                                    Text="Eliminar"
+                                    CommandName="Eliminar"
+                                    CommandArgument='<%# Eval("ID_Medico") %>'
+                                    CssClass="btn btn-danger btn-sm" />
+                            </div>
                         </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Legajo">

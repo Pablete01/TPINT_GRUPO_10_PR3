@@ -164,6 +164,22 @@ namespace Datos
             }
         }
 
+        public bool BajaLogicaMedico(int idMedico)
+        {
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand("SP_BajaLogicaMedico", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@ID_Medico", idMedico);
+
+            cmd.ExecuteNonQuery();
+
+            // Si llegó hasta aquí sin errores, consideramos que se ejecutó OK
+            return true;
+        }
+
+
+
 
 
         public DataTable GetTablaMedicos()

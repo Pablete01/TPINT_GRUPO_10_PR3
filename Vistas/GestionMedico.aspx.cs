@@ -101,6 +101,26 @@ namespace Vistas
                 string id = e.CommandArgument.ToString();
                 Response.Redirect("FormularioAddMedico.aspx?ID_Medico=" + id);
             }
+
+            if (e.CommandName == "Eliminar")
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
+
+                NegocioMedicos neg = new NegocioMedicos();
+
+                bool resultado = neg.BajaLogicaMedico(id);
+
+                if (resultado)
+                {
+                    MostrarMedicos(); // Recarga la grilla sin el médico
+                }
+                else
+                {
+                    // Podés mostrar un mensaje
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                        "alerta", "alert('No se pudo eliminar el registro.');", true);
+                }
+            }
         }
     }
 }
