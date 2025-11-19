@@ -110,7 +110,7 @@
 <body>
     <form id="form1" runat="server">
 
-       
+        <asp:HiddenField ID="hiddenIdMedico" runat="server" />
         <div class="header">
             <div class="header-left">
                 <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" OnClick="btnInicio_Click" />
@@ -200,6 +200,8 @@
 
             <div class="btn-container">
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn" OnClick="btnAceptar_Click" />
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" OnClick="btnCancelar_Click"/>
+                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
             </div>
         </div>
     </form>

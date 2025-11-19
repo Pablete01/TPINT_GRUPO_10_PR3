@@ -58,6 +58,18 @@ namespace Negocio
             return dm.AgregarMedico(m);
         }
 
+        public bool ModificarMedico(MedicoAdm m)
+        {
+            DaoMedicos dao = new DaoMedicos();
+            return dao.ModificarMedico(m);  // Delego al DAO
+        }
+
+        public bool BajaLogicaMedico(int idMedico)
+        {
+            DaoMedicos dao = new DaoMedicos();
+            return dao.BajaLogicaMedico(idMedico);
+        }
+
         public bool AgregarPersona(MedicoAdm m)
         {
             DaoMedicos datos = new DaoMedicos();
@@ -74,6 +86,12 @@ namespace Negocio
         {
             DaoMedicos datos = new DaoMedicos();
             return datos.AgregarMedicoCompleto(m);
+        }
+
+        public MedicoAdm ObtenerMedicoPorID(int id)
+        {
+            DaoMedicos datos = new DaoMedicos();
+            return datos.MedicoPorID(id);
         }
 
 

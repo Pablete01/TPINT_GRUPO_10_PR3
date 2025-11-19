@@ -13,7 +13,7 @@ namespace Dao
 {
     class AccesoDatos
     {
-        String rutaDBClinica = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=DBClinica_Grupo10;Integrated Security=True;Encrypt=False";
+        String rutaDBClinica = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=DB_CLINICA_GRUPO_10;Integrated Security=True; Encrypt=False";
 
         public AccesoDatos()
         {
@@ -22,15 +22,8 @@ namespace Dao
         public SqlConnection ObtenerConexion()
         {
             SqlConnection cn = new SqlConnection(rutaDBClinica);
-            try
-            {
-                cn.Open();
-                return cn;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
+            cn.Open();      
+            return cn;
 
         }
 
@@ -73,7 +66,7 @@ namespace Dao
 
                 if (ex.Number == 2627 || ex.Number == 2601)
                 {
-
+                  
                     mensaje = "Ya existe un registro con ese DNI o Email.";
                 }
                 else

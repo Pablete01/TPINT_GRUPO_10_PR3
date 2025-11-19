@@ -1,0 +1,822 @@
+use DB_CLINICA_GRUPO_10
+
+GO
+
+CREATE TABLE Provincia (
+    ID_Provincia INT IDENTITY(1,1) PRIMARY KEY,
+    NombreProvincia VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Localidad (
+    ID_Localidad INT IDENTITY(1,1) PRIMARY KEY,
+    NombreLocalidad VARCHAR(50) NOT NULL,
+    ID_Provincia INT NOT NULL FOREIGN KEY REFERENCES Provincia(ID_Provincia)
+);
+
+CREATE TABLE Persona (
+    ID_Persona INT IDENTITY(1,1) PRIMARY KEY,
+    DNI VARCHAR(20) NOT NULL UNIQUE,
+    Nombre VARCHAR(50) NOT NULL,
+    Apellido VARCHAR(50) NOT NULL,
+    Sexo VARCHAR(10),
+    Nacionalidad VARCHAR(50),
+    FechaNacimiento DATE,
+    Telefono VARCHAR(50),
+    Direccion VARCHAR(100),
+    ID_Localidad INT NULL FOREIGN KEY REFERENCES Localidad(ID_Localidad)
+
+);
+
+CREATE TABLE Perfil (
+    ID_Perfil TINYINT IDENTITY(1,1) PRIMARY KEY,
+    NombrePerfil VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE Usuarios (
+    ID_Usuario INT IDENTITY(100,1) PRIMARY KEY,
+    ID_Perfil TINYINT NOT NULL FOREIGN KEY REFERENCES Perfil(ID_Perfil),
+    Email VARCHAR(50) NOT NULL UNIQUE,
+    Contrasena VARCHAR(250) NOT NULL,
+    Estado BIT DEFAULT 1,
+);
+
+
+
+CREATE TABLE Administrador (
+    ID_Administrador INT IDENTITY(1000,1) PRIMARY KEY,
+    ID_Usuario INT NOT NULL FOREIGN KEY REFERENCES Usuarios(ID_Usuario),
+    Estado BIT DEFAULT 1,
+);
+
+
+CREATE TABLE Especialidad (
+    ID_Especialidad INT IDENTITY(1,1) PRIMARY KEY,
+    NombreEspecialidad VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE Medicos (
+    ID_Medico INT IDENTITY(1,1) PRIMARY KEY,
+    ID_Persona INT NOT NULL FOREIGN KEY REFERENCES Persona(ID_Persona),
+    ID_Usuario INT NULL FOREIGN KEY REFERENCES Usuarios(ID_Usuario),
+    ID_Especialidad INT NULL FOREIGN KEY REFERENCES Especialidad(ID_Especialidad),
+    Legajo VARCHAR(20) NULL UNIQUE,
+);
+
+
+CREATE TABLE Pacientes (
+    ID_Pacientes INT IDENTITY(1,1) PRIMARY KEY,
+    ID_Persona INT NOT NULL FOREIGN KEY REFERENCES Persona(ID_Persona),
+    ID_Usuario INT NULL FOREIGN KEY REFERENCES Usuarios(ID_Usuario),
+);
+
+
+CREATE TABLE JornadasMedicos (
+    ID_Jornada INT IDENTITY(1,1) PRIMARY KEY,
+    ID_Medico INT NOT NULL FOREIGN KEY REFERENCES Medicos(ID_Medico),
+    DiaSemana TINYINT NOT NULL, 
+    HoraEntrada TIME NOT NULL,
+    HoraSalida TIME NOT NULL,
+    Estado BIT DEFAULT 1,
+  );
+
+
+  CREATE TABLE EstadoTurno (
+    ID_Estado TINYINT PRIMARY KEY,
+    NombreEstado VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE Turnos (
+    ID_Turno INT IDENTITY(1,1) PRIMARY KEY,
+    ID_Pacientes INT NOT NULL FOREIGN KEY REFERENCES Pacientes(ID_Pacientes),
+    ID_Medico INT NOT NULL FOREIGN KEY REFERENCES Medicos(ID_Medico),
+    Fecha DATE NOT NULL,
+    Hora TIME NOT NULL,
+    ID_Estado TINYINT NOT NULL FOREIGN KEY REFERENCES EstadoTurno(ID_Estado),
+	Observaciones VARCHAR(500),
+);
+GO
+-------------------------------------------------------------------------------------------------------------
+INSERT INTO Perfil (NombrePerfil)
+VALUES
+  ('Administrador'),
+  ('Medico'),
+  ('Paciente');
+GO
+
+INSERT INTO Usuarios (ID_Perfil, Email, Contrasena)
+VALUES 
+(1, 'adminLimache@clinica.com', 'Limache123'),
+(1, 'adminCavallero@clinica.com', 'Cavallero123'),
+(1, 'adminErbes@clinica.com', 'Erbes123'),
+(1, 'adminPalacio@clinica.com', 'Palacio123'),
+(1, 'adminPortales@clinica.com', 'Portales123'),
+(1, 'adminThenoux@clinica.com', 'Thenoux123'),
+(2, 'drjperez@clinica.com.ar', '40123456'),
+(2, 'drmgomez@clinica.com.ar', '39222333'),
+(2, 'drcfernandez@clinica.com.ar', '37456789'),
+(2, 'drlrodriguez@clinica.com.ar', '42890123'),
+(2, 'drplopez@clinica.com.ar', '38901234'),
+(2, 'drcmendoza@clinica.com.ar', '41098765'),
+(2, 'drasosa@clinica.com.ar', '37011223'),
+(2, 'drfrivas@clinica.com.ar', '45678901'),
+(2, 'drsmartinez@clinica.com.ar', '38223344'),
+(2, 'drvdiaz@clinica.com.ar', '39567890'),
+(2, 'drmcabrera@clinica.com.ar', '40789012'),
+(2, 'drnherrera@clinica.com.ar', '37654321'),
+(2, 'drdromero@clinica.com.ar', '41987654'),
+(2, 'drcnavarro@clinica.com.ar', '43219876'),
+(2, 'dremorales@clinica.com.ar', '38456789'),
+-- Alejandra Giménez (DNI 44111222)
+(3, 'AGimenez@email.com', '44111222'),
+
+-- Facundo Duarte (DNI 45222333)
+(3, 'FDuarte@email.com', '45222333'),
+
+-- Soledad Benítez (DNI 36333444)
+(3, 'SBenitez@email.com', '36333444'),
+
+-- Ramón Nuñez (DNI 35444555)
+(3, 'RNuñez@email.com', '35444555'),
+
+-- Julieta Luna (DNI 43555666)
+(3, 'JLuna@email.com', '43555666'),
+
+-- Martín Vega (DNI 40666777)
+(3, 'MVega@email.com', '40666777'),
+
+-- Lorena Rojas (DNI 41777888)
+(3, 'LRojas@email.com', '41777888'),
+
+-- Gustavo Silva (DNI 39888999)
+(3, 'GSilva@email.com', '39888999'),
+
+-- Andrea Paredes (DNI 42999000)
+(3, 'AParedes@email.com', '42999000'),
+
+-- Jorge Castro (DNI 38000111)
+(3, 'JCastro@email.com', '38000111'),
+
+-- Emilia Juárez (DNI 37111222)
+(3, 'EJuarez@email.com', '37111222'),
+
+-- Ricardo Méndez (DNI 44222333)
+(3, 'RMendez@email.com', '44222333'),
+
+-- Marina García (DNI 40333444)
+(3, 'MGarcia@email.com', '40333444'),
+
+-- Hugo Tapia (DNI 41444555)
+(3, 'HTapia@email.com', '41444555');
+
+GO
+
+INSERT INTO Especialidad (NombreEspecialidad) VALUES
+('Cardiología'),
+('Pediatría'),
+('Dermatología'),
+('Ginecología'),
+('Neurología'),
+('Traumatología'),
+('Oftalmología'),
+('Otorrinolaringología'),
+('Urología'),
+('Endocrinología'),
+('Psiquiatría'),
+('Oncología'),
+('Gastroenterología'),
+('Reumatología'),
+('Medicina General');
+
+GO
+
+INSERT INTO Provincia (NombreProvincia) VALUES
+('Buenos Aires'),
+('Ciudad Autónoma de Buenos Aires'),
+('Entre Ríos'),
+('Mendoza'),
+('Santa Fe'),
+('Córdoba'),
+('Corrientes'),
+('Tucumán'),
+('Misiones'),
+('Chaco'),
+('Salta'),
+('San Juan'),
+('Río Negro'),
+('Neuquén'),
+('Chubut');
+
+GO
+
+INSERT INTO Localidad (NombreLocalidad, ID_Provincia) VALUES
+-- Provincia: Buenos Aires (ID_Provincia = 1)
+('San Justo', 1),
+('Avellaneda', 1),
+('Lanús', 1),
+('Morón', 1),
+('San Isidro', 1),
+
+-- Ciudad Autónoma de Buenos Aires (ID_Provincia = 2)
+('Palermo', 2),
+('Recoleta', 2),
+('Belgrano', 2),
+('San Telmo', 2),
+('Caballito', 2),
+
+-- Entre Ríos (ID_Provincia = 3)
+('Paraná', 3),
+
+-- Mendoza (ID_Provincia = 4)
+('Mendoza Capital', 4),
+('San Rafael', 4),
+
+-- Santa Fe (ID_Provincia = 5)
+('Rosario', 5),
+('Rafaela', 5),
+
+-- Córdoba (ID_Provincia = 6)
+('Córdoba Capital', 6),
+('Villa Carlos Paz', 6),
+
+-- Corrientes (ID_Provincia = 7)
+('Corrientes Capital', 7),
+('Goya', 7),
+
+-- Tucumán (ID_Provincia = 8)
+('San Miguel de Tucumán', 8),
+('Yerba Buena', 8),
+
+-- Misiones (ID_Provincia = 9)
+('Posadas', 9),
+('Iguazú', 9),
+
+-- Chaco (ID_Provincia = 10)
+('Resistencia', 10),
+('Sáenz Peña', 10),
+
+-- Salta (ID_Provincia = 11)
+('Salta Capital', 11),
+('Cafayate', 11),
+
+-- San Juan (ID_Provincia = 12)
+('San Juan Capital', 12),
+('Caucete', 12),
+
+-- Río Negro (ID_Provincia = 13)
+('San Carlos de Bariloche', 13),
+('Viedma', 13),
+
+-- Neuquén (ID_Provincia = 14)
+('Neuquén Capital', 14),
+('San Martín de los Andes', 14),
+
+-- Chubut (ID_Provincia = 15)
+('Rawson', 15),
+('Puerto Madryn', 15);
+
+
+GO
+
+INSERT INTO Persona (DNI, Nombre, Apellido, Sexo, Nacionalidad, FechaNacimiento, Telefono, Direccion, ID_Localidad)
+VALUES
+('40123456', 'Juan', 'Pérez', 'Masculino', 'Argentina', '1990-05-14', '1123456789', 'Av. Corrientes 1234', 1),
+('39222333', 'María', 'Gómez', 'Femenino', 'Argentina', '1988-11-02', '1134567890', 'Calle San Martín 456', 2),
+('37456789', 'Carlos', 'Fernández', 'Masculino', 'Uruguay', '1985-03-10', '1145678901', 'Av. Rivadavia 789', 3),
+('42890123', 'Lucía', 'Rodríguez', 'Femenino', 'Argentina', '1995-09-22', '1156789012', 'Calle Belgrano 321', 4),
+('38901234', 'Pedro', 'López', 'Masculino', 'Chile', '1987-07-15', '1167890123', 'Pasaje Moreno 987', 5),
+('41098765', 'Carla', 'Mendoza', 'Femenino', 'Argentina', '1992-01-30', '1178901234', 'Av. Santa Fe 654', 6),
+('37011223', 'Andrés', 'Sosa', 'Masculino', 'Paraguay', '1983-06-05', '1189012345', 'Calle Mitre 741', 7),
+('45678901', 'Florencia', 'Rivas', 'Femenino', 'Argentina', '1998-08-19', '1190123456', 'Av. Independencia 852', 8),
+('38223344', 'Santiago', 'Martínez', 'Masculino', 'Argentina', '1991-12-01', '1201234567', 'Calle Lavalle 963', 9),
+('39567890', 'Valeria', 'Díaz', 'Femenino', 'Argentina', '1989-10-08', '1212345678', 'Pasaje Urquiza 147', 10),
+('40789012', 'Matías', 'Cabrera', 'Masculino', 'Bolivia', '1993-02-17', '1223456789', 'Av. Pueyrredón 258', 11),
+('37654321', 'Natalia', 'Herrera', 'Femenino', 'Argentina', '1986-04-09', '1234567890', 'Calle Tucumán 369', 12),
+('41987654', 'Diego', 'Romero', 'Masculino', 'Argentina', '1994-07-27', '1245678901', 'Av. Callao 753', 13),
+('43219876', 'Camila', 'Navarro', 'Femenino', 'Perú', '1996-05-18', '1256789012', 'Calle Perón 258', 14),
+('38456789', 'Esteban', 'Morales', 'Masculino', 'Argentina', '1988-09-03', '1267890123', 'Boulevard Illia 456', 15),
+-- ID_Localidad 16-17 (Córdoba)
+('44111222', 'Alejandra', 'Giménez', 'Femenino', 'Argentina', '1991-04-25', '3512345678', 'Av. Colón 1020', 16),
+('45222333', 'Facundo', 'Duarte', 'Masculino', 'Argentina', '1997-08-11', '3541234567', 'Calle 9 de Julio 50', 17),
+
+-- ID_Localidad 18-19 (Corrientes)
+('36333444', 'Soledad', 'Benítez', 'Femenino', 'Argentina', '1984-12-03', '3794123456', 'Junín 1100', 18),
+('35444555', 'Ramón', 'Nuñez', 'Masculino', 'Paraguay', '1980-01-20', '3794567890', 'San Martín 890', 19),
+
+-- ID_Localidad 20-21 (Tucumán)
+('43555666', 'Julieta', 'Luna', 'Femenino', 'Argentina', '1995-06-14', '3812345678', '24 de Septiembre 333', 20),
+('40666777', 'Martín', 'Vega', 'Masculino', 'Argentina', '1990-09-07', '3814567890', 'Avenida Aconquija 200', 21),
+
+-- ID_Localidad 22-23 (Misiones)
+('41777888', 'Lorena', 'Rojas', 'Femenino', 'Brasil', '1992-03-19', '3764123456', 'Av. Uruguay 450', 22),
+('39888999', 'Gustavo', 'Silva', 'Masculino', 'Argentina', '1989-10-28', '3764567890', 'Calle Brasil 123', 23),
+
+-- ID_Localidad 24-25 (Chaco)
+('42999000', 'Andrea', 'Paredes', 'Femenino', 'Argentina', '1994-07-01', '3624123456', 'Av. 25 de Mayo 777', 24),
+('38000111', 'Jorge', 'Castro', 'Masculino', 'Argentina', '1986-11-15', '3624567890', 'Hipólito Yrigoyen 88', 25),
+
+-- ID_Localidad 26-27 (Salta)
+('37111222', 'Emilia', 'Juárez', 'Femenino', 'Argentina', '1985-02-09', '3874123456', 'Caseros 980', 26),
+('44222333', 'Ricardo', 'Méndez', 'Masculino', 'Argentina', '1996-05-30', '3874567890', 'San Martín 150', 27),
+
+-- ID_Localidad 28-29 (San Juan)
+('40333444', 'Marina', 'García', 'Femenino', 'Argentina', '1991-08-21', '2644123456', 'Av. Libertador 500 (Oeste)', 28),
+('41444555', 'Hugo', 'Tapia', 'Masculino', 'Argentina', '1993-12-12', '2644567890', 'Calle Mendoza 124', 29);
+
+GO
+
+INSERT INTO Medicos (ID_Persona, ID_Usuario, ID_Especialidad, Legajo) 
+VALUES
+(1, 106, 1, 'M1001'),
+(2, 107, 2, 'M1002'),
+(3, 108, 3, 'M1003'),
+(4, 109, 4, 'M1004'),
+(5, 110, 5, 'M1005'),
+(6, 111, 6, 'M1006'),
+(7, 112, 7, 'M1007'),
+(8, 113, 8, 'M1008'),
+(9, 114, 9, 'M1009'),
+(10, 115, 10, 'M1010'),
+(11, 116, 11, 'M1011'),
+(12, 117, 12, 'M1012'),
+(13, 118, 13, 'M1013'),
+(14, 119, 14, 'M1014'),
+(15, 120, 15, 'M1015');
+
+GO
+
+INSERT INTO Pacientes (ID_Persona, ID_Usuario) 
+VALUES
+(16, 121), -- Alejandra Giménez
+(17, 122), -- Facundo Duarte
+(18, 123), -- Soledad Benítez
+(19, 124), -- Ramón Nuñez
+(20, 125), -- Julieta Luna
+(21, 126), -- Martín Vega
+(22, 127), -- Lorena Rojas
+(23, 128), -- Gustavo Silva
+(24, 129), -- Andrea Paredes
+(25, 130), -- Jorge Castro
+(26, 131), -- Emilia Juárez
+(27, 132), -- Ricardo Méndez
+(28, 133), -- Marina García
+(29, 134); -- Hugo Tapia
+
+GO
+-------------------------------Stored Procedure para Medico---------------------------------------------
+CREATE PROCEDURE SP_ListarMedicosParaPersAdmin
+AS
+BEGIN
+    SELECT 
+		
+		m.ID_Medico, 
+        m.Legajo,
+        p.Nombre,
+        p.Apellido,
+        p.DNI,
+        p.FechaNacimiento,
+        p.Direccion,
+        u.Email,
+        p.Telefono,
+        p.Sexo,
+        p.Nacionalidad,
+
+        e.NombreEspecialidad,
+        l.NombreLocalidad,
+        pr.NombreProvincia
+
+    FROM Medicos m
+    INNER JOIN Persona p ON m.ID_Persona = p.ID_Persona
+    LEFT JOIN Usuarios u ON m.ID_Usuario = u.ID_Usuario
+    LEFT JOIN Especialidad e ON m.ID_Especialidad = e.ID_Especialidad
+    LEFT JOIN Localidad l ON p.ID_Localidad = l.ID_Localidad
+    LEFT JOIN Provincia pr ON l.ID_Provincia = pr.ID_Provincia
+    WHERE u.Estado = 1;
+END
+
+GO
+
+CREATE OR ALTER PROCEDURE SP_BuscarMedicosGM
+    @texto NVARCHAR(50)
+AS
+BEGIN
+    SELECT 
+		m.ID_Medico,
+        m.Legajo,
+        p.Nombre,
+        p.Apellido,
+        p.DNI,
+        p.FechaNacimiento,
+        p.Direccion,
+        p.Telefono,
+        p.Sexo,
+        p.Nacionalidad,
+        u.Email,
+        e.NombreEspecialidad,
+        l.NombreLocalidad,
+        pr.NombreProvincia
+
+    FROM Medicos m
+    INNER JOIN Persona p ON m.ID_Persona = p.ID_Persona
+    LEFT JOIN Usuarios u ON m.ID_Usuario = u.ID_Usuario
+    LEFT JOIN Especialidad e ON m.ID_Especialidad = e.ID_Especialidad
+    LEFT JOIN Localidad l ON p.ID_Localidad = l.ID_Localidad
+    LEFT JOIN Provincia pr ON l.ID_Provincia = pr.ID_Provincia
+
+    WHERE (u.Estado = 1)
+    AND (
+        p.Nombre LIKE '%' + @texto + '%' OR
+        p.Apellido LIKE '%' + @texto + '%' OR
+        m.Legajo LIKE '%' + @texto + '%' OR
+        p.DNI LIKE '%' + @texto + '%'
+    );
+END
+
+GO
+
+CREATE OR ALTER PROCEDURE SP_AgregarMedicoCompleto
+    @DNI                VARCHAR(20),
+    @Nombre             VARCHAR(50),
+    @Apellido           VARCHAR(50),
+    @Sexo               VARCHAR(10),
+    @Nacionalidad       VARCHAR(50),
+    @FechaNacimiento    DATE,
+    @Telefono           VARCHAR(50),
+    @Direccion          VARCHAR(100),
+    @ID_Localidad       INT,
+    @Email              VARCHAR(50),
+    @ID_Especialidad    INT,
+    @Contrasena         VARCHAR(50)     
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ID_Persona INT;
+    DECLARE @ID_Usuario INT;
+    DECLARE @ID_Medico INT;
+    DECLARE @Legajo VARCHAR(20);
+
+    IF (@Contrasena IS NULL OR @Contrasena = '')
+        SET @Contrasena = @DNI;
+
+    IF EXISTS (SELECT 1 FROM Persona WHERE DNI = @DNI)
+    BEGIN
+        SELECT -1 AS Resultado, 'El DNI ya existe' AS Mensaje;
+        RETURN;
+    END
+
+    -- 1) INSERTAR PERSONA
+    INSERT INTO Persona
+    (DNI, Nombre, Apellido, Sexo, Nacionalidad, FechaNacimiento, Telefono, Direccion, ID_Localidad)
+    VALUES
+    (@DNI, @Nombre, @Apellido, @Sexo, @Nacionalidad, @FechaNacimiento, @Telefono, @Direccion, @ID_Localidad);
+
+    SET @ID_Persona = SCOPE_IDENTITY();
+
+    -- GENERAR LEGAJO
+    SET @Legajo = 'M10' + CAST(@ID_Persona AS VARCHAR(10));
+
+    -- 2) INSERTAR USUARIO (perfil médico = 2)
+    INSERT INTO Usuarios
+    (ID_Perfil, Email, Contrasena, Estado)
+    VALUES
+    (2, @Email, @Contrasena, 1); 
+
+    SET @ID_Usuario = SCOPE_IDENTITY();
+
+    -- 3) INSERTAR MÉDICO
+    INSERT INTO Medicos
+    (ID_Persona, ID_Usuario, ID_Especialidad, Legajo)
+    VALUES
+    (@ID_Persona, @ID_Usuario, @ID_Especialidad, @Legajo);
+
+    SET @ID_Medico = SCOPE_IDENTITY();
+
+    -- RESULTADO
+    SELECT  
+        @ID_Persona AS ID_PersonaCreado,
+        @ID_Usuario AS ID_UsuarioCreado,
+        @ID_Medico AS ID_MedicoCreado,
+        @Legajo AS LegajoCreado,
+        1 AS Resultado,
+        'Médico registrado correctamente' AS Mensaje;
+END;
+
+GO
+
+CREATE OR ALTER PROCEDURE SP_ObtenerMedicoCompletoPorID
+    @ID_Medico INT
+AS
+BEGIN
+    SELECT 
+        P.ID_Persona,
+        P.DNI,
+        P.Nombre,
+        P.Apellido,
+        P.Sexo,
+        P.Nacionalidad,
+        P.FechaNacimiento,
+        P.Telefono,
+        P.Direccion,
+        P.ID_Localidad,
+
+        U.ID_Usuario,
+        U.Email,
+        U.Contrasena,
+
+        M.ID_Medico,
+        M.ID_Especialidad,
+        M.Legajo
+    FROM Medicos M
+    INNER JOIN Persona P ON M.ID_Persona = P.ID_Persona
+    INNER JOIN Usuarios U ON M.ID_Usuario = U.ID_Usuario
+    WHERE M.ID_Medico = @ID_Medico;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE SP_ModificarMedico
+    @ID_Medico INT,
+    @Nombre VARCHAR(50),
+    @Apellido VARCHAR(50),
+    @DNI VARCHAR(20),
+    @Sexo VARCHAR(10),
+    @Nacionalidad VARCHAR(50),
+    @FechaNacimiento DATE,
+    @Telefono VARCHAR(50),
+    @Direccion VARCHAR(100),
+    @ID_Localidad INT,
+    @Email VARCHAR(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        -- Actualiza Persona
+        UPDATE P
+        SET 
+            P.Nombre = @Nombre,
+            P.Apellido = @Apellido,
+            P.DNI = @DNI,
+            P.Sexo = @Sexo,
+            P.Nacionalidad = @Nacionalidad,
+            P.FechaNacimiento = @FechaNacimiento,
+            P.Telefono = @Telefono,
+            P.Direccion = @Direccion,
+            P.ID_Localidad = @ID_Localidad
+        FROM Persona P
+        INNER JOIN Medicos M ON P.ID_Persona = M.ID_Persona
+        WHERE M.ID_Medico = @ID_Medico;
+
+        -- Actualiza Usuario (email)
+        UPDATE U
+        SET U.Email = @Email
+        FROM Usuarios U
+        INNER JOIN Medicos M ON U.ID_Usuario = M.ID_Usuario
+        WHERE M.ID_Medico = @ID_Medico;
+
+    END TRY
+    BEGIN CATCH
+        -- Captura y devuelve información del error
+        DECLARE @ErrorNumber INT = ERROR_NUMBER();
+        DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+        DECLARE @ErrorSeverity INT = ERROR_SEVERITY();
+        DECLARE @ErrorState INT = ERROR_STATE();
+        DECLARE @ErrorLine INT = ERROR_LINE();
+        DECLARE @ErrorProcedure NVARCHAR(200) = ISNULL(ERROR_PROCEDURE(), 'SP_ModificarMedico');
+
+        RAISERROR (
+            'Error en %s: Número %d, Severidad %d, Estado %d, Línea %d. Mensaje: %s',
+            @ErrorSeverity,
+            1,
+            @ErrorState,
+            @ErrorProcedure,
+            @ErrorNumber,
+            @ErrorSeverity,
+            @ErrorState,
+            @ErrorLine,
+            @ErrorMessage
+        );
+    END CATCH
+END;
+
+GO
+
+CREATE OR ALTER PROCEDURE SP_BajaLogicaMedico
+    @ID_Medico INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Desactivar únicamente el usuario asociado al médico
+    UPDATE Usuarios
+    SET Estado = 0
+    WHERE ID_Usuario = (
+        SELECT ID_Usuario
+        FROM Medicos
+        WHERE ID_Medico = @ID_Medico
+    );
+END
+
+------------------------------------------Stored Procedure para Paciente-------------------------------------
+GO
+
+CREATE PROCEDURE [dbo].[SP_InsertarPaciente]
+(
+    @DNI INT,
+    @NOMBRE NVARCHAR(50),
+    @APELLIDO NVARCHAR(50),
+    @SEXO NVARCHAR(20),
+    @NACIONALIDAD NVARCHAR(20),
+    @FECHANACIMIENTO DATE,
+    @TELEFONO INT,
+    @DIRECCION NVARCHAR(50),
+    @ID_LOCALIDAD INT,
+    @ID_Perfil INT,
+    @EMAIL NVARCHAR(50),
+    @ESTADO BIT
+)
+AS
+BEGIN
+   
+
+    -- 1?? Insertar Persona
+    INSERT INTO Persona
+    (
+        DNI,
+        Nombre,
+        Apellido,
+        Sexo,
+        Nacionalidad,
+        FechaNacimiento,
+        Telefono,
+        Direccion,
+        ID_Localidad
+    )
+    VALUES
+    (
+        @DNI,
+        @NOMBRE,
+        @APELLIDO,
+        @SEXO,
+        @NACIONALIDAD,
+        @FECHANACIMIENTO,
+        @TELEFONO,
+        @DIRECCION,
+        @ID_LOCALIDAD
+    );
+
+    DECLARE @NuevoIDPersona INT = SCOPE_IDENTITY();
+
+    -- 2?? Insertar Usuario
+    INSERT INTO Usuarios
+    (
+        ID_Perfil,
+        Email,
+        Contrasena,
+        Estado
+    )
+    VALUES
+    (
+        @ID_Perfil,
+        @EMAIL,
+        '123',  -- contraseña por defecto
+        @ESTADO
+    );
+
+    DECLARE @NuevoIDUsuario INT = SCOPE_IDENTITY();
+
+    -- 3?? Insertar Paciente
+    INSERT INTO Pacientes
+    (
+        ID_Persona,
+        ID_Usuario
+    )
+    VALUES
+    (
+        @NuevoIDPersona,
+        @NuevoIDUsuario
+    );
+
+    RETURN 0;
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_ListarPacientesParaPersAdmin]
+AS
+BEGIN
+    SELECT 
+        m.ID_Pacientes,
+        p.Nombre,
+        p.Apellido,
+        p.DNI,
+        p.FechaNacimiento,
+        p.Direccion,
+        u.Email,
+        p.Telefono,
+        p.Sexo,
+        p.Nacionalidad,
+        l.NombreLocalidad,
+        pr.NombreProvincia,
+        pr.ID_Provincia,
+        l.ID_Localidad
+
+    FROM Pacientes m
+    INNER JOIN Persona p ON m.ID_Persona = p.ID_Persona
+    LEFT JOIN Usuarios u ON m.ID_Usuario = u.ID_Usuario
+    LEFT JOIN Localidad l ON p.ID_Localidad = l.ID_Localidad
+    LEFT JOIN Provincia pr ON l.ID_Provincia = pr.ID_Provincia
+    WHERE u.Estado = 1;
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[SP_ActualizarPaciente]
+    @ID_Pacientes INT,
+    @DNI INT,
+    @Nombre NVARCHAR(50),
+    @Apellido NVARCHAR(50),
+    @Sexo NVARCHAR(20),
+    @Nacionalidad NVARCHAR(20),
+    @FechaNacimiento DATE,
+    @Telefono INT,
+    @Direccion NVARCHAR(50),
+    @ID_Localidad INT,
+    @Email NVARCHAR(50),
+    @ID_Perfil INT,
+    @Estado BIT
+AS
+BEGIN
+    -- Actualiza tabla Persona
+    UPDATE Persona
+    SET Nombre = @Nombre,
+        Apellido = @Apellido,
+        Sexo = @Sexo,
+        Nacionalidad = @Nacionalidad,
+        FechaNacimiento = @FechaNacimiento,
+        Telefono = @Telefono,
+        Direccion = @Direccion,
+        ID_Localidad = @ID_Localidad
+    WHERE ID_Persona = (SELECT ID_Persona FROM Pacientes WHERE ID_Pacientes = @ID_Pacientes);
+
+    -- Actualiza tabla Usuarios
+    UPDATE Usuarios
+    SET Email = @Email,
+        ID_Perfil = @ID_Perfil,
+        Estado = @Estado
+    WHERE ID_Usuario = (SELECT ID_Usuario FROM Pacientes WHERE ID_Pacientes = @ID_Pacientes);
+END
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_EliminarPaciente]
+    @ID_Paciente INT
+AS
+BEGIN
+    -- Evitar errores si algo sale mal
+    SET NOCOUNT ON;
+
+    -- Actualizar el estado del usuario asociado al paciente
+    UPDATE Usuarios
+    SET Estado = 0
+    WHERE ID_Usuario = (
+        SELECT ID_Usuario 
+        FROM Pacientes 
+        WHERE ID_Pacientes = @ID_Paciente
+    );
+END
+-------------------------------------Stored Procedure para desplegables y otros------------------------------
+GO
+
+CREATE PROCEDURE [dbo].[sp_GetEspecialidades]
+AS
+BEGIN
+    SELECT * FROM Especialidad;
+END
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_GetLocalidadesPorProvincia]
+    @IdProvincia INT
+AS
+BEGIN
+    SELECT ID_Localidad, NombreLocalidad
+    FROM Localidad
+    WHERE ID_Provincia = @IdProvincia;
+END
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_GetProvincias]
+AS
+BEGIN
+    SELECT * FROM Provincia;
+END

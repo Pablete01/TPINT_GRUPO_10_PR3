@@ -17,7 +17,6 @@ namespace Dao
         public Usuario ValidarUsuario(string usuario, string contrasena)
         {
             SqlConnection conexion = ds.ObtenerConexion();
-       //     conexion.Open();
             string consulta = @"
                     SELECT 
                         u.ID_Usuario,

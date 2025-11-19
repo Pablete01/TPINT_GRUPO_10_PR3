@@ -130,8 +130,55 @@ namespace Datos
 
             return false;
 
-
         }
+
+        public bool ModificarMedico(MedicoAdm m)
+        {
+            try
+            {
+                SqlConnection cn = dm.ObtenerConexion();
+                SqlCommand cmd = new SqlCommand("SP_ModificarMedico", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@ID_Medico", m.ID_Medico);
+                cmd.Parameters.AddWithValue("@Nombre", m.Nombre);
+                cmd.Parameters.AddWithValue("@Apellido", m.Apellido);
+                cmd.Parameters.AddWithValue("@DNI", m.DNI);
+                cmd.Parameters.AddWithValue("@Sexo", m.Sexo);
+                cmd.Parameters.AddWithValue("@Nacionalidad", m.Nacionalidad);
+                cmd.Parameters.AddWithValue("@FechaNacimiento", m.FechaNacimiento);
+                cmd.Parameters.AddWithValue("@Telefono", m.Telefono);
+                cmd.Parameters.AddWithValue("@Direccion", m.Direccion);
+                cmd.Parameters.AddWithValue("@ID_Localidad", m.ID_Localidad);
+                cmd.Parameters.AddWithValue("@Email", m.Email);
+
+              //  cn.Open();
+                cmd.ExecuteNonQuery();
+                cn.Close();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al modificar médico: " + ex.Message, ex);
+            }
+        }
+
+        public bool BajaLogicaMedico(int idMedico)
+        {
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand("SP_BajaLogicaMedico", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@ID_Medico", idMedico);
+
+            cmd.ExecuteNonQuery();
+
+            // Si llegó hasta aquí sin errores, consideramos que se ejecutó OK
+            return true;
+        }
+
+
 
 
 
@@ -173,6 +220,45 @@ namespace Datos
         new SqlParameter("@IdProvincia", idProvincia)
             };
             return ad.ObtenerTabla("Localidad", "sp_GetLocalidadesPorProvincia");
+        }
+
+        public MedicoAdm MedicoPorID(int id)
+        {
+
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand("SP_ObtenerMedicoCompletoPorID", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@ID_Medico", id);
+
+         //   cn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            MedicoAdm med = null;
+
+            if (dr.Read())
+            {
+                med = new MedicoAdm();
+                med.ID_Medico = Convert.ToInt32(dr["ID_Medico"]);
+                med.ID_Persona = Convert.ToInt32(dr["ID_Persona"]);
+                med.Nombre = dr["Nombre"].ToString();
+                med.Apellido = dr["Apellido"].ToString();
+                med.DNI = dr["DNI"].ToString();
+                med.Contrasena = dr["Contrasena"].ToString();  // = DNI
+                med.ID_Especialidad = Convert.ToInt32(dr["ID_Especialidad"]);
+                med.Email = dr["Email"].ToString();
+                med.Telefono = dr["Telefono"].ToString();
+                med.Direccion = dr["Direccion"].ToString();
+                med.Nacionalidad = dr["Nacionalidad"].ToString();
+                med.Sexo = dr["Sexo"].ToString();
+                med.FechaNacimiento = Convert.ToDateTime(dr["FechaNacimiento"]);
+                med.ID_Localidad = Convert.ToInt32(dr["ID_Localidad"]);
+                //med.ID_Provincia = Convert.ToInt32(dr["ID_Provincia"]);
+            }
+
+            dr.Close();
+            return med;
+
         }
 
     }

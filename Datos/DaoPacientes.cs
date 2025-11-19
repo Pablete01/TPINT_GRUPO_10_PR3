@@ -23,7 +23,7 @@ namespace Datos
         public int InsertarPaciente(Paciente paciente, out string mensaje)
         {
             SqlCommand comando = new SqlCommand();
-            comando.Parameters.AddWithValue("@ID_Pacientes", paciente.idPaciente);
+          //  comando.Parameters.AddWithValue("@ID_Pacientes", paciente.idPaciente);
             comando.Parameters.AddWithValue("@DNI", paciente.dni);
             comando.Parameters.AddWithValue("@Nombre", paciente.nombre);
             comando.Parameters.AddWithValue("@Apellido", paciente.apellido);
@@ -33,12 +33,11 @@ namespace Datos
             comando.Parameters.AddWithValue("@Telefono", paciente.telefono);
             comando.Parameters.AddWithValue("@Direccion", paciente.direccion);
             comando.Parameters.AddWithValue("@ID_Localidad", paciente.localidad);
-            comando.Parameters.AddWithValue("@ID_Provincia", paciente.provincia);
             comando.Parameters.AddWithValue("@Email", paciente.email);
             comando.Parameters.AddWithValue("@ID_Perfil", paciente.perfil);
             comando.Parameters.AddWithValue("@Estado", paciente.estado);
 
-            string spInsertarPaciente = "spInsertarPaciente";
+            string spInsertarPaciente = "SP_InsertarPaciente";
             return dm.AgregarPaciente(comando, spInsertarPaciente, out mensaje);
         }
 
@@ -55,7 +54,6 @@ namespace Datos
             comando.Parameters.AddWithValue("@Telefono", paciente.telefono);
             comando.Parameters.AddWithValue("@Direccion", paciente.direccion);
             comando.Parameters.AddWithValue("@ID_Localidad", paciente.localidad);
-            comando.Parameters.AddWithValue("@ID_Provincia", paciente.provincia);
             comando.Parameters.AddWithValue("@Email", paciente.email);
             comando.Parameters.AddWithValue("@ID_Perfil", paciente.perfil);
             comando.Parameters.AddWithValue("@Estado", paciente.estado);
@@ -72,9 +70,9 @@ namespace Datos
             int filasAfectadas = dm.EliminarPaciente(comando, spEliminarPaciente);
             if (filasAfectadas == 0)
             {
-                return false; // devuelve false si no se eliminó ningún registro
+                return false; 
             }
-            return true; // devuelve true si se eliminó correctamente
+            return true; 
         }
     }
 }
