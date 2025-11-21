@@ -69,8 +69,10 @@
   <ItemGroup>
     <Content Include="AsignacionTurnos.aspx" />
     <Content Include="FormularioAddMedico.aspx" />
+    <Content Include="ListadoTurnos.aspx" />
     <Content Include="GestionPacientes.aspx" />
     <Content Include="GestionMedico.aspx" />
+    <Content Include="GestionTurnos.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
     <Content Include="Imagenes\agenda.png" />
     <Content Include="Imagenes\alta.png" />
@@ -104,6 +106,13 @@
     <Compile Include="FormularioAddMedico.aspx.designer.cs">
       <DependentUpon>FormularioAddMedico.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListadoTurnos.aspx.cs">
+      <DependentUpon>ListadoTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoTurnos.aspx.designer.cs">
+      <DependentUpon>ListadoTurnos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GestionPacientes.aspx.cs">
       <DependentUpon>GestionPacientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -117,6 +126,13 @@
     </Compile>
     <Compile Include="GestionMedico.aspx.designer.cs">
       <DependentUpon>GestionMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionTurnos.aspx.cs">
+      <DependentUpon>GestionTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionTurnos.aspx.designer.cs">
+      <DependentUpon>GestionTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistrarPaciente.aspx.cs">
       <DependentUpon>RegistrarPaciente.aspx</DependentUpon>

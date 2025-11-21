@@ -174,7 +174,6 @@ namespace Datos
 
             cmd.ExecuteNonQuery();
 
-            // Si llegó hasta aquí sin errores, consideramos que se ejecutó OK
             return true;
         }
 
