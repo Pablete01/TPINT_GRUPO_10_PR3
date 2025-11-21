@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Formulario Médico</title>
 
     <style>
@@ -74,10 +74,10 @@
             transition: border-color 0.2s;
         }
 
-        input[type="text"]:focus, select:focus {
-            border-color: #007bff;
-            outline: none;
-        }
+            input[type="text"]:focus, select:focus {
+                border-color: #007bff;
+                outline: none;
+            }
 
         .btn-container {
             text-align: center;
@@ -94,9 +94,9 @@
             cursor: pointer;
         }
 
-        .btn:hover {
-            background-color: #0056b3;
-        }
+            .btn:hover {
+                background-color: #0056b3;
+            }
 
         .user-label {
             color: white;
@@ -113,85 +113,106 @@
         <asp:HiddenField ID="hiddenIdMedico" runat="server" />
         <div class="header">
             <div class="header-left">
-                <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" OnClick="btnInicio_Click" />
+                <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" />
             </div>
 
             <div class="header-right">
                 <div class="user-section">
+                    <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Gestión Médicos"></asp:Label>
                     <asp:ImageButton ID="btnUsuario" runat="server" ImageUrl="~/Imagenes/user.png" Width="40px" Height="40px" />
                     <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="user-label"></asp:Label>
                 </div>
             </div>
         </div>
 
-        
+
         <div class="form-container">
             <h2>Registrar Médico</h2>
 
             <table>
                 <tr>
-                    <td><label for="txtNombre">Nombre:</label></td>
-                    <td><asp:TextBox ID="txtNombre" runat="server" /></td>
+                    <td>
+                        <label for="txtNombre">Nombre:</label></td>
+                    <td>
+                        <asp:TextBox ID="txtNombre" runat="server" /></td>
                 </tr>
 
                 <tr>
-                    <td><label for="txtApellido">Apellido:</label></td>
-                    <td><asp:TextBox ID="txtApellido" runat="server" /></td>
+                    <td>
+                        <label for="txtApellido">Apellido:</label></td>
+                    <td>
+                        <asp:TextBox ID="txtApellido" runat="server" /></td>
                 </tr>
 
                 <tr>
-                    <td><label for="txtEmail">Email:</label></td>
-                    <td><asp:TextBox ID="txtEmail" runat="server" /></td>
+                    <td>
+                        <label for="txtEmail">Email:</label></td>
+                    <td>
+                        <asp:TextBox ID="txtEmail" runat="server" /></td>
                 </tr>
 
                 <tr>
-                    <td><label for="txtDNI">DNI:</label></td>
-                    <td><asp:TextBox ID="txtDNI" runat="server" /></td>
+                    <td>
+                        <label for="txtDNI">DNI:</label></td>
+                    <td>
+                        <asp:TextBox ID="txtDNI" runat="server" /></td>
                 </tr>
 
                 <tr>
-                    <td><label for="txtTelefono">Teléfono:</label></td>
-                    <td><asp:TextBox ID="txtTelefono" runat="server" /></td>
+                    <td>
+                        <label for="txtTelefono">Teléfono:</label></td>
+                    <td>
+                        <asp:TextBox ID="txtTelefono" runat="server" /></td>
                 </tr>
 
                 <tr>
-                    <td><label for="txtFechaNac">Fecha de Nacimiento:</label></td>
-                    <td><asp:TextBox ID="txtFechaNac" runat="server" TextMode="Date" /></td>
+                    <td>
+                        <label for="txtFechaNac">Fecha de Nacimiento:</label></td>
+                    <td>
+                        <asp:TextBox ID="txtFechaNac" runat="server" TextMode="Date" /></td>
                 </tr>
 
                 <tr>
-                    <td><label for="txtNacionalidad">Nacionalidad:</label></td>
-                    <td><asp:TextBox ID="txtNacionalidad" runat="server" /></td>
+                    <td>
+                        <label for="txtNacionalidad">Nacionalidad:</label></td>
+                    <td>
+                        <asp:TextBox ID="txtNacionalidad" runat="server" /></td>
                 </tr>
 
                 <tr>
-                    <td><label for="txtDireccion">Provincia:</label></td>
+                    <td>
+                        <label for="txtDireccion">Provincia:</label></td>
                     <td>
                         <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
                     </td>
                 </tr>
 
                 <tr>
-                    <td><label for="txtLocalidad">Localidad:</label></td>
+                    <td>
+                        <label for="txtLocalidad">Localidad:</label></td>
                     <td>
                         <asp:DropDownList ID="ddlLocalidad" runat="server"></asp:DropDownList>
                     </td>
                 </tr>
 
                 <tr>
-                    <td><label for="txtDireccion">Dirección</label><label for="txtProvincia">:</label></td>
-                    <td><asp:TextBox ID="txtDireccion" runat="server" /></td>
+                    <td>
+                        <label for="txtDireccion">Dirección</label><label for="txtProvincia">:</label></td>
+                    <td>
+                        <asp:TextBox ID="txtDireccion" runat="server" /></td>
                 </tr>
 
                 <tr>
-                    <td><label for="ddlSexo">Sexo:</label></td>
+                    <td>
+                        <label for="ddlSexo">Sexo:</label></td>
                     <td>
                         <asp:DropDownList ID="ddlSexo" runat="server"></asp:DropDownList>
                     </td>
                 </tr>
 
                 <tr>
-                    <td><label for="ddlEspecialidad">Especialidad:</label></td>
+                    <td>
+                        <label for="ddlEspecialidad">Especialidad:</label></td>
                     <td>
                         <asp:DropDownList ID="ddlEspecialidad" runat="server"></asp:DropDownList>
                     </td>
@@ -200,7 +221,7 @@
 
             <div class="btn-container">
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn" OnClick="btnAceptar_Click" />
-                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" OnClick="btnCancelar_Click"/>
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" OnClick="btnCancelar_Click" />
                 <asp:Label ID="lblMensaje" runat="server"></asp:Label>
             </div>
         </div>

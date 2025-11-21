@@ -12,10 +12,6 @@
             margin-bottom: 0px;
         }
 
-        .auto-style2 {
-            height: 79px;
-        }
-
         .auto-style3 {
             width: 194px;
             height: 22px;
@@ -33,21 +29,33 @@
         .auto-style10 {
             height: 59px;
         }
+        .auto-style11 {
+            height: 27px;
+        }
+        .auto-style12 {
+            height: 39px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <table align="center" class="auto-style1" style="border: 1px solid black; border-collapse: collapse; padding: 20px;">
             <tr>
-                <td align="center" class="auto-style2" colspan="2" style="background-color: #66a1ff">
+                <td align="center" class="auto-style12" colspan="2" style="background-color: #66a1ff">
                     <asp:Label ID="lblTitulo" runat="server" Text="Administrador" Font-Size="XX-Large" Style="padding: 10px;" Font-Names="Segoe UI"></asp:Label>
                 </td>
-                <td colspan="2" class="auto-style2" style="background-color: #66a1ff; text-align: right;">
+                <td colspan="2" class="auto-style12" style="background-color: #66a1ff; text-align: right;">
                     <div style="display: flex; justify-content: flex-end; align-items: center; gap: 8px;" class="auto-style10">
-                        <asp:Label ID="lblUsuario" runat="server" Text="Usuario" Font-Names="Segoe UI"></asp:Label>
                         <asp:Button ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" Text="Cerrar sesión" />
                         <asp:Image ID="user" runat="server" Height="46px" ImageUrl="~/Imagenes/user.png" Width="50px" />
                     </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" class="auto-style11" colspan="2" style="background-color: #66a1ff">
+                </td>
+                <td colspan="2" class="auto-style11" style="background-color: #66a1ff; text-align: right;">
+                        <asp:Label ID="lblUsuario" runat="server" Text="Usuario" Font-Names="Segoe UI"></asp:Label>
                 </td>
             </tr>
             <tr>
