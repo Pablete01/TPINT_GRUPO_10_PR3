@@ -13,6 +13,8 @@ namespace Dao
 {
     class AccesoDatos
     {
+
+        //prueba
         String rutaDBClinica = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=DB_CLINICA_GRUPO_10;Integrated Security=True; Encrypt=False";
 
         public AccesoDatos()
