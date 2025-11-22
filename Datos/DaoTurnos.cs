@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,18 @@ namespace Datos
         {
             string consulta = "SP_ListarTurnos";
             return dm.ObtenerTabla("Turnos", consulta);
+        }
+
+        public DataTable GetTurnosMedicoFecha(int idMedico, DateTime fecha)
+        {
+            SqlParameter[] parametros =
+                {
+                new SqlParameter("@IdMedico", idMedico),
+                new SqlParameter("@Fecha", fecha.Date)
+        };
+
+            string consulta = "SP_ListarTurnosPorFecha";
+            return dm.ObtenerTablaSP("Fechas", consulta, parametros);
         }
     }
 }

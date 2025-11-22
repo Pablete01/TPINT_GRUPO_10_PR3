@@ -13,5 +13,10 @@ namespace Vistas
         {
             lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
         }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GestionTurnos.aspx");
+        }
     }
 }
