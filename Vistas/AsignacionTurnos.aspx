@@ -76,6 +76,12 @@
      .grid-container tr:nth-child(even) {
          background-color: #f2f2f2;
      }
+         .auto-style1 {
+             margin-bottom: 0px;
+         }
+         .auto-style2 {
+             width: 201px;
+         }
  </style>
 </head>
 <body>
@@ -119,21 +125,27 @@
             <div style="margin: 0 auto;" class="auto-style3">
                 <asp:Label ID="Label5" runat="server" ForeColor="Black" Text="Fecha " Font-Size="Large" Font-Names="Segoe UI"></asp:Label>
                 <asp:TextBox ID="txtFecha" runat="server" TextMode="Date"></asp:TextBox>
+                &nbsp; &lt;--<asp:Label ID="Label8" runat="server" Text="SACAR ESTO"></asp:Label>
             </div>
 
             <div style="margin: 0 auto;" class="auto-style4">
                 <asp:Label ID="Label6" runat="server" Font-Size="Large" ForeColor="Black" Text="Horario " Font-Names="Segoe UI"></asp:Label>
                 <asp:TextBox ID="txtHora" runat="server" TextMode="Time" Width="70px" Height="17px"></asp:TextBox>
+                &nbsp; &lt;--
+                <asp:Label ID="Label9" runat="server" Text="SACAR ESTO"></asp:Label>
             </div>
             <div style="margin: 0 auto;" class="auto-style5">
                 <asp:Label ID="Label7" runat="server" Font-Size="Large" Text="DNI del paciente: " ForeColor="Black" Font-Names="Segoe UI"></asp:Label>
                 <asp:TextBox ID="txtDNIPaciente" runat="server" Width="148px"></asp:TextBox>
             </div>
+            <asp:HyperLink ID="hlFechaHora" runat="server" NavigateUrl="~/ListaHorarios.aspx">Seleccionar fecha y hora</asp:HyperLink>
+            &nbsp; &lt;- aca se selecciona el dia y la hora<br />
             <br />
             <br />
-            <br />
-            <div style="width: 89px; margin: 0 auto;">
-                <asp:Button ID="btnAceptar" runat="server" Text="ACEPTAR" BorderStyle="None" BackColor="White" />
+            <div style="margin: 0 auto;" class="auto-style2">
+                <asp:Button ID="btnCancelar" runat="server" BorderStyle="None" BackColor="White" OnClick="btnCancelar_Click" Text="Cancelar" />
+                &nbsp;&nbsp;
+                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" BorderStyle="None" BackColor="White" />
             </div>
         </div>
      </asp:Panel>

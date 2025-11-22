@@ -8,14 +8,29 @@ using Datos;
 
 namespace Negocio
 {
-    public  class NegocioTurnos
+    public class NegocioTurnos
     {
-       DaoTurnos dao = new DaoTurnos();
-        
-       public DataTable CargarGrillaTurnos()
-       {
-           DataTable dt = dao.GetTablaTurnos();
-           return dt;
+        DaoTurnos dao = new DaoTurnos();
+
+        public DataTable CargarGrillaTurnos()
+        {
+            DataTable dt = dao.GetTablaTurnos();
+            return dt;
         }
+    
+
+    public DataTable ObtenerTurnosMedicoFecha(int idMedico, DateTime fecha)
+        {
+            DataTable dt = dao.GetTurnosMedicoFecha(idMedico, fecha);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    "Hora: " + row["Hora"].ToString()
+                );
+            }
+            return dt;
+        }
+
     }
 }

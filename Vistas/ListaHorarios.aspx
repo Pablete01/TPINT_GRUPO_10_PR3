@@ -22,25 +22,36 @@
         .disponible {
             background-color: lightgreen;
         }
+        .auto-style1 {
+            height: 305px;
+        }
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" class="auto-style1">
         <div>
             <asp:Label ID="lblFecha" runat="server" Text="Seleccione una fecha:"></asp:Label>
-            <asp:TextBox ID="txtFecha" runat="server" Text='<%# DateTime.Now.ToString("yyyy-MM-dd") %>' TextMode="Date"></asp:TextBox>
+            <asp:TextBox ID="txtFecha" runat="server" Text='<%# DateTime.Now.ToString("yyyy-MM-dd") %>' TextMode="Date" ></asp:TextBox>
             <asp:Button ID="btnCargarHorarios" runat="server" Text="Cargar Horarios" OnClick="btnCargarHorarios_Click" />
 
         </div>
 
         <br />
 
-        <asp:Table ID="tblHorarios" runat="server" CssClass="horarios-table"></asp:Table>
+        <asp:Table ID="tblHorarios" runat="server" CssClass="horarios-table" Height="42px" Width="395px"></asp:Table>
 
         <br />
 
         <asp:Label ID="lblSeleccion" runat="server" Text="" Font-Bold="True"></asp:Label>
+        <br />
         <asp:Label ID="lblHoraSeleccionada" runat="server" Font-Bold="True"></asp:Label>
+
+        <br />
+        <br />
+        <asp:Button ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" Text="Cancelar" />
+&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnAceptar" runat="server" OnClick="btnAceptar_Click" Text="Acepar" />
+
     </form>
 </body>
 </html>
