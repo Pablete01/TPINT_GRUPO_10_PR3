@@ -16,9 +16,8 @@ namespace Vistas
         NegocioMedicos negocioMedicos = new NegocioMedicos();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)  
+            if (!IsPostBack)
             {
-                lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
                 MostrarMedicos();
             }
         }
@@ -122,6 +121,13 @@ namespace Vistas
                         "alerta", "alert('No se pudo eliminar el registro.');", true);
                 }
             }
+
+            if (e.CommandName == "Jornadas")
+            {
+                string idMedico = e.CommandArgument.ToString();
+                Response.Redirect("GestionJornadaMedico.aspx?ID_Medico=" + idMedico);
+            }
+
         }
     }
 }

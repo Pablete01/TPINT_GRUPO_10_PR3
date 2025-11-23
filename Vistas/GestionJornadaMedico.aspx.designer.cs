@@ -11,7 +11,7 @@ namespace Vistas
 {
 
 
-    public partial class GestionMedico
+    public partial class GestionJornadaMedico
     {
 
         /// <summary>
@@ -60,48 +60,93 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Panel PanelPrincipal;
 
         /// <summary>
-        /// txtBuscar control.
+        /// btnAgregarJornada control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
+        protected global::System.Web.UI.WebControls.Button btnAgregarJornada;
 
         /// <summary>
-        /// btnBuscar control.
+        /// grdJornadaMedico control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.WebControls.GridView grdJornadaMedico;
 
         /// <summary>
-        /// btnAgregarMedico control.
+        /// PanelAgregar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarMedico;
+        protected global::System.Web.UI.WebControls.Panel PanelAgregar;
 
         /// <summary>
-        /// ddlFiltro control.
+        /// ddlDiaSemana control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFiltro;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDiaSemana;
 
         /// <summary>
-        /// grdMedico control.
+        /// txtEntrada control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdMedico;
+        protected global::System.Web.UI.WebControls.TextBox txtEntrada;
+
+        /// <summary>
+        /// txtSalida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSalida;
+
+        /// <summary>
+        /// txtDuracion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDuracion;
+
+        /// <summary>
+        /// btnAceptarNuevaJornada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptarNuevaJornada;
+
+        /// <summary>
+        /// btnCancelarNuevaJornada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarNuevaJornada;
+
+        /// <summary>
+        /// lblMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMsg;
     }
 }
