@@ -73,7 +73,6 @@
     <Content Include="GestionPacientes.aspx" />
     <Content Include="GestionMedico.aspx" />
     <Content Include="GestionTurnos.aspx" />
-    <Content Include="ListaHorarios.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
     <Content Include="Imagenes\agenda.png" />
     <Content Include="Imagenes\alta.png" />
@@ -134,13 +133,6 @@
     </Compile>
     <Compile Include="GestionTurnos.aspx.designer.cs">
       <DependentUpon>GestionTurnos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ListaHorarios.aspx.cs">
-      <DependentUpon>ListaHorarios.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ListaHorarios.aspx.designer.cs">
-      <DependentUpon>ListaHorarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistrarPaciente.aspx.cs">
       <DependentUpon>RegistrarPaciente.aspx</DependentUpon>
