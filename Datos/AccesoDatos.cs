@@ -163,6 +163,29 @@ namespace Dao
             return dt;
         }
 
+        public int EjecutarSPNonQuery(string nombreSP, SqlCommand cmd)
+        {
+            SqlConnection cn = ObtenerConexion();
+            try
+            {
+                cmd.Connection = cn;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = nombreSP;
+
+                SqlParameter retorno = new SqlParameter("@ReturnVal", SqlDbType.Int);
+                retorno.Direction = ParameterDirection.ReturnValue;
+                cmd.Parameters.Add(retorno);
+
+                cmd.ExecuteNonQuery();
+
+                return (int)retorno.Value;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
 
     }
 }
