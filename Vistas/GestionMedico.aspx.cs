@@ -121,6 +121,13 @@ namespace Vistas
                         "alerta", "alert('No se pudo eliminar el registro.');", true);
                 }
             }
+
+            if (e.CommandName == "Jornadas")
+            {
+                string idMedico = e.CommandArgument.ToString();
+                Response.Redirect("GestionJornadaMedico.aspx?ID_Medico=" + idMedico);
+            }
+
         }
     }
 }

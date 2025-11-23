@@ -137,6 +137,14 @@
                                     CommandName="Eliminar"
                                     CommandArgument='<%# Eval("ID_Medico") %>'
                                     CssClass="btn btn-danger btn-sm" />
+
+                                <asp:LinkButton  
+                                    ID="btnJornadas"
+                                    runat="server"
+                                    Text="Jornada"
+                                    CommandName="Jornadas"
+                                    CommandArgument='<%# Eval("ID_Medico") %>'
+                                    CssClass="btn btn-info btn-sm" />
                             </div>
                         </ItemTemplate>
                         </asp:TemplateField>
