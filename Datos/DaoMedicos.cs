@@ -260,5 +260,22 @@ namespace Datos
 
         }
 
+        public DataTable MedicoPorEspecialidad(int especialidad)
+        {
+
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand("SP_ObtenerMedicoCompletoPorEspecialidad", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@ID_Especialidad", especialidad);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);  // llena el DataTable con los resultados del SP
+            cn.Close();
+            return dt;
+
+
+        }
+
     }
 }
