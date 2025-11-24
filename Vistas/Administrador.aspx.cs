@@ -43,7 +43,7 @@ namespace Vistas
 
         protected void btnTurnos_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("AsignacionTurnos.aspx");
+            Response.Redirect("GestionTurnos.aspx");
         }
 
         protected void btnInformes_Click(object sender, ImageClickEventArgs e)

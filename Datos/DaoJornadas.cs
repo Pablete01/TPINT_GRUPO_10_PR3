@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entidades;
 
 namespace Datos
 {
@@ -23,19 +24,18 @@ namespace Datos
             return ds.ObtenerTablaSP("JornadasMedico", "sp_ObtenerJornadasMedico", parametros);
         }
 
-        public bool AgregarJornada(int idMedico, int diaSemana, string horaEntrada, string horaSalida, int duracion)
+        public int AgregarJornada(JornadaMedico j)
         {
             SqlCommand cmd = new SqlCommand();
 
-            cmd.Parameters.AddWithValue("@ID_Medico", idMedico);
-            cmd.Parameters.AddWithValue("@DiaSemana", diaSemana);
-            cmd.Parameters.AddWithValue("@HoraEntrada", horaEntrada);
-            cmd.Parameters.AddWithValue("@HoraSalida", horaSalida);
-            cmd.Parameters.AddWithValue("@Duracion", duracion);
+            cmd.Parameters.AddWithValue("@ID_Medico", j.ID_Medico);
+            cmd.Parameters.AddWithValue("@DiaSemana", j.DiaSemana);
+            cmd.Parameters.AddWithValue("@HoraEntrada", j.HoraEntrada);
+            cmd.Parameters.AddWithValue("@HoraSalida", j.HoraSalida);
+            cmd.Parameters.AddWithValue("@Duracion", j.Duracion);
 
-            int resultado = ds.EjecutarSPNonQuery("sp_AgregarJornadaMedico", cmd);
-
-            return resultado == 1;  // true si insertó, false si NO insertó
+            // Ejecutar y devolver INT (1 ok, -1 error)
+            return ds.EjecutarSPNonQuery("sp_AgregarJornadaMedico", cmd);
         }
 
     }

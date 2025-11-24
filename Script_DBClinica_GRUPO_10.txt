@@ -1,4 +1,5 @@
 
+
 use DB_CLINICA_GRUPO_10
 
 GO
