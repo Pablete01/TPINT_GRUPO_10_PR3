@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dao;
 using Datos;
-
+using Entidades;
 namespace Negocio
 {
     public class NegocioJornadas
@@ -18,9 +18,12 @@ namespace Negocio
             return dao.ObtenerJornadasMedico(idMedico);
         }
 
-        public bool AgregarJornada(int id, int dia, string hIn, string hOut, int dur)
+        public bool AgregarJornada(JornadaMedico jornada)
         {
-            return dao.AgregarJornada(id, dia, hIn, hOut, dur);
+            int resultado = dao.AgregarJornada(jornada);
+
+            // SP: 1 = OK, -1 = superposición, 0 = error
+            return resultado == 1;
         }
     }
 }

@@ -13,9 +13,7 @@ namespace Dao
 {
     class AccesoDatos
     {
-
-        //prueba
-        String rutaDBClinica = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=DB_CLINICA_GRUPO_10;Integrated Security=True; Encrypt=False";
+        String rutaDBClinica = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=DB_CLINICA_GRUPO_10;Integrated Security=True;Encrypt=False";
 
         public AccesoDatos()
         {
@@ -99,6 +97,31 @@ namespace Dao
 
             return tabla;
         }
+
+        public int EjecutarSPNonQuery(string nombreSP, SqlCommand cmd)
+        {
+            SqlConnection cn = ObtenerConexion();
+            try
+            {
+                cmd.Connection = cn;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = nombreSP;
+
+                SqlParameter retorno = new SqlParameter("@ReturnVal", SqlDbType.Int);
+                retorno.Direction = ParameterDirection.ReturnValue;
+                cmd.Parameters.Add(retorno);
+
+                cmd.ExecuteNonQuery();
+
+                return (int)retorno.Value;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+
 
         public int ActualizarPaciente(SqlCommand comandoSQL, string spActualizarPaciente)
         {

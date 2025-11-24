@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Entidades;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Negocio;
 
 namespace Vistas
 {
@@ -37,13 +38,15 @@ namespace Vistas
 
         protected void btnAceptarNuevaJornada_Click(object sender, EventArgs e)
         {
-            int idMedico = Convert.ToInt32(Request.QueryString["ID_Medico"]);
-            int diaSemana = Convert.ToInt32(ddlDiaSemana.SelectedValue);
-            string horaEntrada = txtEntrada.Text;
-            string horaSalida = txtSalida.Text;
-            int duracion = Convert.ToInt32(txtDuracion.Text);
+            JornadaMedico j = new JornadaMedico();
 
-            bool ok = negocio.AgregarJornada(idMedico, diaSemana, horaEntrada, horaSalida, duracion);
+            j.ID_Medico = Convert.ToInt32(Request.QueryString["ID_Medico"]);
+            j.DiaSemana = Convert.ToInt32(ddlDiaSemana.SelectedValue);
+            j.HoraEntrada = TimeSpan.Parse(txtEntrada.Text);
+            j.HoraSalida = TimeSpan.Parse(txtSalida.Text);
+            j.Duracion = Convert.ToInt32(txtDuracion.Text);
+
+            bool ok = negocio.AgregarJornada(j);
 
             if (ok)
             {
@@ -51,7 +54,7 @@ namespace Vistas
                 lblMsg.ForeColor = System.Drawing.Color.Green;
 
                 PanelAgregar.Visible = false;
-                CargarJornadas(idMedico);
+                CargarJornadas(j.ID_Medico);
             }
             else
             {
@@ -72,5 +75,5 @@ namespace Vistas
 
 
     }
-
+    
 }

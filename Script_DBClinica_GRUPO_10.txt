@@ -1,3 +1,5 @@
+
+
 use DB_CLINICA_GRUPO_10
 
 GO
@@ -79,7 +81,10 @@ CREATE TABLE JornadasMedicos (
     HoraEntrada TIME NOT NULL,
     HoraSalida TIME NOT NULL,
     Estado BIT DEFAULT 1,
+	Duracion INT NOT NULL DEFAULT 60,
   );
+	--ALTER TABLE JornadasMedicos
+	--ADD Duracion INT NOT NULL DEFAULT 60;
 
 
   CREATE TABLE EstadoTurno (
@@ -365,6 +370,10 @@ VALUES
 (29, 134); -- Hugo Tapia
 
 GO
+
+INSERT INTO JornadasMedicos (ID_Medico, DiaSemana, HoraEntrada, HoraSalida)
+VALUES (1, 5, '08:00', '12:00');
+GO
 -------------------------------Stored Procedure para Medico---------------------------------------------
 CREATE PROCEDURE SP_ListarMedicosParaPersAdmin
 AS
@@ -617,6 +626,59 @@ BEGIN
         FROM Medicos
         WHERE ID_Medico = @ID_Medico
     );
+END
+
+GO
+
+CREATE PROCEDURE sp_ObtenerJornadasMedico
+    @ID_Medico INT
+AS
+BEGIN
+    SELECT 
+        ID_Jornada,
+        ID_Medico,
+        DiaSemana,
+        HoraEntrada,
+        HoraSalida,
+        Duracion,
+        Estado
+    FROM JornadasMedicos
+    WHERE ID_Medico = @ID_Medico
+      AND Estado = 1;   
+END
+
+GO
+
+CREATE PROCEDURE sp_AgregarJornadaMedico
+    @ID_Medico INT,
+    @DiaSemana TINYINT,
+    @HoraEntrada TIME,
+    @HoraSalida TIME,
+    @Duracion INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- VALIDAR QUE NO SE SUPERPONGAN LAS JORNADAS
+    IF EXISTS (
+        SELECT 1 
+        FROM JornadasMedicos
+        WHERE ID_Medico = @ID_Medico
+          AND DiaSemana = @DiaSemana
+          AND (
+                (@HoraEntrada BETWEEN HoraEntrada AND HoraSalida)
+                OR (@HoraSalida BETWEEN HoraEntrada AND HoraSalida)
+                OR (HoraEntrada BETWEEN @HoraEntrada AND @HoraSalida)
+              )
+    )
+    BEGIN
+        RETURN -1; -- SUPERPOSICIÓN
+    END
+
+    INSERT INTO JornadasMedicos(ID_Medico, DiaSemana, HoraEntrada, HoraSalida, Duracion)
+    VALUES (@ID_Medico, @DiaSemana, @HoraEntrada, @HoraSalida, @Duracion);
+
+    RETURN 1;  -- OK
 END
 
 ------------------------------------------Stored Procedure para Paciente-------------------------------------
