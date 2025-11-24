@@ -23,6 +23,7 @@ namespace Vistas
             //ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
+                lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
                 CargarSexo();
                 CargarEspecialidades();
                 CargarProvincias();

@@ -94,6 +94,12 @@ namespace Negocio
             return datos.MedicoPorID(id);
         }
 
+        public DataTable ObtenerMedicoPorEspecialidad(int idEspecialidad)
+        {
+            DaoMedicos datos = new DaoMedicos();
+            return datos.MedicoPorEspecialidad (idEspecialidad);
+        }
+
 
     }
 
