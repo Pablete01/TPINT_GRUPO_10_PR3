@@ -680,6 +680,35 @@ BEGIN
     RETURN 1;  -- OK
 END
 
+CREATE PROCEDURE [dbo].[SP_ObtenerMedicoCompletoPorEspecialidad]
+    @ID_Especialidad INT
+AS
+BEGIN
+    SELECT 
+        P.ID_Persona,
+        P.DNI,
+        P.Nombre,
+        P.Apellido,
+        P.Sexo,
+        P.Nacionalidad,
+        P.FechaNacimiento,
+        P.Telefono,
+        P.Direccion,
+        P.ID_Localidad,
+
+        U.ID_Usuario,
+        U.Email,
+        U.Contrasena,
+
+        M.ID_Medico,
+        M.ID_Especialidad,
+        M.Legajo
+    FROM Medicos M
+    INNER JOIN Persona P ON M.ID_Persona = P.ID_Persona
+    INNER JOIN Usuarios U ON M.ID_Usuario = U.ID_Usuario
+    WHERE M.ID_Especialidad = @ID_Especialidad;
+END;
+
 ------------------------------------------Stored Procedure para Paciente-------------------------------------
 GO
 
@@ -881,3 +910,66 @@ AS
 BEGIN
     SELECT * FROM Provincia;
 END
+
+---------------------TURNOS-------------------------------------------
+
+CREATE PROCEDURE [dbo].[SP_ListarTurnos]
+AS
+BEGIN
+    SELECT 
+        -- Datos del turno
+        m.ID_Turno,
+        m.ID_Pacientes,
+        m.ID_Medico,
+        m.Fecha,
+        m.Hora,
+        m.ID_Estado,
+        m.Observaciones,
+
+        -- Datos del paciente
+        p.ID_Persona AS ID_Persona_Paciente,
+        perPac.Nombre AS NombrePaciente,
+        perPac.Apellido AS ApellidoPaciente,
+
+        -- Datos del médico
+        med.ID_Persona AS ID_Persona_Medico,
+        perMed.Nombre AS NombreMedico,
+        perMed.Apellido AS ApellidoMedico,
+        esp.NombreEspecialidad AS EspecialidadMedico,
+
+        -- Estado del turno
+        est.NombreEstado AS EstadoTurno
+    FROM Turnos m
+
+    -- PACIENTE
+    INNER JOIN Pacientes p 
+        ON m.ID_Pacientes = p.ID_Pacientes
+    INNER JOIN Persona perPac
+        ON p.ID_Persona = perPac.ID_Persona
+
+    -- MÉDICO
+    INNER JOIN Medicos med
+        ON m.ID_Medico = med.ID_Medico
+    INNER JOIN Persona perMed
+        ON med.ID_Persona = perMed.ID_Persona
+
+    -- ESPECIALIDAD
+    INNER JOIN Especialidad esp
+        ON med.ID_Especialidad = esp.ID_Especialidad
+
+    -- ESTADO DEL TURNO
+    LEFT JOIN EstadoTurno est
+        ON m.ID_Estado = est.ID_Estado
+END
+
+CREATE PROCEDURE [dbo].[SP_ListarTurnosPorFecha]
+    @IdMedico INT,
+    @Fecha DATE
+AS
+BEGIN
+    SELECT Hora
+    FROM Turnos
+    WHERE ID_Medico = @IdMedico
+      AND CONVERT(date, Fecha) = @Fecha
+END
+
