@@ -75,6 +75,7 @@
     <Content Include="GestionTurnoPaciente.aspx" />
     <Content Include="GestionTurnos.aspx" />
     <Content Include="GestionTurnos_2.aspx" />
+    <Content Include="PacientesAgendados.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
     <Content Include="Imagenes\agenda.png" />
     <Content Include="Imagenes\alta.png" />
@@ -149,6 +150,13 @@
     </Compile>
     <Compile Include="GestionTurnos_2.aspx.designer.cs">
       <DependentUpon>GestionTurnos_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PacientesAgendados.aspx.cs">
+      <DependentUpon>PacientesAgendados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PacientesAgendados.aspx.designer.cs">
+      <DependentUpon>PacientesAgendados.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistrarPaciente.aspx.cs">
       <DependentUpon>RegistrarPaciente.aspx</DependentUpon>

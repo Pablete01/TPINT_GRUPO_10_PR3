@@ -11,7 +11,7 @@ namespace Vistas
 {
 
 
-    public partial class Medico
+    public partial class PacientesAgendados
     {
 
         /// <summary>
@@ -24,31 +24,40 @@ namespace Vistas
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lblTitulo control.
+        /// btnInicio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitulo;
+        protected global::System.Web.UI.WebControls.ImageButton btnInicio;
 
         /// <summary>
-        /// btnCerrarSesion control.
+        /// HLVolver control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerrarSesion;
+        protected global::System.Web.UI.WebControls.HyperLink HLVolver;
 
         /// <summary>
-        /// user control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image user;
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// btnUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnUsuario;
 
         /// <summary>
         /// lblUsuario control.
@@ -60,39 +69,48 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblUsuario;
 
         /// <summary>
-        /// btnAgenda control.
+        /// PanelPrincipal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnAgenda;
+        protected global::System.Web.UI.WebControls.Panel PanelPrincipal;
 
         /// <summary>
-        /// btnMisPacientes control.
+        /// txtBuscar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnMisPacientes;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
 
         /// <summary>
-        /// lblAgenda control.
+        /// btnBuscar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAgenda;
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
-        /// lblMisPacientes control.
+        /// ddlFiltro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMisPacientes;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFiltro;
+
+        /// <summary>
+        /// grdPacientes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdPacientes;
     }
 }

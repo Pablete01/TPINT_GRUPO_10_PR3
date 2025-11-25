@@ -11,13 +11,31 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).nombrePerfil;
+
+            if (Session["Usuario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+                return;
+            }
+            lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
 
         }
 
         protected void btnTurnos_Click(object sender, ImageClickEventArgs e)
         {
+           
+        }
 
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void btnAgenda_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("PacientesAgendados.aspx");
         }
     }
 }

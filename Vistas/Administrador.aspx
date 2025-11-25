@@ -28,12 +28,19 @@
 
         .auto-style10 {
             height: 59px;
+            margin-left: 187px;
         }
+
         .auto-style11 {
             height: 27px;
         }
+
         .auto-style12 {
             height: 39px;
+        }
+        .auto-style13 {
+            width: 360px;
+            height: 22px;
         }
     </style>
 </head>
@@ -42,6 +49,7 @@
         <table align="center" class="auto-style1" style="border: 1px solid black; border-collapse: collapse; padding: 20px;">
             <tr>
                 <td align="center" class="auto-style12" colspan="2" style="background-color: #66a1ff">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Label ID="lblTitulo" runat="server" Text="Administrador" Font-Size="XX-Large" Style="padding: 10px;" Font-Names="Segoe UI"></asp:Label>
                 </td>
                 <td colspan="2" class="auto-style12" style="background-color: #66a1ff; text-align: right;">
@@ -52,10 +60,9 @@
                 </td>
             </tr>
             <tr>
-                <td align="center" class="auto-style11" colspan="2" style="background-color: #66a1ff">
-                </td>
+                <td align="center" class="auto-style11" colspan="2" style="background-color: #66a1ff"></td>
                 <td colspan="2" class="auto-style11" style="background-color: #66a1ff; text-align: right;">
-                        <asp:Label ID="lblUsuario" runat="server" Text="Usuario" Font-Names="Segoe UI"></asp:Label>
+                    <asp:Label ID="lblUsuario" runat="server" Text="Usuario" Font-Names="Segoe UI"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -63,23 +70,23 @@
             </tr>
             <tr>
                 <td align="center" class="auto-style3">
-                    <asp:ImageButton ID="btnGestionarMedicos" runat="server" Height="100px" ImageUrl="~/Imagenes/medico.png" Width="150px" style="padding: 10px;" BorderStyle="Solid" ImageAlign="Middle" OnClick="btnGestionarMedicos_Click"  />
+                    <asp:ImageButton ID="btnGestionarMedicos" runat="server" Height="100px" ImageUrl="~/Imagenes/medico.png" Width="150px" Style="padding: 10px;" BorderStyle="Solid" ImageAlign="Middle" OnClick="btnGestionarMedicos_Click" />
+                </td>
+                <td align="center" class="auto-style13">
+                    <asp:ImageButton ID="btnAltaPaciente" runat="server" Height="100px" ImageUrl="~/Imagenes/alta.png" Width="150px" Style="padding: 10px;" BorderStyle="Solid" ImageAlign="Middle" OnClick="btnAltaPaciente_Click" />
                 </td>
                 <td align="center" class="auto-style3">
-                    <asp:ImageButton ID="btnAltaPaciente" runat="server" Height="100px" ImageUrl="~/Imagenes/alta.png" Width="150px" style="padding: 10px;" BorderStyle="Solid" ImageAlign="Middle" OnClick="btnAltaPaciente_Click" />
+                    <asp:ImageButton ID="btnTurnos" runat="server" Height="100px" ImageUrl="~/Imagenes/turno.png" Width="150px" Style="padding: 10px;" BorderStyle="Solid" ImageAlign="Middle" OnClick="btnTurnos_Click" />
                 </td>
                 <td align="center" class="auto-style3">
-                    <asp:ImageButton ID="btnTurnos" runat="server" Height="100px" ImageUrl="~/Imagenes/turno.png" Width="150px" style="padding: 10px;" BorderStyle="Solid" ImageAlign="Middle" OnClick="btnTurnos_Click" />
-                </td>
-                <td align="center" class="auto-style3">
-                    <asp:ImageButton ID="btnInformes" runat="server" Height="100px" ImageUrl="~/Imagenes/informes.png" Width="150px" style="padding: 10px;" BorderStyle="Solid" ImageAlign="Middle" OnClick="btnInformes_Click" />
+                    <asp:ImageButton ID="btnInformes" runat="server" Height="100px" ImageUrl="~/Imagenes/informes.png" Width="150px" Style="padding: 10px;" BorderStyle="Solid" ImageAlign="Middle" OnClick="btnInformes_Click" />
                 </td>
             </tr>
             <tr>
                 <td align="center" class="auto-style3">
                     <asp:Label ID="lblMedico" runat="server" Text="Gestionar Médicos" Font-Bold="True" Font-Names="Segoe UI"></asp:Label>
                 </td>
-                <td align="center" class="auto-style3">
+                <td align="center" class="auto-style13">
                     <asp:Label ID="lblAltaPacientes" runat="server" Text="Gestionar Pacientes" Font-Bold="True" Font-Names="Segoe UI"></asp:Label>
                 </td>
                 <td align="center" class="auto-style3">
