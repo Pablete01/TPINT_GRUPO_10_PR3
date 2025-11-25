@@ -32,6 +32,20 @@ namespace Datos
             return dm.ObtenerTablaSP("Fechas", consulta, parametros);
         }
 
+        public DataTable GetHorarioMedico(int idMedico)
+        {
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("IdMedico", idMedico)
+            };
+            string consulta = "SP_ListarHorarioMedico";
+
+
+
+
+            return dm.ObtenerTablaSP("JornadasMedicos", consulta, parametros);
+        }
+
         public int AgregarTurno(Turno t)
         {
             using (SqlConnection cn = new SqlConnection(dm.ObtenerConexion().ConnectionString))

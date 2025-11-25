@@ -37,5 +37,10 @@ namespace Negocio
         {
             return dao.AgregarTurno(t);
         }
+
+        public DataTable ObtenerHorarioMedico(int idMedico)
+        {
+            return dao.GetHorarioMedico(idMedico);
+        }
     }
 }
