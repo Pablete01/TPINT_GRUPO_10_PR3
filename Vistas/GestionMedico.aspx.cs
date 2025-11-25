@@ -18,6 +18,7 @@ namespace Vistas
         {
             if (!IsPostBack)
             {
+                lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
                 MostrarMedicos();
             }
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -72,65 +73,74 @@ namespace Vistas
             int idMedico = int.Parse(ddlMedico.SelectedValue);
             DataTable dt = negocioTurnos.ObtenerTurnosMedicoFecha(idMedico, fecha);
 
-            // Convertir "12:00:00" -> "12:00"
-            List<string> horasOcupadas = dt.AsEnumerable()
-                .Select(r => DateTime.Parse(r["Hora"].ToString()).ToString("HH:mm"))
-                .ToList();
-
-            // Lista de todas las horas que querés mostrar
-            List<string> todasHoras = new List<string>();
-            for (int h = 8; h <= 17; h++)
-                todasHoras.Add($"{h:00}:00");
-
-            // Recorrer las horas de 2 en 2 para hacer 2 columnas
-            for (int i = 0; i < todasHoras.Count; i += 2)
+            DataTable jm = negocioTurnos.ObtenerHorarioMedico(idMedico);
+            if (jm.Rows.Count > 0)
             {
-                TableRow row = new TableRow();
+                DataRow fila = jm.Rows[0];
 
-                // Primer botón
-                TableCell cell1 = new TableCell();
-                Button btn1 = new Button();
-                btn1.Text = todasHoras[i];
-                btn1.CommandArgument = todasHoras[i];
-                btn1.CausesValidation = false;
+                TimeSpan horaInicio = (TimeSpan)fila[1];
+                TimeSpan horaFin = (TimeSpan)fila[2];
 
-                if (horasOcupadas.Contains(todasHoras[i]))
+
+
+
+                // Convertir horas ocupadas a TimeSpan para comparar correctamente
+                List<TimeSpan> horasOcupadas = dt.AsEnumerable()
+                    .Select(r => TimeSpan.Parse(r["Hora"].ToString()))
+                    .ToList();
+
+                // Lista de todas las horas que querés mostrar
+                List<TimeSpan> todasHoras = new List<TimeSpan>();
+                for (TimeSpan h = horaInicio; h <= horaFin; h = h.Add(TimeSpan.FromHours(1))) // sumar 1 hora
                 {
-                    btn1.Enabled = false;
+                    todasHoras.Add(h);
                 }
-                else
+                // Recorrer las horas de 2 en 2 para hacer 2 columnas
+                for (int i = 0; i < todasHoras.Count; i += 2)
                 {
-                    btn1.Enabled = true;
-                    btn1.Click += BtnHora_Click;
-                }
+                    TableRow row = new TableRow();
 
-                cell1.Controls.Add(btn1);
-                row.Cells.Add(cell1);
+                    // Primer botón
+                    TableCell cell1 = new TableCell();
+                    Button btn1 = new Button();
+                    btn1.Text = todasHoras[i].ToString(@"hh\:mm");
+                    btn1.CommandArgument = btn1.Text;
+                    btn1.CausesValidation = false;
 
-                // Segundo botón (si existe)
-                if (i + 1 < todasHoras.Count)
-                {
-                    TableCell cell2 = new TableCell();
-                    Button btn2 = new Button();
-                    btn2.Text = todasHoras[i + 1];
-                    btn2.CommandArgument = todasHoras[i + 1];
-                    btn2.CausesValidation = false;
-
-                    if (horasOcupadas.Contains(todasHoras[i + 1]))
-                    {
-                        btn2.Enabled = false;
-                    }
+                    if (horasOcupadas.Contains(todasHoras[i]))
+                        btn1.Enabled = false;
                     else
                     {
-                        btn2.Enabled = true;
-                        btn2.Click += BtnHora_Click;
+                        btn1.Enabled = true;
+                        btn1.Click += BtnHora_Click;
                     }
 
-                    cell2.Controls.Add(btn2);
-                    row.Cells.Add(cell2);
-                }
+                    cell1.Controls.Add(btn1);
+                    row.Cells.Add(cell1);
 
-                tblHorarios.Rows.Add(row);
+                    // Segundo botón (si existe)
+                    if (i + 1 < todasHoras.Count)
+                    {
+                        TableCell cell2 = new TableCell();
+                        Button btn2 = new Button();
+                        btn2.Text = todasHoras[i + 1].ToString(@"hh\:mm");
+                        btn2.CommandArgument = btn2.Text;
+                        btn2.CausesValidation = false;
+
+                        if (horasOcupadas.Contains(todasHoras[i + 1]))
+                            btn2.Enabled = false;
+                        else
+                        {
+                            btn2.Enabled = true;
+                            btn2.Click += BtnHora_Click;
+                        }
+
+                        cell2.Controls.Add(btn2);
+                        row.Cells.Add(cell2);
+                    }
+
+                    tblHorarios.Rows.Add(row);
+                }
             }
         }
 

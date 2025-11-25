@@ -19,6 +19,7 @@ namespace Vistas
             {
                 if (Request.QueryString["ID_Medico"] != null)
                 {
+                    lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
                     int idMedico = Convert.ToInt32(Request.QueryString["ID_Medico"]);
                     CargarJornadas(idMedico);
                 }

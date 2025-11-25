@@ -83,18 +83,21 @@
     <form id="form1" runat="server">
 
         
-        <div class="header">
-            <div class="header-left">
-                <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" OnClick="btnInicio_Click" />
-            </div>
+              <!-- Barra superior -->
+<div class="header">
+    <div class="header-left">
+        <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" />
+        <asp:HyperLink ID="HLVolver" runat="server" NavigateUrl="~/GestionMedico.aspx" >VOLVER</asp:HyperLink>
+    </div>
 
-            <div class="header-right">
-                <div class="user-section">
-                    <asp:ImageButton ID="btnUsuario" runat="server" ImageUrl="~/Imagenes/user.png" Width="40px" Height="40px" />
-                    <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="user-label"></asp:Label>
-                </div>
-            </div>
+    <div class="header-right">
+        <div class="user-section">
+            <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Jornadas Médicos"></asp:Label>
+            <asp:ImageButton ID="btnUsuario" runat="server" ImageUrl="~/Imagenes/user.png" Width="40px" Height="40px" />
+            <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="user-label"></asp:Label>
         </div>
+    </div>
+</div>
 
         
         <asp:Panel ID="PanelPrincipal" runat="server" HorizontalAlign="Center">
