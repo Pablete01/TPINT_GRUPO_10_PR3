@@ -167,6 +167,8 @@
                     <asp:Label ID="lblHoraSeleccionada" runat="server" Font-Bold="True"></asp:Label>
                     <asp:RequiredFieldValidator ID="rfvHora" runat="server" ErrorMessage="Debe seleccionar una hora" InitialValue="" ControlToValidate="txtHoraSeleccionada" Display="Dynamic"></asp:RequiredFieldValidator>
                     <br />
+                    <asp:Label ID="lblMensajes" runat="server" Font-Bold="True"></asp:Label>
+                    <br />
                     <asp:TextBox ID="txtHoraSeleccionada" runat="server" Visible="False"></asp:TextBox>
                     <br />
                     <br />

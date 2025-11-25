@@ -30,6 +30,7 @@ namespace Vistas
             if (!IsPostBack)
             {
                 lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
+                txtFecha.Attributes["min"] = DateTime.Today.ToString("yyyy-MM-dd");
                 txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 CargarEspecialidades();
             }
@@ -47,6 +48,12 @@ namespace Vistas
 
         protected void btnCargarHorarios_Click(object sender, EventArgs e)
         {
+            if(ddlEspecialidad.SelectedValue == "0" || ddlMedico.SelectedValue == "0")
+            {
+                lblFecha.Text = string.Empty;
+                lblSeleccion.Text = "Por favor, seleccione una especialidad y un médico.";
+                return;
+            }
             DateTime fechaSeleccionada;
             if (DateTime.TryParse(txtFecha.Text, out fechaSeleccionada))
             {
@@ -172,16 +179,24 @@ namespace Vistas
         {
             NegocioPacientes pacientes = new NegocioPacientes();
             int idPaciente = pacientes.GetIDPacientePorDNI(txtDNIPaciente.Text);
-            Turno t = new Turno();
-            t.idPaciente = idPaciente;
-            t.idProfesional = int.Parse(ddlMedico.SelectedValue);
-            t.fechaTurno = DateTime.Parse(txtFecha.Text);
-            t.horaTurno = TimeSpan.Parse(txtHoraSeleccionada.Text);
-            t.estado = 1;
-            t.observaciones = "";
 
-            int verificar = negocioTurnos.AgregarTurno(t);
+            if (idPaciente == -1)
+            {
+                lblMensajes.Text = "El paciente no existe";
+                return;
+            }
+            else
+            {
+                Turno t = new Turno();
+                t.idPaciente = idPaciente;
+                t.idProfesional = int.Parse(ddlMedico.SelectedValue);
+                t.fechaTurno = DateTime.Parse(txtFecha.Text);
+                t.horaTurno = TimeSpan.Parse(txtHoraSeleccionada.Text);
+                t.estado = 1;
+                t.observaciones = "";
 
+                int verificar = negocioTurnos.AgregarTurno(t);
+            }
         }
 
         private void CargarMedicos(int idEspecialidad)
@@ -216,5 +231,6 @@ namespace Vistas
             int idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
             CargarMedicos(idEspecialidad);
         }
+
     }
 }
