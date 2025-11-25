@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VistaPrueba.aspx.cs" Inherits="Vistas.VistaPrueba" %>
-hola mundo
+hola mundo chau mundo
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
