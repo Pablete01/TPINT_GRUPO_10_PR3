@@ -42,5 +42,10 @@ namespace Negocio
             }
             return true; 
         }
+
+        public int GetIDPacientePorDNI(string DNI)
+        {
+            return dao.ObtenerIDPacientePorDNI(DNI);
+        }
     }
 }
