@@ -10,7 +10,7 @@ namespace Entidades
     {
         private int _idTurno;
         private DateTime _fechaTurno;
-        private int _horaTurno;
+        private TimeSpan _horaTurno;
         private int _idPaciente;
         private int _idMedico;
         private int _idEspecialidad;
@@ -19,7 +19,7 @@ namespace Entidades
         public Turno()
         {
         }
-        public Turno(int idTurno, DateTime fechaTurno, int horaTurno, int idPaciente, int idMedico, int idEspecialidad, int estado, string observaciones)
+        public Turno(int idTurno, DateTime fechaTurno, TimeSpan horaTurno, int idPaciente, int idMedico, int idEspecialidad, int estado, string observaciones)
         {
             _idTurno = idTurno;
             _fechaTurno = fechaTurno;
@@ -40,7 +40,7 @@ namespace Entidades
             get { return _fechaTurno; }
             set { _fechaTurno = value; }
         }
-        public int horaTurno
+        public TimeSpan horaTurno
         {
             get { return _horaTurno; }
             set { _horaTurno = value; }

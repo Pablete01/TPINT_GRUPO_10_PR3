@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Dao;
+using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Dao;
-using Entidades;
 
 namespace Datos
 {
@@ -73,6 +74,30 @@ namespace Datos
                 return false; 
             }
             return true; 
+        }
+
+        public int ObtenerIDPacientePorDNI(string DNI)
+        {
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand(@"
+            SELECT p.ID_Pacientes
+            FROM Pacientes p
+            INNER JOIN Persona per ON per.ID_Persona = p.ID_Persona
+            WHERE per.DNI = @DNI", cn);
+
+            cmd.Parameters.AddWithValue("@DNI", DNI);
+
+            if (cn.State != ConnectionState.Open)
+                cn.Open();
+
+            object result = cmd.ExecuteScalar();
+
+            cn.Close();
+
+            if (result != null)
+                return Convert.ToInt32(result);
+
+            return -1;
         }
     }
 }

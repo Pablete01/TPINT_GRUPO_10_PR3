@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Datos;
+using Entidades;
 
 namespace Negocio
 {
@@ -19,7 +20,7 @@ namespace Negocio
         }
     
 
-    public DataTable ObtenerTurnosMedicoFecha(int idMedico, DateTime fecha)
+        public DataTable ObtenerTurnosMedicoFecha(int idMedico, DateTime fecha)
         {
             DataTable dt = dao.GetTurnosMedicoFecha(idMedico, fecha);
 
@@ -32,7 +33,9 @@ namespace Negocio
             return dt;
         }
 
-   
-
+        public int AgregarTurno(Turno t)
+        {
+            return dao.AgregarTurno(t);
+        }
     }
 }
