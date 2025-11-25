@@ -74,75 +74,82 @@ namespace Vistas
             DataTable dt = negocioTurnos.ObtenerTurnosMedicoFecha(idMedico, fecha);
 
             DataTable jm = negocioTurnos.ObtenerHorarioMedico(idMedico);
-            if (jm.Rows.Count > 0)
+
+            int diaSemana = (int)fecha.DayOfWeek; // 0=Domingo, 1=Lunes, ..., 6=Sábado
+
+            DataRow[] filasDia = jm.Select("DiaSemana = " + diaSemana);
+            if (filasDia.Length == 0)
             {
-                DataRow fila = jm.Rows[0];
+                // No hay horario para este día
+                lblSeleccion.Text += " - El médico no trabaja este día.";
+                return;
+            }
 
-                TimeSpan horaInicio = (TimeSpan)fila[1];
-                TimeSpan horaFin = (TimeSpan)fila[2];
+            DataRow fila = filasDia[0];
 
 
+            TimeSpan horaInicio = (TimeSpan)fila[1];
+            TimeSpan horaFin = (TimeSpan)fila[2];
 
+            // Convertir horas ocupadas a TimeSpan para comparar correctamente
+            List<TimeSpan> horasOcupadas = dt.AsEnumerable()
+                .Select(r => TimeSpan.Parse(r["Hora"].ToString()))
+                .ToList();
 
-                // Convertir horas ocupadas a TimeSpan para comparar correctamente
-                List<TimeSpan> horasOcupadas = dt.AsEnumerable()
-                    .Select(r => TimeSpan.Parse(r["Hora"].ToString()))
-                    .ToList();
+            // Lista de todas las horas que querés mostrar
+            List<TimeSpan> todasHoras = new List<TimeSpan>();
+            for (TimeSpan h = horaInicio; h <= horaFin; h = h.Add(TimeSpan.FromHours(1))) // sumar 1 hora
+            {
+                todasHoras.Add(h);
+            }
+            // Recorrer las horas de 2 en 2 para hacer 2 columnas
+            for (int i = 0; i < todasHoras.Count; i += 2)
+            {
+                TableRow row = new TableRow();
 
-                // Lista de todas las horas que querés mostrar
-                List<TimeSpan> todasHoras = new List<TimeSpan>();
-                for (TimeSpan h = horaInicio; h <= horaFin; h = h.Add(TimeSpan.FromHours(1))) // sumar 1 hora
+                // Primer botón
+                TableCell cell1 = new TableCell();
+                Button btn1 = new Button();
+                btn1.Text = todasHoras[i].ToString(@"hh\:mm");
+                btn1.CommandArgument = btn1.Text;
+                btn1.CausesValidation = false;
+
+                if (horasOcupadas.Contains(todasHoras[i]))
+                    btn1.Enabled = false;
+                else
                 {
-                    todasHoras.Add(h);
+                    btn1.Enabled = true;
+                    btn1.Click += BtnHora_Click;
                 }
-                // Recorrer las horas de 2 en 2 para hacer 2 columnas
-                for (int i = 0; i < todasHoras.Count; i += 2)
+
+                cell1.Controls.Add(btn1);
+                row.Cells.Add(cell1);
+
+                // Segundo botón (si existe)
+                if (i + 1 < todasHoras.Count)
                 {
-                    TableRow row = new TableRow();
+                    TableCell cell2 = new TableCell();
+                    Button btn2 = new Button();
+                    btn2.Text = todasHoras[i + 1].ToString(@"hh\:mm");
+                    btn2.CommandArgument = btn2.Text;
+                    btn2.CausesValidation = false;
 
-                    // Primer botón
-                    TableCell cell1 = new TableCell();
-                    Button btn1 = new Button();
-                    btn1.Text = todasHoras[i].ToString(@"hh\:mm");
-                    btn1.CommandArgument = btn1.Text;
-                    btn1.CausesValidation = false;
-
-                    if (horasOcupadas.Contains(todasHoras[i]))
-                        btn1.Enabled = false;
+                    if (horasOcupadas.Contains(todasHoras[i + 1]))
+                        btn2.Enabled = false;
                     else
                     {
-                        btn1.Enabled = true;
-                        btn1.Click += BtnHora_Click;
+                        btn2.Enabled = true;
+                        btn2.Click += BtnHora_Click;
                     }
 
-                    cell1.Controls.Add(btn1);
-                    row.Cells.Add(cell1);
-
-                    // Segundo botón (si existe)
-                    if (i + 1 < todasHoras.Count)
-                    {
-                        TableCell cell2 = new TableCell();
-                        Button btn2 = new Button();
-                        btn2.Text = todasHoras[i + 1].ToString(@"hh\:mm");
-                        btn2.CommandArgument = btn2.Text;
-                        btn2.CausesValidation = false;
-
-                        if (horasOcupadas.Contains(todasHoras[i + 1]))
-                            btn2.Enabled = false;
-                        else
-                        {
-                            btn2.Enabled = true;
-                            btn2.Click += BtnHora_Click;
-                        }
-
-                        cell2.Controls.Add(btn2);
-                        row.Cells.Add(cell2);
-                    }
-
-                    tblHorarios.Rows.Add(row);
+                    cell2.Controls.Add(btn2);
+                    row.Cells.Add(cell2);
                 }
+
+                tblHorarios.Rows.Add(row);
             }
         }
+
 
 
         protected void BtnHora_Click(object sender, EventArgs e)
@@ -201,7 +208,7 @@ namespace Vistas
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)

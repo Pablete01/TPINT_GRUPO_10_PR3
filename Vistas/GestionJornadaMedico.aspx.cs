@@ -74,7 +74,19 @@ namespace Vistas
             PanelAgregar.Visible = true;   // Mostrar formulario
         }
 
+        public string ObtenerNombreDia(object dia)
+        {
+            int d = Convert.ToInt32(dia);
+
+            string[] dias = {
+                     "Domingo", "Lunes", "Martes", "Miércoles",
+                      "Jueves", "Viernes", "Sábado"
+             };
+
+            return dias[d];
+        }
+
 
     }
-    
+
 }
