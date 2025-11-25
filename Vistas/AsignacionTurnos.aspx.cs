@@ -10,7 +10,7 @@ using Entidades;
 using Negocio;
 
 namespace Vistas
-{
+{ //saludos
     public partial class AsignacionTurnos : System.Web.UI.Page
     {
         NegocioTurnos negocioTurnos = new NegocioTurnos();
