@@ -158,7 +158,7 @@
 </asp:GridView>
 
             </div>
-            <%--panel--%>
+            
 <asp:Panel ID="PanelAgregar" runat="server" Visible="false" CssClass="grid-container" Style="margin-top:20px;">
 
     <h3>Agregar Jornada</h3>

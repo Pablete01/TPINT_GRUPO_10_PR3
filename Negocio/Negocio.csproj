@@ -46,7 +46,9 @@
     <Compile Include="NegocioLogin.cs" />
     <Compile Include="NegocioMedicos.cs" />
     <Compile Include="NegocioPacientes.cs" />
+    <Compile Include="NegocioPacientesGT.cs" />
     <Compile Include="NegocioProvincia.cs" />
+    <Compile Include="NegocioTurnoPaciente.cs" />
     <Compile Include="NegocioTurnos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
