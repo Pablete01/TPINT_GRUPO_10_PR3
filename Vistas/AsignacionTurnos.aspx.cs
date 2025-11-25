@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Entidades;
 using Negocio;
 
 namespace Vistas
@@ -141,7 +142,7 @@ namespace Vistas
 
             // Mostrar hora seleccionada
             lblHoraSeleccionada.Text = "Hora seleccionada: " + horaSeleccionada;
-
+            txtHoraSeleccionada.Text = horaSeleccionada;
 
         }
 
@@ -152,6 +153,17 @@ namespace Vistas
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            NegocioPacientes pacientes = new NegocioPacientes();
+            int idPaciente = pacientes.GetIDPacientePorDNI(txtDNIPaciente.Text);
+            Turno t = new Turno();
+            t.idPaciente = idPaciente;
+            t.idProfesional = int.Parse(ddlMedico.SelectedValue);
+            t.fechaTurno = DateTime.Parse(txtFecha.Text);
+            t.horaTurno = TimeSpan.Parse(txtHoraSeleccionada.Text);
+            t.estado = 1;
+            t.observaciones = "";
+
+            int verificar = negocioTurnos.AgregarTurno(t);
 
         }
 

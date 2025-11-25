@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dao;
+using Entidades;
 
 namespace Datos
 {
@@ -29,6 +30,28 @@ namespace Datos
 
             string consulta = "SP_ListarTurnosPorFecha";
             return dm.ObtenerTablaSP("Fechas", consulta, parametros);
+        }
+
+        public int AgregarTurno(Turno t)
+        {
+            using (SqlConnection cn = new SqlConnection(dm.ObtenerConexion().ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SP_AgregarTurno", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@ID_Pacientes", t.idPaciente);
+                cmd.Parameters.AddWithValue("@ID_Medico", t.idProfesional);
+                cmd.Parameters.AddWithValue("@Fecha", t.fechaTurno);
+                cmd.Parameters.AddWithValue("@Hora", t.horaTurno);
+                cmd.Parameters.AddWithValue("@ID_Estado", t.estado);
+                cmd.Parameters.AddWithValue("@Observaciones", t.observaciones);
+
+                cn.Open();
+                object result = cmd.ExecuteScalar();
+                cn.Close();
+
+                return (result != null) ? Convert.ToInt32(result) : -1;
+            }
         }
     }
 }
