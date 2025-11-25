@@ -89,6 +89,7 @@
     <Content Include="Informes.aspx" />
     <Content Include="Medico.aspx" />
     <Content Include="MedicoTurnos.aspx" />
+    <Content Include="VistaPrueba.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
     <Content Include="Administrador.aspx" />
@@ -193,6 +194,13 @@
     </Compile>
     <Compile Include="Administrador.aspx.designer.cs">
       <DependentUpon>Administrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VistaPrueba.aspx.cs">
+      <DependentUpon>VistaPrueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VistaPrueba.aspx.designer.cs">
+      <DependentUpon>VistaPrueba.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
