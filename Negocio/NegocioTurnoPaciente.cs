@@ -18,5 +18,15 @@ namespace Negocio
         {
             return dao.ObtenerTurnosPaciente(idPaciente);
         }
+
+        public DataTable ObtenerTurnosxMedico(int idMedico)
+        {
+            return dao.ObtenerTurnosxMedico(idMedico);
+        }
+
+        public bool ActualizarEstadoPaciente(int idTurno, int idEstado, string observaciones)
+        {
+            return dao.ActualizarEstadoPaciente(idTurno, idEstado, observaciones);
+        }
     }
 }

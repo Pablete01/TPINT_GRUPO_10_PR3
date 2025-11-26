@@ -24,5 +24,30 @@ namespace Datos
             return ds.ObtenerTablaSP("TurnosPaciente", "SP_ListarTurnosPacienteGestionTurnos", parametros);
         }
 
+        public DataTable ObtenerTurnosxMedico(int idMedico)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@ID_Medico", idMedico)
+            };
+
+            return ds.ObtenerTablaSP("TurnosxMedico", "SP_ListarTurnosPacientexMedico", parametros);
+        }
+
+        public bool ActualizarEstadoPaciente(int idTurno, int estado, string observaciones)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@ID_Turno", idTurno);
+            comando.Parameters.AddWithValue("@ID_Estado", estado);
+            comando.Parameters.AddWithValue("@Observaciones", observaciones);
+            string spEliminarPaciente = "SP_ActualizarEstadoPaciente";
+            int filasAfectadas = ds.ActualizarEstadoPaciente(comando, spEliminarPaciente);
+            if (filasAfectadas == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }

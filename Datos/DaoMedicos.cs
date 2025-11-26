@@ -152,7 +152,7 @@ namespace Datos
                 cmd.Parameters.AddWithValue("@ID_Localidad", m.ID_Localidad);
                 cmd.Parameters.AddWithValue("@Email", m.Email);
 
-              //  cn.Open();
+                //  cn.Open();
                 cmd.ExecuteNonQuery();
                 cn.Close();
 
@@ -230,7 +230,7 @@ namespace Datos
 
             cmd.Parameters.AddWithValue("@ID_Medico", id);
 
-         //   cn.Open();
+            //   cn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
 
             MedicoAdm med = null;
@@ -277,5 +277,37 @@ namespace Datos
 
         }
 
+        public MedicoAdm MedicoPorIDUsuario(int idUsuario)
+        {
+
+
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand("SP_ObtenerMedicoIDUsuario", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@ID_Usuario", idUsuario);
+
+            //   cn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            MedicoAdm med = null;
+
+            if (dr.Read())
+            {
+                med = new MedicoAdm();
+                med.ID_Medico = Convert.ToInt32(dr["ID_Medico"]);
+                med.ID_Persona = Convert.ToInt32(dr["ID_Persona"]);
+                med.Nombre = dr["Nombre"].ToString();
+                med.Apellido = dr["Apellido"].ToString();
+            }
+
+            dr.Close();
+            return med;
+
+        }
+
+
     }
+
+    
 }

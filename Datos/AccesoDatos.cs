@@ -146,6 +146,28 @@ namespace Dao
             }
         }
 
+        public int ActualizarEstadoPaciente(SqlCommand comandoSQL, string spActualizarTurnoPaciente)
+        {
+            SqlConnection cn = ObtenerConexion();
+            try
+            {
+                comandoSQL.Connection = cn;
+                comandoSQL.CommandType = CommandType.StoredProcedure;
+                comandoSQL.CommandText = spActualizarTurnoPaciente;
+                int filasAfectadas = comandoSQL.ExecuteNonQuery();
+                return filasAfectadas;
+            }
+            catch (SqlException ex)
+            {
+                throw;
+                // return 0;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
         public int EliminarPaciente(SqlCommand comandoSQL, string spEliminarPaciente)
         {
             SqlConnection cn = ObtenerConexion();
