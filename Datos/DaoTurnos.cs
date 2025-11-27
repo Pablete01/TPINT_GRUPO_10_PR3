@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Dao;
@@ -82,6 +83,23 @@ namespace Datos
             da.Fill(dt);
 
             cn.Close();
+            return dt;
+        }
+
+        public DataTable ObtenerTurnosPresentesAusentesPorFecha(DateTime desde, DateTime hasta)
+        {
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand("sp_ObtenerInformePresentesAusentes", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Desde", desde);
+            cmd.Parameters.AddWithValue("@Hasta", hasta);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            cn.Close ();
             return dt;
         }
 

@@ -48,6 +48,11 @@ namespace Negocio
             return dao.ObtenerTurnosPorFecha(desde, hasta);
         }
 
+        public DataTable ObtenerInformeTurnosPresentesAusentes(DateTime desde, DateTime hasta)
+        {
+            return dao.ObtenerTurnosPresentesAusentesPorFecha(desde, hasta);
+        }
+
         public int ContabilizarTurnosPorEstado(DateTime desde, DateTime hasta, int estado)
         {
             return dao.ContabilizarTurnosPorEstado(desde, hasta, estado);
