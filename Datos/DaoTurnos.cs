@@ -67,5 +67,40 @@ namespace Datos
                 return (result != null) ? Convert.ToInt32(result) : -1;
             }
         }
+
+        public DataTable ObtenerTurnosPorFecha(DateTime desde, DateTime hasta)
+        {
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand("sp_ObtenerInformeTurnos", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Desde", desde);
+            cmd.Parameters.AddWithValue("@Hasta", hasta);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            cn.Close();
+            return dt;
+        }
+
+        public int ContabilizarTurnosPorEstado(DateTime desde, DateTime hasta, int estado) 
+        {
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand(@"
+                SELECT COUNT(*) 
+                FROM Turnos 
+                WHERE Fecha BETWEEN @Desde AND @Hasta 
+                  AND ID_Estado = @Estado", cn);
+
+            cmd.Parameters.AddWithValue("@Desde", desde);
+            cmd.Parameters.AddWithValue("@Hasta", hasta);
+            cmd.Parameters.AddWithValue("@Estado", estado);
+
+            int resultado = (int)cmd.ExecuteScalar();
+            cn.Close();
+            return resultado;
+        }
     }
 }

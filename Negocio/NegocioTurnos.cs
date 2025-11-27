@@ -18,7 +18,7 @@ namespace Negocio
             DataTable dt = dao.GetTablaTurnos();
             return dt;
         }
-    
+
 
         public DataTable ObtenerTurnosMedicoFecha(int idMedico, DateTime fecha)
         {
@@ -41,6 +41,16 @@ namespace Negocio
         public DataTable ObtenerHorarioMedico(int idMedico)
         {
             return dao.GetHorarioMedico(idMedico);
+        }
+
+        public DataTable ObtenerInformeTurnos(DateTime desde, DateTime hasta)
+        {
+            return dao.ObtenerTurnosPorFecha(desde, hasta);
+        }
+
+        public int ContabilizarTurnosPorEstado(DateTime desde, DateTime hasta, int estado)
+        {
+            return dao.ContabilizarTurnosPorEstado(desde, hasta, estado);
         }
     }
 }
