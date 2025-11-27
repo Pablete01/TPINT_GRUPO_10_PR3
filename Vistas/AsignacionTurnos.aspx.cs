@@ -252,7 +252,6 @@ namespace Vistas
 
             lblSeleccion.Text = "";
             lblHoraSeleccionada.Text = "";
-            lblMensajes.Text = "";
 
             txtHoraSeleccionada.Text = "";
             tblHorarios.Rows.Clear();
