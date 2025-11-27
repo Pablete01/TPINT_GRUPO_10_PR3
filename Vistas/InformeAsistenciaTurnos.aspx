@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeGeneralTurnos.aspx.cs" Inherits="Vistas.Informes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeAsistenciaTurnos.aspx.cs" Inherits="Vistas.InformeAsistenciaTurnos" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Informe General Turnos</title>
+    <title>Informes Asistencia Turnos</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -97,7 +97,7 @@
 
 
         <div class="container">
-            <asp:Label ID="lblTitulo" runat="server" Text="Informe General Turnos" CssClass="section-title" Font-Size="X-Large" Font-Bold="True"></asp:Label>
+            <asp:Label ID="lblTitulo" runat="server" Text="Informe Asistencia Turnos" CssClass="section-title" Font-Size="X-Large" Font-Bold="True"></asp:Label>
 
             <div class="filters">
                 <asp:Label ID="lblDesde" runat="server" Text="Desde: "></asp:Label>
@@ -118,11 +118,8 @@
                     <br />
                     <asp:Label ID="lblAusentes" runat="server" Text="Ausentes:"></asp:Label>
                     <br />
-                    <asp:Label ID="lblReservados" runat="server" Text="Reservados:"></asp:Label>
                     <br />
-                    <asp:Label ID="lblCancelado" runat="server" Text="Cancelados:"></asp:Label>
                     <br />
-                    <asp:Label ID="lblReprogramados" runat="server" Text="Reprogramados:"></asp:Label>
                     <br />
                     <br />
                 </div>
