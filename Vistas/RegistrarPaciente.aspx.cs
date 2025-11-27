@@ -66,6 +66,7 @@ namespace Vistas
                 lblMensaje.Text = "Paciente registrado con éxito";
                 btnCancelar.Text = "Cerrar";
                 BtAceptar.Visible = false;
+                LimpiarControles();
             }
             else
             {
@@ -90,6 +91,26 @@ namespace Vistas
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("GestionPacientes.aspx");
+        }
+
+        private void LimpiarControles()
+        {
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            TxtDni.Text = "";
+            TxtNacionalidad.Text = "";
+            txtFechaNacimiento.Text = "";
+            txtDireccion.Text = "";
+            txtEmail.Text = "";
+            txtTelefono.Text = "";
+
+            rbFemenino.Checked = false;
+            rbMasculino.Checked = false;
+
+            DropDlistProv.SelectedIndex = 0;
+
+            ddlLocalidades.Items.Clear();
+            ddlLocalidades.Items.Insert(0, new ListItem("--Seleccione una localidad--", "0"));
         }
     }
 }
