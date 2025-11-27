@@ -75,7 +75,6 @@
     <Content Include="GestionTurnoPaciente.aspx" />
     <Content Include="GestionTurnos.aspx" />
     <Content Include="GestionTurnos_2.aspx" />
-    <Content Include="MisPacientes.aspx" />
     <Content Include="PacientesAgendados.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
     <Content Include="Imagenes\agenda.png" />
@@ -88,7 +87,7 @@
     <Content Include="Imagenes\patients.png" />
     <Content Include="Imagenes\turno.png" />
     <Content Include="Imagenes\user.png" />
-    <Content Include="Informes.aspx" />
+    <Content Include="InformeGeneralTurnos.aspx" />
     <Content Include="Medico.aspx" />
     <Content Include="MedicoTurnos.aspx" />
     <Content Include="Web.config" />
@@ -152,13 +151,6 @@
     <Compile Include="GestionTurnos_2.aspx.designer.cs">
       <DependentUpon>GestionTurnos_2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MisPacientes.aspx.cs">
-      <DependentUpon>MisPacientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MisPacientes.aspx.designer.cs">
-      <DependentUpon>MisPacientes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PacientesAgendados.aspx.cs">
       <DependentUpon>PacientesAgendados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -173,12 +165,12 @@
     <Compile Include="RegistrarPaciente.aspx.designer.cs">
       <DependentUpon>RegistrarPaciente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Informes.aspx.cs">
-      <DependentUpon>Informes.aspx</DependentUpon>
+    <Compile Include="InformeGeneralTurnos.aspx.cs">
+      <DependentUpon>InformeGeneralTurnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Informes.aspx.designer.cs">
-      <DependentUpon>Informes.aspx</DependentUpon>
+    <Compile Include="InformeGeneralTurnos.aspx.designer.cs">
+      <DependentUpon>InformeGeneralTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Medico.aspx.cs">
       <DependentUpon>Medico.aspx</DependentUpon>
