@@ -196,6 +196,15 @@ namespace Vistas
                 t.observaciones = "";
 
                 int verificar = negocioTurnos.AgregarTurno(t);
+                if (verificar > 0)
+                {
+                    lblMensajes.Text = "Turno registrado correctamente.";
+                    LimpiarControlores();
+                }
+                else
+                {
+                    lblMensajes.Text = "Error al registrar el turno";
+                }
             }
         }
 
@@ -230,6 +239,26 @@ namespace Vistas
         {
             int idEspecialidad = int.Parse(ddlEspecialidad.SelectedValue);
             CargarMedicos(idEspecialidad);
+        }
+
+        private void LimpiarControlores()
+        {
+            ddlEspecialidad.SelectedIndex = 0;
+            ddlMedico.Items.Clear();
+            ddlMedico.Items.Insert(0, new ListItem("- Seleccionar -", "0"));
+            
+            txtDNIPaciente.Text = "";
+            txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
+            lblSeleccion.Text = "";
+            lblHoraSeleccionada.Text = "";
+            lblMensajes.Text = "";
+
+            txtHoraSeleccionada.Text = "";
+            tblHorarios.Rows.Clear();
+
+            ViewState["FechaSeleccionada"] = null;
+            ViewState["HorasOcupadas"] = null;
         }
 
     }
