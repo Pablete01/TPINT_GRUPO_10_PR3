@@ -11,6 +11,9 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
+            Response.Cache.SetExpires(DateTime.MinValue);
 
             if (Session["Usuario"] == null)
             {
