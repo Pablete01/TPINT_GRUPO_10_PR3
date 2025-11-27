@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PacientesAgendados.aspx.cs" Inherits="Vistas.PacientesAgendados" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MisPacientes.aspx.cs" Inherits="Vistas.MisPacientes" %>
 
 <!DOCTYPE html>
 
@@ -156,7 +156,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Estado">
                             <ItemTemplate>
-                                <asp:Label ID="lblEstado" runat="server" Text='<%# ObtenerEstado(Eval("ID_Estado")) %>'></asp:Label>
+                                <asp:Label ID="lblEstado" runat="server" Text='Camniar'></asp:Label>
                             </ItemTemplate>
 
                             <EditItemTemplate>
@@ -193,5 +193,3 @@
     </form>
 </body>
 </html>
-
-

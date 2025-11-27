@@ -48,6 +48,16 @@ namespace Vistas
             }
         }
 
+        public string ObtenerEstado(object estado)
+        {
+            switch (estado.ToString())
+            {
+                case "4": return "Asistió";
+                case "5": return "No asistió";
+                default: return "Agendado";
+            }
+        }
+
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
 
