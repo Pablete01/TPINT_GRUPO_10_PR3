@@ -133,6 +133,7 @@ namespace Vistas
                 {
                     lblMensaje.Text = "Medico guardado con éxito.";
                     btnCancelar.Text = "Cerrar";
+                    LimpiarControles();
                     btnAceptar.Visible = false;
                 }
                 else
@@ -169,6 +170,27 @@ namespace Vistas
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("GestionMedico.aspx");
+        }
+
+        private void LimpiarControles()
+        {
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            txtEmail.Text = "";
+            txtDNI.Text = "";
+            txtTelefono.Text = "";
+            txtFechaNac.Text = "";
+            txtNacionalidad.Text = "";
+            txtDireccion.Text = "";
+
+            ddlProvincia.SelectedIndex = 0;
+            ddlLocalidad.Items.Clear();
+            ddlLocalidad.Items.Insert(0, new ListItem("--Seleccione una localidad--", "0"));
+
+            ddlSexo.SelectedIndex = 0;
+            ddlEspecialidad.SelectedIndex = 0;
+
+            hiddenIdMedico.Value = "";
         }
     }
 }
