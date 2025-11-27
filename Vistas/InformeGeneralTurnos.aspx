@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Informes.aspx.cs" Inherits="Vistas.Informes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeGeneralTurnos.aspx.cs" Inherits="Vistas.Informes" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -97,7 +97,7 @@
 
 
         <div class="container">
-            <asp:Label ID="lblTitulo" runat="server" Text="Informes de Asistencia" CssClass="section-title" Font-Size="X-Large" Font-Bold="True"></asp:Label>
+            <asp:Label ID="lblTitulo" runat="server" Text="Informes general Turnos" CssClass="section-title" Font-Size="X-Large" Font-Bold="True"></asp:Label>
 
             <div class="filters">
                 <asp:Label ID="lblDesde" runat="server" Text="Desde: "></asp:Label>
@@ -130,7 +130,7 @@
 
             <div class="grid-container">
                 <h3>
-                    <asp:Label ID="lblDetalleDePacientes" runat="server" Text="Detalle de Pacientes"></asp:Label>
+                    <asp:Label ID="lblDetalleDePacientes" runat="server" Text="Detalle de Turnos"></asp:Label>
                 </h3>
                 <asp:GridView ID="GridViewPersonas" runat="server" AutoGenerateColumns="False" BorderColor="#99CCFF" BorderStyle="Solid" CellPadding="5" AllowPaging="True" OnPageIndexChanging="GridViewPersonas_PageIndexChanging" PageSize="5">
                     <Columns>

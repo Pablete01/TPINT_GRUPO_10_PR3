@@ -87,7 +87,7 @@
     <Content Include="Imagenes\patients.png" />
     <Content Include="Imagenes\turno.png" />
     <Content Include="Imagenes\user.png" />
-    <Content Include="Informes.aspx" />
+    <Content Include="InformeGeneralTurnos.aspx" />
     <Content Include="Medico.aspx" />
     <Content Include="MedicoTurnos.aspx" />
     <Content Include="Web.config" />
@@ -165,12 +165,12 @@
     <Compile Include="RegistrarPaciente.aspx.designer.cs">
       <DependentUpon>RegistrarPaciente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Informes.aspx.cs">
-      <DependentUpon>Informes.aspx</DependentUpon>
+    <Compile Include="InformeGeneralTurnos.aspx.cs">
+      <DependentUpon>InformeGeneralTurnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Informes.aspx.designer.cs">
-      <DependentUpon>Informes.aspx</DependentUpon>
+    <Compile Include="InformeGeneralTurnos.aspx.designer.cs">
+      <DependentUpon>InformeGeneralTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Medico.aspx.cs">
       <DependentUpon>Medico.aspx</DependentUpon>

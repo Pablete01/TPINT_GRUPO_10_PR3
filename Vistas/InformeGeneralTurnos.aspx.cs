@@ -68,7 +68,7 @@ namespace Vistas
             lblReservados.Text = "Reservados: ";
             lblReprogramados.Text = "Reprogramados: ";
             lblCancelado.Text = "Cancelados: ";
-            lblDetalleDePacientes.Text = "Detalle de Pacientes";
+            lblDetalleDePacientes.Text = "Detalle de Turnos";
             lblMensajeError.Text = "";
 
             GridViewPersonas.DataSource = null;

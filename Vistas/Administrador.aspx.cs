@@ -48,7 +48,7 @@ namespace Vistas
 
         protected void btnInformes_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("Informes.aspx");
+            Response.Redirect("InformeGeneralTurnos.aspx");
         }
     }
 }
