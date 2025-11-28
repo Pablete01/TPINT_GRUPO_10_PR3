@@ -83,7 +83,7 @@
         <div class="header">
             <div class="header-left">
                 <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" />
-                <asp:HyperLink ID="HLVolver" runat="server" NavigateUrl="~/Administrador.aspx">VOLVER</asp:HyperLink>
+                <asp:HyperLink ID="HLVolver" runat="server" NavigateUrl="~/SeleccionInforme.aspx">VOLVER</asp:HyperLink>
             </div>
 
             <div class="header-right">

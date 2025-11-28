@@ -75,6 +75,9 @@
     <Content Include="GestionTurnoPaciente.aspx" />
     <Content Include="GestionTurnos.aspx" />
     <Content Include="GestionTurnos_2.aspx" />
+    <Content Include="Imagenes\InformeMedicos.png" />
+    <Content Include="Imagenes\InformeTurnosAsistencia.png" />
+    <Content Include="Imagenes\InformeTurnosGeneral.png" />
     <Content Include="InformeAsistenciaTurnos.aspx" />
     <Content Include="PacientesAgendados.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
@@ -91,6 +94,7 @@
     <Content Include="InformeGeneralTurnos.aspx" />
     <Content Include="Medico.aspx" />
     <Content Include="MedicoTurnos.aspx" />
+    <Content Include="SeleccionInforme.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
     <Content Include="Administrador.aspx" />
@@ -209,6 +213,13 @@
     </Compile>
     <Compile Include="Administrador.aspx.designer.cs">
       <DependentUpon>Administrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionInforme.aspx.cs">
+      <DependentUpon>SeleccionInforme.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeleccionInforme.aspx.designer.cs">
+      <DependentUpon>SeleccionInforme.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
