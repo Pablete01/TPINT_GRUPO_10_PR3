@@ -97,7 +97,7 @@
 
 
         <div class="container">
-            <asp:Label ID="lblTitulo" runat="server" Text="Informe General Turnos" CssClass="section-title" Font-Size="X-Large" Font-Bold="True"></asp:Label>
+            <asp:Label ID="lblTitulo" runat="server" Text="Informe General de Turnos" CssClass="section-title" Font-Size="X-Large" Font-Bold="True"></asp:Label>
 
             <div class="filters">
                 <asp:Label ID="lblDesde" runat="server" Text="Desde: "></asp:Label>

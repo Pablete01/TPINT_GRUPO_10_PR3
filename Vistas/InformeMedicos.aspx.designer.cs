@@ -11,7 +11,7 @@ namespace Vistas
 {
 
 
-    public partial class InformeAsistenciaTurnos
+    public partial class InformeMedicos
     {
 
         /// <summary>
@@ -78,51 +78,6 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblTitulo;
 
         /// <summary>
-        /// Control lblDesde.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDesde;
-
-        /// <summary>
-        /// Control txtDesde.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDesde;
-
-        /// <summary>
-        /// Control lblHasta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHasta;
-
-        /// <summary>
-        /// Control txtHasta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHasta;
-
-        /// <summary>
-        /// Control btnFiltrar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFiltrar;
-
-        /// <summary>
         /// Control lblMensajeError.
         /// </summary>
         /// <remarks>
@@ -132,31 +87,13 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblMensajeError;
 
         /// <summary>
-        /// Control lblPresentes.
+        /// Control lblDetalleDeMedicos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPresentes;
-
-        /// <summary>
-        /// Control lblAusentes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAusentes;
-
-        /// <summary>
-        /// Control lblDetalleDeTurnos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDetalleDeTurnos;
+        protected global::System.Web.UI.WebControls.Label lblDetalleDeMedicos;
 
         /// <summary>
         /// Control GridViewPersonas.

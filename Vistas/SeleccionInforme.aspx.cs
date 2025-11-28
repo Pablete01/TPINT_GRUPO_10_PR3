@@ -21,7 +21,7 @@ namespace Vistas
 
         protected void btnInformeMedicos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("SeleccionInforme.aspx");
+            Response.Redirect("InformeMedicos.aspx");
         }
 
         protected void btnInformeTurnosGeneral_Click(object sender, EventArgs e)

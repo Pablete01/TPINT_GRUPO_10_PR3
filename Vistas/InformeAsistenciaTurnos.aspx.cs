@@ -41,7 +41,7 @@ namespace Vistas
             lblAusentes.Text += calcularPorcentajeString(total, cantAusentes);
             lblPresentes.Text += calcularPorcentajeString(total, cantPresentes);
 
-            lblDetalleDePacientes.Text += " (" + total + ")";
+            lblDetalleDeTurnos.Text += " (" + total + ")";
 
             CargarGv(desde, hasta);
         }
@@ -60,7 +60,7 @@ namespace Vistas
         {
             lblAusentes.Text = "Ausentes: ";
             lblPresentes.Text = "Presentes: ";
-            lblDetalleDePacientes.Text = "Detalle de Turnos";
+            lblDetalleDeTurnos.Text = "Detalle de Turnos";
             lblMensajeError.Text = "";
 
             GridViewPersonas.DataSource = null;

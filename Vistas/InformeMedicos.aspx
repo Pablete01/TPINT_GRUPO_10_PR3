@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeAsistenciaTurnos.aspx.cs" Inherits="Vistas.InformeAsistenciaTurnos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeMedicos.aspx.cs" Inherits="Vistas.InformeMedicos" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -97,14 +97,9 @@
 
 
         <div class="container">
-            <asp:Label ID="lblTitulo" runat="server" Text="Informe de Asistencia de Turnos" CssClass="section-title" Font-Size="X-Large" Font-Bold="True"></asp:Label>
+            <asp:Label ID="lblTitulo" runat="server" Text="Informe de Medicos" CssClass="section-title" Font-Size="X-Large" Font-Bold="True"></asp:Label>
 
             <div class="filters">
-                <asp:Label ID="lblDesde" runat="server" Text="Desde: "></asp:Label>
-                <asp:TextBox ID="txtDesde" runat="server" TextMode="Date"></asp:TextBox>
-                <asp:Label ID="lblHasta" runat="server" Text="Hasta: "></asp:Label>
-                <asp:TextBox ID="txtHasta" runat="server" TextMode="Date"></asp:TextBox>
-                <asp:Button ID="btnFiltrar" runat="server" Text="Generar Informe" BackColor="#004a8f" ForeColor="White" BorderStyle="None" OnClick="btnFiltrar_Click" />
             </div>
 
             <div class="summary">
@@ -114,9 +109,7 @@
                 </div>
 
                 <div class="summary-box">
-                    <asp:Label ID="lblPresentes" runat="server" Text="Presentes: "></asp:Label>
                     <br />
-                    <asp:Label ID="lblAusentes" runat="server" Text="Ausentes:"></asp:Label>
                     <br />
                     <br />
                     <br />
@@ -126,17 +119,9 @@
 
             <div class="grid-container">
                 <h3>
-                    <asp:Label ID="lblDetalleDeTurnos" runat="server" Text="Detalle de Turnos"></asp:Label>
+                    <asp:Label ID="lblDetalleDeMedicos" runat="server" Text="Detalle de Medicos"></asp:Label>
                 </h3>
-                <asp:GridView ID="GridViewPersonas" runat="server" AutoGenerateColumns="False" BorderColor="#99CCFF" BorderStyle="Solid" CellPadding="5" AllowPaging="True" OnPageIndexChanging="GridViewPersonas_PageIndexChanging" PageSize="5">
-                    <Columns>
-                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                        <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
-                        <asp:BoundField DataField="DNI" HeaderText="DNI" />
-                        <asp:BoundField DataField="Estado" HeaderText="Estado" />
-                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" HtmlEncode="False" />
-                        <asp:BoundField DataField="Hora" HeaderText="Hora" />
-                    </Columns>
+                <asp:GridView ID="GridViewPersonas" runat="server" AutoGenerateColumns="False" BorderColor="#99CCFF" BorderStyle="Solid" CellPadding="5" AllowPaging="True" PageSize="5">
                 </asp:GridView>
             </div>
         </div>
