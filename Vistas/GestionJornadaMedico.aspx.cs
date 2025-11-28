@@ -54,6 +54,7 @@ namespace Vistas
                 lblMsg.Text = "Jornada agregada correctamente.";
                 lblMsg.ForeColor = System.Drawing.Color.Green;
 
+                LimpiarControlores();
                 PanelAgregar.Visible = false;
                 CargarJornadas(j.ID_Medico);
             }
@@ -86,6 +87,13 @@ namespace Vistas
             return dias[d];
         }
 
+        private void LimpiarControlores()
+        {
+            txtEntrada.Text = "";
+            txtSalida.Text = "";
+            txtDuracion.Text = "";
+            ddlDiaSemana.SelectedIndex = 0;
+        }
 
     }
 
