@@ -74,7 +74,7 @@
             .grid-container tr:nth-child(even) {
                 background-color: #f2f2f2;
             }
-    </style>
+        </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -104,6 +104,10 @@
                 <asp:TextBox ID="txtDesde" runat="server" TextMode="Date"></asp:TextBox>
                 <asp:Label ID="lblHasta" runat="server" Text="Hasta: "></asp:Label>
                 <asp:TextBox ID="txtHasta" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="Label2" runat="server" Text="Especialidad del Medico"></asp:Label>
+                <asp:DropDownList ID="ddlEspecialidad" runat="server">
+                    <asp:ListItem Value="0">Seleccionar</asp:ListItem>
+                </asp:DropDownList>
                 <asp:Button ID="btnFiltrar" runat="server" Text="Generar Informe" BackColor="#004a8f" ForeColor="White" BorderStyle="None" OnClick="btnFiltrar_Click" />
             </div>
 
@@ -114,9 +118,7 @@
                 </div>
 
                 <div class="summary-box">
-                    <br />
-                    <br />
-                    <br />
+                    <asp:Label ID="lblInforme" runat="server"></asp:Label>
                     <br />
                     <br />
                 </div>
