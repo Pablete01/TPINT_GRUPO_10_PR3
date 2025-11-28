@@ -69,7 +69,6 @@ namespace Vistas
             lblInforme.Text += $"La especialidad con más horas trabajadas es <b>{dtMasHoras.Rows[0]["NombreEspecialidad"]}</b> con {Convert.ToDecimal(dtMasHoras.Rows[0]["HorasTotales"]).ToString("0")} horas.<br/><br/>";
             }
 
-            LimpiarControles();
         }
 
         private void CargarGv(DateTime desde, DateTime hasta)
@@ -115,16 +114,6 @@ namespace Vistas
             ddlEspecialidad.DataValueField = "ID_Especialidad";
             ddlEspecialidad.DataBind();
             ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione una especialidad --", "0"));
-        }
-
-        private void LimpiarControles()
-        {
-            txtDesde.Text = "";
-            txtHasta.Text = "";
-
-            ddlEspecialidad.SelectedIndex = 0;
-
-            lblMensajeError.Text = "";
         }
     }
 }
