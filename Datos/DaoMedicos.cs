@@ -306,6 +306,23 @@ namespace Datos
 
         }
 
+        public DataTable ObtenerInformeTrabajoMedicos(DateTime desde, DateTime hasta)
+        {
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand("sp_InformeTrabajoMedicos", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Desde", desde);
+            cmd.Parameters.AddWithValue("@Hasta", hasta);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            cn.Close();
+            return dt;
+        }
+
 
     }
 

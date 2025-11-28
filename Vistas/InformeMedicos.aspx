@@ -100,6 +100,11 @@
             <asp:Label ID="lblTitulo" runat="server" Text="Informe de Medicos" CssClass="section-title" Font-Size="X-Large" Font-Bold="True"></asp:Label>
 
             <div class="filters">
+                <asp:Label ID="lblDesde" runat="server" Text="Desde: "></asp:Label>
+                <asp:TextBox ID="txtDesde" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="lblHasta" runat="server" Text="Hasta: "></asp:Label>
+                <asp:TextBox ID="txtHasta" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Button ID="btnFiltrar" runat="server" Text="Generar Informe" BackColor="#004a8f" ForeColor="White" BorderStyle="None" OnClick="btnFiltrar_Click" />
             </div>
 
             <div class="summary">
@@ -121,7 +126,15 @@
                 <h3>
                     <asp:Label ID="lblDetalleDeMedicos" runat="server" Text="Detalle de Medicos"></asp:Label>
                 </h3>
-                <asp:GridView ID="GridViewPersonas" runat="server" AutoGenerateColumns="False" BorderColor="#99CCFF" BorderStyle="Solid" CellPadding="5" AllowPaging="True" PageSize="5">
+                <asp:GridView ID="GridViewPersonas" runat="server" AutoGenerateColumns="False" BorderColor="#99CCFF" BorderStyle="Solid" CellPadding="5" AllowPaging="True" PageSize="5" OnPageIndexChanging="GridViewPersonas_PageIndexChanging">
+                    <Columns>
+                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                        <asp:BoundField DataField="Especialidad" HeaderText="Especialidad" />
+                        <asp:BoundField DataField="CantidadJornadas" HeaderText="Cantidad Jornadas" />
+                        <asp:BoundField DataField="HorasSemanales" HeaderText="Horas semanales" />
+                        <asp:BoundField DataField="CantidadTurnos" HeaderText="Turnos Asignados" />
+                    </Columns>
                 </asp:GridView>
             </div>
         </div>

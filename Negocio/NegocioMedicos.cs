@@ -106,6 +106,11 @@ namespace Negocio
             return datos.MedicoPorEspecialidad (idEspecialidad);
         }
 
+        public DataTable ObtenerInformeTrabajoMedicos(DateTime desde, DateTime hasta)
+        {
+            return dao.ObtenerInformeTrabajoMedicos (desde, hasta);
+        }
+
 
     }
 
