@@ -18,6 +18,8 @@ namespace Negocio
             return dt;
         }
 
+
+
         public int InsertarPaciente(Entidades.Paciente paciente, out string mensaje)
         {
             Datos.DaoPacientes daoPacientes = new Datos.DaoPacientes();
@@ -47,5 +49,10 @@ namespace Negocio
         {
             return dao.ObtenerIDPacientePorDNI(DNI);
         }
+
+        //public int cargarGrillaPacientesxMedico(int idMedico)
+        //{
+        //    return dao.cargarGrillaPacientesxMedico(idMedico);
+        //}
     }
 }

@@ -80,6 +80,7 @@
     <Content Include="Imagenes\InformeTurnosGeneral.png" />
     <Content Include="InformeAsistenciaTurnos.aspx" />
     <Content Include="InformeMedicos.aspx" />
+    <Content Include="MisPacientes.aspx" />
     <Content Include="PacientesAgendados.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
     <Content Include="Imagenes\agenda.png" />
@@ -170,6 +171,13 @@
     </Compile>
     <Compile Include="InformeMedicos.aspx.designer.cs">
       <DependentUpon>InformeMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MisPacientes.aspx.cs">
+      <DependentUpon>MisPacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MisPacientes.aspx.designer.cs">
+      <DependentUpon>MisPacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="PacientesAgendados.aspx.cs">
       <DependentUpon>PacientesAgendados.aspx</DependentUpon>

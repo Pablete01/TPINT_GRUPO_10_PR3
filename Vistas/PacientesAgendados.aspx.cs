@@ -60,7 +60,19 @@ namespace Vistas
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            DataTable dt = neg.BuscarPacientesxTurno(txtBuscar.Text.Trim());
+            gvTurnos.DataSource = dt;
+            gvTurnos.DataBind();
+            if (dt.Rows.Count == 0)
+            {
+                lblMensaje.Text = "No se encontraron pacientes con ese criterio.";
+                gvTurnos.Visible = false;
+            }
+            else
+            {
+                lblMensaje.Text = string.Empty;
+                gvTurnos.Visible = true;
+            }
         }
 
         protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)

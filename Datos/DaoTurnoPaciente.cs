@@ -49,5 +49,15 @@ namespace Datos
             return true;
         }
 
+        public DataTable BuscarPacientesxTurno(string texto)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@texto", texto)
+            };
+
+            return ds.ObtenerTablaSP("BuscarPacientesxTurno", "SP_BuscarPacientesxTurno", parametros);
+        }
+
     }
 }

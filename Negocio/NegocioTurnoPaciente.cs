@@ -28,5 +28,10 @@ namespace Negocio
         {
             return dao.ActualizarEstadoPaciente(idTurno, idEstado, observaciones);
         }
+
+        public DataTable BuscarPacientesxTurno(string texto)
+        {
+            return dao.BuscarPacientesxTurno(texto);
+        }
     }
 }

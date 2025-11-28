@@ -99,5 +99,13 @@ namespace Datos
 
             return -1;
         }
+
+        //public DataTable cargarGrillaPacientesCompletosxMedico(int idMedico)
+        //{
+        //    string consulta = "SP_ListarPacientesPorMedico";
+        //    SqlCommand comando = new SqlCommand();
+        //    comando.Parameters.AddWithValue("@ID_Medico", idMedico);
+        //    return dm.ObtenerTablaPacientesCompletosxMedico(consulta, comando, "PacientesPorMedico");
+        //}
     }
 }
