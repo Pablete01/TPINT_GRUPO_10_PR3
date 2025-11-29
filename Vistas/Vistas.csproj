@@ -73,7 +73,6 @@
     <Content Include="GestionPacientes.aspx" />
     <Content Include="GestionMedico.aspx" />
     <Content Include="GestionTurnoPaciente.aspx" />
-    <Content Include="GestionTurnos.aspx" />
     <Content Include="GestionTurnos_2.aspx" />
     <Content Include="Imagenes\InformeMedicos.png" />
     <Content Include="Imagenes\InformeTurnosAsistencia.png" />
@@ -143,13 +142,6 @@
     </Compile>
     <Compile Include="GestionTurnoPaciente.aspx.designer.cs">
       <DependentUpon>GestionTurnoPaciente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionTurnos.aspx.cs">
-      <DependentUpon>GestionTurnos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionTurnos.aspx.designer.cs">
-      <DependentUpon>GestionTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionTurnos_2.aspx.cs">
       <DependentUpon>GestionTurnos_2.aspx</DependentUpon>

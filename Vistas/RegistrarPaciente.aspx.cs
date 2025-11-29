@@ -16,7 +16,7 @@ namespace Vistas
         {
             if (!IsPostBack)
             {
-
+                lblUsuario.Text = ((Usuario)Session["Usuario"]).email;
                 DropDlistProv.DataSource = negocioProvincia.cargarProvincias();
                 DropDlistProv.DataValueField = "ID_Provincia";
                 DropDlistProv.DataTextField = "NombreProvincia";
@@ -30,6 +30,7 @@ namespace Vistas
         {
             InsertarPaciente();
         }
+
         private void InsertarPaciente()
         {
             string sexo = "";

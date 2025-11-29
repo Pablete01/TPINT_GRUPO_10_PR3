@@ -16,7 +16,7 @@ namespace Vistas
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            ///hola
+            
         }
 
 
@@ -55,9 +55,6 @@ namespace Vistas
                 case "medico":
                     Response.Redirect("Medico.aspx");
                     break;
-                //case "paciente":
-                //    Response.Redirect("Paciente.aspx");
-                //    break;
                 default:
                     lblError.Text = "Perfil no reconocido.";
                     break;

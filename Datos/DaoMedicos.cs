@@ -117,6 +117,7 @@ namespace Datos
             cmd.Parameters.AddWithValue("@Direccion", m.Direccion);
             cmd.Parameters.AddWithValue("@ID_Localidad", m.ID_Localidad);
             cmd.Parameters.AddWithValue("@Email", m.Email);
+            cmd.Parameters.AddWithValue("@Usuario", m.Usuario);
             cmd.Parameters.AddWithValue("@Contrasena", m.Contrasena);
             cmd.Parameters.AddWithValue("@ID_Especialidad", m.ID_Especialidad);
 
@@ -151,6 +152,8 @@ namespace Datos
                 cmd.Parameters.AddWithValue("@Direccion", m.Direccion);
                 cmd.Parameters.AddWithValue("@ID_Localidad", m.ID_Localidad);
                 cmd.Parameters.AddWithValue("@Email", m.Email);
+                cmd.Parameters.AddWithValue("@Usuario", m.Usuario);
+                cmd.Parameters.AddWithValue("@Contrasena", m.Contrasena);
 
                 //  cn.Open();
                 cmd.ExecuteNonQuery();
@@ -243,7 +246,8 @@ namespace Datos
                 med.Nombre = dr["Nombre"].ToString();
                 med.Apellido = dr["Apellido"].ToString();
                 med.DNI = dr["DNI"].ToString();
-                med.Contrasena = dr["Contrasena"].ToString();  // = DNI
+                med.Contrasena = dr["Contrasena"].ToString();
+                med.Usuario = dr["Usuario"].ToString();
                 med.ID_Especialidad = Convert.ToInt32(dr["ID_Especialidad"]);
                 med.Email = dr["Email"].ToString();
                 med.Telefono = dr["Telefono"].ToString();
@@ -252,7 +256,9 @@ namespace Datos
                 med.Sexo = dr["Sexo"].ToString();
                 med.FechaNacimiento = Convert.ToDateTime(dr["FechaNacimiento"]);
                 med.ID_Localidad = Convert.ToInt32(dr["ID_Localidad"]);
-                //med.ID_Provincia = Convert.ToInt32(dr["ID_Provincia"]);
+                med.ID_Provincia = Convert.ToInt32(dr["ID_Provincia"]);
+
+               
             }
 
             dr.Close();

@@ -25,10 +25,11 @@ namespace Entidades
 
         // Datos de Usuario
         public string Email { get; set; }
-        public string Contrasena { get; set; }   // ← será igual al DNI
+        public string Usuario { get; set; }     
+        public string Contrasena { get; set; }   
 
         // Datos de Médico
         public int ID_Especialidad { get; set; }
-        public string Legajo { get; set; }       // ← se completa con M + ID_Persona
+        public string Legajo { get; set; }       
     }
 }

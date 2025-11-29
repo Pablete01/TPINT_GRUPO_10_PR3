@@ -21,6 +21,14 @@ namespace Datos
             return dm.ObtenerTabla("Pacientes", consulta);
         }
 
+        public DataTable BuscarPacientes(string valor)
+        {
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@texto", valor);
+            string spBuscarPacientes = "SP_BuscarPacientes";
+            return dm.ObtenerBusquedaPacientes("PacientesBuscados", spBuscarPacientes, comando);
+        }
+
         public int InsertarPaciente(Paciente paciente, out string mensaje)
         {
             SqlCommand comando = new SqlCommand();

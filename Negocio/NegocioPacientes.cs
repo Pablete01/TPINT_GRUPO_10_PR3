@@ -22,27 +22,32 @@ namespace Negocio
 
         public int InsertarPaciente(Entidades.Paciente paciente, out string mensaje)
         {
-            Datos.DaoPacientes daoPacientes = new Datos.DaoPacientes();
+            DaoPacientes daoPacientes = new DaoPacientes();
             int filasAfectadas = daoPacientes.InsertarPaciente(paciente, out mensaje);
             return filasAfectadas;
         }
 
         public int ActualizarPaciente(Entidades.Paciente paciente)
         {
-            Datos.DaoPacientes daoPacientes = new Datos.DaoPacientes();
+            DaoPacientes daoPacientes = new DaoPacientes();
             int filasAfectadas = daoPacientes.ActualizarPaciente(paciente);
             return filasAfectadas;
         }
 
         public bool EliminarPaciente(int idPaciente)
         {
-            Datos.DaoPacientes daoPacientes = new Datos.DaoPacientes();
+            DaoPacientes daoPacientes = new DaoPacientes();
             bool filasAfectadas = daoPacientes.EliminarPaciente(idPaciente);
             if(!filasAfectadas)
             {
                 return false; 
             }
             return true; 
+        }
+
+        public DataTable BuscarPacientes(string valor)
+        {
+            return dao.BuscarPacientes(valor);
         }
 
         public int GetIDPacientePorDNI(string DNI)

@@ -104,6 +104,16 @@
             display: block;
             text-align: center;
         }
+        .auto-style1 {
+            height: 52px;
+        }
+        .auto-style2 {
+            height: 52px;
+            width: 233px;
+        }
+        .auto-style3 {
+            width: 233px;
+        }
     </style>
 </head>
 
@@ -152,9 +162,9 @@
                 </tr>
 
                 <tr>
-                    <td>
+                    <td class="auto-style1">
                         <label for="txtDNI">DNI:</label></td>
-                    <td>
+                    <td class="auto-style1">
                         <asp:TextBox ID="txtDNI" runat="server" /></td>
                 </tr>
 
@@ -203,9 +213,9 @@
                 </tr>
 
                 <tr>
-                    <td>
+                    <td class="auto-style1">
                         <label for="ddlSexo">Sexo:</label></td>
-                    <td>
+                    <td class="auto-style1">
                         <asp:DropDownList ID="ddlSexo" runat="server"></asp:DropDownList>
                     </td>
                 </tr>
@@ -217,6 +227,47 @@
                         <asp:DropDownList ID="ddlEspecialidad" runat="server"></asp:DropDownList>
                     </td>
                 </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td class="auto-style1">
+                        <label for="txtDNI">USUARIO:</label></td>
+                    <td class="auto-style1">
+                        <asp:TextBox ID="txtUsuario" runat="server" />
+                        <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" Display="Dynamic" ErrorMessage="Ingrese un nombre de usuario" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style1">
+                        <label for="txtDNI">CONTRASEÑA:</label></td>
+                    <td class="auto-style1">
+                        <asp:TextBox ID="txtContrasena" runat="server" />
+                        <asp:RequiredFieldValidator ID="rfvContrasena" runat="server" ControlToValidate="txtContrasena" Display="Dynamic" ErrorMessage="Ingrese una contraseña" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+
+            </table>
+
+            <table>
+
+                <tr>
+                    <td class="auto-style2">
+                        <label for="txtDNI">REPETIR CONTRASEÑA:</label></td>
+                    <td class="auto-style1">
+                        <asp:TextBox ID="txtRepetirContrasena" runat="server" />
+                        <br />
+                        <asp:RequiredFieldValidator ID="rfvContrasena2" runat="server" ControlToValidate="txtRepetirContrasena" Display="Dynamic" ErrorMessage="Ingrese una contraseña" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style3">
+                        <asp:CompareValidator ID="cvContrasena" runat="server" ControlToCompare="txtContrasena" ControlToValidate="txtRepetirContrasena" Display="Dynamic" ErrorMessage="Las contraseñas no coinciden" ForeColor="Red"></asp:CompareValidator>
+                    </td>
+                </tr>
+
             </table>
 
             <div class="btn-container">

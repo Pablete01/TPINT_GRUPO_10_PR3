@@ -22,7 +22,7 @@ namespace Dao
         public SqlConnection ObtenerConexion()
         {
             SqlConnection cn = new SqlConnection(rutaDBClinica);
-            cn.Open();      
+            cn.Open();
             return cn;
 
         }
@@ -46,6 +46,19 @@ namespace Dao
             return ds.Tables[NombreTabla];
         }
 
+        public DataTable ObtenerBusquedaPacientes(string nombreTabla, string nombreSP, SqlCommand comando)
+        {
+            SqlConnection conexion = ObtenerConexion();
+            comando.Connection = conexion;
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.CommandText = nombreSP;
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            DataTable tabla = new DataTable(nombreTabla);
+            da.Fill(tabla);
+            conexion.Close();
+            return tabla;
+        }
+
 
 
         public int AgregarPaciente(SqlCommand comandoSQL, string spInsertarPaciente, out string mensaje)
@@ -66,7 +79,7 @@ namespace Dao
 
                 if (ex.Number == 2627 || ex.Number == 2601)
                 {
-                  
+
                     mensaje = "Ya existe un registro con ese DNI o Email.";
                 }
                 else
@@ -125,7 +138,7 @@ namespace Dao
 
         public int ActualizarPaciente(SqlCommand comandoSQL, string spActualizarPaciente)
         {
-           
+
             SqlConnection cn = ObtenerConexion();
             try
             {
@@ -137,8 +150,7 @@ namespace Dao
             }
             catch (SqlException ex)
             {
-                throw;
-              // return 0;
+                return 0;
             }
             finally
             {
