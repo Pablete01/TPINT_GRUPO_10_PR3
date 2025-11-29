@@ -137,7 +137,9 @@
 
 
         <div class="form-container">
-            <h2>Registrar Médico</h2>
+            <h2>
+                <asp:Label ID="lblTitulo" runat="server" Font-Bold="True" ForeColor="Black"></asp:Label>
+            </h2>
 
             <table>
                 <tr>
@@ -272,7 +274,7 @@
 
             <div class="btn-container">
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn" OnClick="btnAceptar_Click" />
-                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn" OnClick="btnCancelar_Click" />
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CausesValidation="false"  CssClass="btn" OnClick="btnCancelar_Click" />
                 <asp:Label ID="lblMensaje" runat="server"></asp:Label>
             </div>
         </div>

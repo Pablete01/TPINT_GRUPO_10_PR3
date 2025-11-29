@@ -30,7 +30,12 @@ namespace Vistas
 
                 if (Request.QueryString["ID_Medico"] != null)
                 {
+                    lblTitulo.Text = "Modificar Médico";
                     CargarMedico(int.Parse(Request.QueryString["ID_Medico"]));
+                }
+                else 
+                {
+                    lblTitulo.Text = "Registrar Médico";
                 }
             }
 
@@ -129,9 +134,16 @@ namespace Vistas
                 bool ok;
 
                 if (m.ID_Medico > 0) // modo edición
+                {
+                    lblTitulo.Text = "Modificar Médico";
                     ok = neg.ModificarMedico(m);
+                }
+
                 else // modo alta
+                {
+                    lblTitulo.Text = "Registrar Médico";
                     ok = neg.RegistrarMedico(m);
+                }
 
                 if (ok)
                 {
