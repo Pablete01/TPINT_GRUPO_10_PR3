@@ -113,6 +113,51 @@
             background-color: #e0a800;
         }
 
+        .formulario-popup {
+            width: 40%;
+            margin: 25px auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border: 1px solid #dcdcdc;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .formulario-popup h3 {
+            margin-bottom: 15px;
+            color: #007bff;
+            font-size: 22px;
+        }
+
+        .formulario-popup label,
+        .formulario-popup select,
+        .formulario-popup textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .formulario-popup select, 
+        .formulario-popup textarea {
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .formulario-popup .btn {
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* Animación */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
     </style>
 
 </head>
@@ -170,13 +215,13 @@
 
                 &nbsp;
 
-                <asp:LinkButton 
+                <%--<asp:LinkButton 
                     ID="btnReprogramar"
                     runat="server"
                     Text="Reprogramar"
                     CommandName="Reprogramar"
                     CommandArgument='<%# Eval("ID_Turno") %>'
-                    CssClass="btn-grid btn-secondary" />
+                    CssClass="btn-grid btn-secondary" />--%>
             </ItemTemplate>
         </asp:TemplateField>
 
@@ -188,11 +233,38 @@
 
     </Columns>
 </asp:GridView>
+        <asp:Panel ID="panelTurno" runat="server" Visible="false" CssClass="formulario-popup">
+
+            <h3>Asignar Turno</h3>
+
+            <asp:Label Text="Especialidad" runat="server" />
+            <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" />
+
+            <asp:Label Text="Médico" runat="server" />
+            <asp:DropDownList ID="ddlMedico" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged" />
+
+            <asp:Label Text="Fecha" runat="server" />
+            <asp:Calendar ID="calTurno" runat="server" OnDayRender="calTurno_DayRender" OnSelectionChanged="calTurno_SelectionChanged" />
+
+            <asp:Label Text="Horario Disponible" runat="server" />
+            <asp:DropDownList ID="ddlHorario" runat="server" />
+
+            <asp:Button ID="btnGuardarTurno" runat="server" Text="Guardar"
+                CssClass="btn btn-success" OnClick="btnGuardarTurno_Click" />
+
+            <asp:Button ID="btnCancelarTurno" runat="server" Text="Cancelar"
+                CssClass="btn btn-danger"
+                OnClick="btnCancelarTurno_Click" />
+
+        </asp:Panel>
+
 
 
         </div>
 
     </asp:Panel>
+
+    <asp:Label ID="lblMensaje" runat="server" Text="Label"></asp:Label>
 
 </form>
 </body>

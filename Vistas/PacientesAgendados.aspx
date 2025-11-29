@@ -107,11 +107,7 @@
                 <asp:TextBox ID="txtBuscar" runat="server" Width="200px" Placeholder="Buscar paciente..."></asp:TextBox>
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
 
-                <asp:DropDownList ID="ddlFiltro" runat="server">
-                    <asp:ListItem Text="Predeterminado" Value="Predeterminado"></asp:ListItem>
-                    <asp:ListItem Text="Ordenar alfabéticamente" Value="Ordenar alfabéticamente"></asp:ListItem>
-                    <asp:ListItem Text="Ordenar por especialidad" Value="Ordenar por especialidad"></asp:ListItem>
-                </asp:DropDownList>
+                
                 <br />
                 <asp:Label ID="lblNombreMedico" runat="server"></asp:Label>
                 <br />

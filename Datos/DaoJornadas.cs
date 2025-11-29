@@ -38,5 +38,17 @@ namespace Datos
             return ds.EjecutarSPNonQuery("sp_AgregarJornadaMedico", cmd);
         }
 
+        public bool BajaLogicaJornadaYTurnos(int idJornada)
+        {
+            AccesoDatos ad = new AccesoDatos();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Parameters.AddWithValue("@ID_Jornada", idJornada);
+
+            int resultado = ad.EjecutarSPNonQuery("SP_BajaLogicaJornadaYTurnos", cmd);
+
+            return resultado >= 0;  // o simplemente return true;
+        }
+
     }
 }

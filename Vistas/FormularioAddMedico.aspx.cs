@@ -26,13 +26,16 @@ namespace Vistas
                 lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
                 CargarSexo();
                 CargarEspecialidades();
-                CargarProvincias();
+                CargarProvincias();  
 
-                // 🔹 Si viene un ID por la URL → modo edición
                 if (Request.QueryString["ID_Medico"] != null)
                 {
-                    int idMedico = int.Parse(Request.QueryString["ID_Medico"]);
-                    CargarMedico(idMedico);
+                    lblTitulo.Text = "Modificar Médico";
+                    CargarMedico(int.Parse(Request.QueryString["ID_Medico"]));
+                }
+                else 
+                {
+                    lblTitulo.Text = "Registrar Médico";
                 }
             }
 
@@ -54,19 +57,23 @@ namespace Vistas
                 txtTelefono.Text = m.Telefono;
                 txtDireccion.Text = m.Direccion;
 
-                // 🔹 Provincias y Localidades (cargar en combo)
+                // 🔹 Asignar provincia después de haber llamado a CargarProvincias() en Page_Load
                 ddlProvincia.SelectedValue = m.ID_Provincia.ToString();
-                CargarLocalidades(); // carga localidades según provincia
+
+                // 🔹 Cargar localidades de ESA provincia
+                CargarLocalidades();
+
+                // 🔹 Recién ahora seleccionar la localidad del médico
                 ddlLocalidad.SelectedValue = m.ID_Localidad.ToString();
 
-                // 🔹 Email y clave (clave = DNI)
+                // 🔹 Usuario
                 txtEmail.Text = m.Email;
-                //txtContrasena.Text = m.Contrasena; // igual al DNI
+                txtUsuario.Text = m.Usuario;
+                txtContrasena.Text = m.Contrasena;
 
                 // 🔹 Especialidad
                 ddlEspecialidad.SelectedValue = m.ID_Especialidad.ToString();
 
-                // Guardamos el ID en un hiddenfield para la modificación
                 hiddenIdMedico.Value = m.ID_Medico.ToString();
             }
         }
@@ -96,6 +103,7 @@ namespace Vistas
             ddlProvincia.DataTextField = "NombreProvincia";
             ddlProvincia.DataBind();
             ddlProvincia.Items.Insert(0, new ListItem("--Seleccione una provincia--", "0"));
+           
         }
 
 
@@ -117,7 +125,8 @@ namespace Vistas
                     Direccion = txtDireccion.Text,
                     ID_Localidad = int.Parse(ddlLocalidad.SelectedValue),
                     Email = txtEmail.Text,
-                    Contrasena = txtDNI.Text, // contraseña = DNI
+                    Usuario = txtUsuario.Text,
+                    Contrasena = txtContrasena.Text,
                     ID_Especialidad = int.Parse(ddlEspecialidad.SelectedValue)
                 };
 
@@ -125,9 +134,16 @@ namespace Vistas
                 bool ok;
 
                 if (m.ID_Medico > 0) // modo edición
+                {
+                    lblTitulo.Text = "Modificar Médico";
                     ok = neg.ModificarMedico(m);
+                }
+
                 else // modo alta
+                {
+                    lblTitulo.Text = "Registrar Médico";
                     ok = neg.RegistrarMedico(m);
+                }
 
                 if (ok)
                 {
@@ -137,7 +153,7 @@ namespace Vistas
                     btnAceptar.Visible = false;
                 }
                 else
-                    lblMensaje.Text = "Error al guardar el médico. DNI o email ya registrado.";
+                    lblMensaje.Text = "Error al guardar el médico. DNI o email o usuario ya registrado.";
             }
             catch (Exception ex)
             {
@@ -147,7 +163,11 @@ namespace Vistas
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarLocalidades();
+            if(ddlProvincia.SelectedValue != "0")
+            {
+                CargarLocalidades();
+            }
+              
         }
 
         private void CargarLocalidades()

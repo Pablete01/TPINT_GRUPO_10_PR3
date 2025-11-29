@@ -16,7 +16,7 @@ namespace Vistas
         {
             if (!IsPostBack)
             {
-
+                lblUsuario.Text = ((Usuario)Session["Usuario"]).email;
                 DropDlistProv.DataSource = negocioProvincia.cargarProvincias();
                 DropDlistProv.DataValueField = "ID_Provincia";
                 DropDlistProv.DataTextField = "NombreProvincia";
@@ -30,17 +30,10 @@ namespace Vistas
         {
             InsertarPaciente();
         }
+
         private void InsertarPaciente()
         {
-            string sexo = "";
-            if(rbFemenino.Checked)
-            {
-                sexo = "Femenino";
-            }
-            else if(rbMasculino.Checked)
-            {
-                sexo = "Masculino";
-            }
+            string sexo = rblSexo.SelectedValue;
             
 
             Paciente paciente = new Paciente();
@@ -103,10 +96,8 @@ namespace Vistas
             txtDireccion.Text = "";
             txtEmail.Text = "";
             txtTelefono.Text = "";
-
-            rbFemenino.Checked = false;
-            rbMasculino.Checked = false;
-
+            rblSexo.ClearSelection();
+            
             DropDlistProv.SelectedIndex = 0;
 
             ddlLocalidades.Items.Clear();

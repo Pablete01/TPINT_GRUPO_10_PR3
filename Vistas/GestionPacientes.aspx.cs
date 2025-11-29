@@ -27,6 +27,7 @@ namespace Vistas
 
         private void MostrarPacientes()
         {
+            lblMensaje.Text = string.Empty;
             DataTable dt = negocioPacientes.cargarGrillaPacientes();
             grdPacientes.DataSource = dt;
             grdPacientes.DataBind();
@@ -34,8 +35,19 @@ namespace Vistas
 
         private void EliminarPaciente(int idPaciente)
         {
-            negocioPacientes.EliminarPaciente(idPaciente);
+            bool eliminado = negocioPacientes.EliminarPaciente(idPaciente);
+            if (eliminado)
+            {
+                lblMensaje.Text = "Paciente eliminado correctamente";
+            }
+            else
+            {
+                lblMensaje.Text = "Error al eliminar el paciente";
+            }
+
         }
+
+
 
 
 
@@ -59,6 +71,7 @@ namespace Vistas
 
         protected void grdPacientes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
+            lblMensaje.Text = string.Empty;
             grdPacientes.EditIndex = -1;   
             MostrarPacientes();          
 
@@ -66,6 +79,7 @@ namespace Vistas
 
         protected void grdPacientes_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            lblMensaje.Text = string.Empty;
             grdPacientes.EditIndex = e.NewEditIndex; 
             MostrarPacientes();                     
         }
@@ -94,7 +108,8 @@ namespace Vistas
             int idProvincia = int.Parse(ddlProv.SelectedValue);
             int idLocalidad = int.Parse(ddlLoc.SelectedValue);
 
-            negocioPacientes.ActualizarPaciente(new Entidades.Paciente()
+            int paciente = negocioPacientes.ActualizarPaciente(new Entidades.Paciente
+
             {
                 idPaciente = idPaciente,
                 nombre = nombre,
@@ -110,9 +125,17 @@ namespace Vistas
                 localidad = idLocalidad,
                 estado = 3,
                 perfil = 1
-            });
+            }
+            );
+            if(paciente == 0)
+            {
+                lblMensaje.Text = "Error al actualizar el paciente.";
+            }
+            else 
+            { lblMensaje.Text = "Paciente actualizado correctamente."; 
+            }
 
-          
+
             grdPacientes.EditIndex = -1;
             MostrarPacientes();
         }
@@ -121,6 +144,7 @@ namespace Vistas
         {
             if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState.HasFlag(DataControlRowState.Edit))
             {
+
                 TextBox txtFecha = (TextBox)e.Row.FindControl("lbl_eit_fechaNacimiento");
 
                 if (txtFecha != null)
@@ -165,11 +189,24 @@ namespace Vistas
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            
+            DataTable dt = negocioPacientes.BuscarPacientes(txtBuscar.Text.Trim());
+            grdPacientes.DataSource = dt;
+            grdPacientes.DataBind();
+            if (dt.Rows.Count == 0)
+            {
+                lblMensaje.Text = "No se encontraron pacientes con ese criterio.";
+                grdPacientes.Visible = false;
+            }
+            else
+            {
+                lblMensaje.Text = string.Empty;
+                grdPacientes.Visible = true;
+            }
         }
 
         protected void btnAgregarPaciente_Click(object sender, EventArgs e)
         {
+            lblMensaje.Text = string.Empty;
             Response.Redirect("RegistrarPaciente.aspx");
         }
 

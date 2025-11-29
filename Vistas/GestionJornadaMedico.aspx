@@ -117,7 +117,7 @@
                     AutoGenerateColumns="False"
                     PageSize="5"
                     CssClass="grid"
-                    DataKeyNames="ID_Jornada">
+                    DataKeyNames="ID_Jornada" OnRowCommand="grdJornadaMedico_RowCommand">
 
                     <AlternatingRowStyle BackColor="White" />
 
@@ -129,12 +129,12 @@
 
                         <asp:TemplateField HeaderText="Acciones">
                             <ItemTemplate>
-                                <asp:LinkButton
-                                    ID="btnModificar"
-                                    runat="server"
-                                    Text="Modificar"
-                                    CommandName="Modificar"
-                                    CommandArgument='<%# Eval("ID_Jornada") %>' />
+                                <%--<asp:LinkButton 
+                    ID="btnModificar"
+                    runat="server"
+                    Text="Modificar"
+                    CommandName="Modificar"
+                    CommandArgument='<%# Eval("ID_Jornada") %>' />--%>
 
                                 <asp:LinkButton
                                     ID="btnEliminar"
@@ -148,7 +148,7 @@
 
                         <asp:TemplateField HeaderText="Día Semana">
                             <ItemTemplate>
-                                <%# ObtenerNombreDia(Eval("DiaSemana")) %>
+                                <%# GetNombreDia(Convert.ToInt32(Eval("DiaSemana"))) %>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -215,4 +215,3 @@
     </form>
 </body>
 </html>
-
