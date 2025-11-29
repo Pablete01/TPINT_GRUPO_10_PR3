@@ -1054,6 +1054,63 @@ BEGIN
 END;
 GO
 
+ALTER  PROCEDURE [dbo].[SP_ModificarMedico]
+    @ID_Medico INT,
+    @Nombre VARCHAR(50),
+    @Apellido VARCHAR(50),
+    @DNI VARCHAR(20),
+    @Sexo VARCHAR(10),
+    @Nacionalidad VARCHAR(50),
+    @FechaNacimiento DATE,
+    @Telefono VARCHAR(50),
+    @Direccion VARCHAR(100),
+    @ID_Localidad INT,
+    @Email VARCHAR(50),
+    @Usuario VARCHAR(20),
+    @Contrasena VARCHAR(20)
+
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        -- Actualiza Persona
+        UPDATE P
+        SET 
+            P.Nombre = @Nombre,
+            P.Apellido = @Apellido,
+            P.DNI = @DNI,
+            P.Sexo = @Sexo,
+            P.Nacionalidad = @Nacionalidad,
+            P.FechaNacimiento = @FechaNacimiento,
+            P.Telefono = @Telefono,
+            P.Direccion = @Direccion,
+            P.ID_Localidad = @ID_Localidad
+           
+        FROM Persona P
+        INNER JOIN Medicos M ON P.ID_Persona = M.ID_Persona
+        WHERE M.ID_Medico = @ID_Medico;
+
+        -- Actualiza Usuario y contrasena
+        UPDATE U
+       SET   U.Email = @Email,
+             U.Usuario = @Usuario,
+             U.Contrasena = @Contrasena
+        
+        FROM Usuarios U
+        INNER JOIN Medicos M ON U.ID_Usuario = M.ID_Usuario
+        WHERE M.ID_Medico = @ID_Medico;
+
+    END TRY
+    BEGIN CATCH
+       THROW; 
+    END CATCH
+END;
+GO
+
+
+
+
 ALTER PROCEDURE [dbo].[SP_ActualizarPaciente]
     @ID_Pacientes INT,
     @DNI INT,
