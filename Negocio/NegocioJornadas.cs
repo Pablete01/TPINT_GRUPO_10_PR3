@@ -25,5 +25,11 @@ namespace Negocio
             // SP: 1 = OK, -1 = superposición, 0 = error
             return resultado == 1;
         }
+
+        public bool EliminarJornada(int idJornada)
+        {
+            DaoJornadas dao = new DaoJornadas();
+            return dao.BajaLogicaJornadaYTurnos(idJornada);
+        }
     }
 }

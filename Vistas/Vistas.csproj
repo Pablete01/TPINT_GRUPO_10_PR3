@@ -67,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AsignacionTurnos.aspx" />
     <Content Include="FormularioAddMedico.aspx" />
     <Content Include="GestionJornadaMedico.aspx" />
     <Content Include="GestionPacientes.aspx" />
@@ -101,13 +100,6 @@
     <Content Include="Administrador.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsignacionTurnos.aspx.cs">
-      <DependentUpon>AsignacionTurnos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AsignacionTurnos.aspx.designer.cs">
-      <DependentUpon>AsignacionTurnos.aspx</DependentUpon>
-    </Compile>
     <Compile Include="FormularioAddMedico.aspx.cs">
       <DependentUpon>FormularioAddMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -54,7 +54,6 @@ namespace Vistas
                 lblMsg.Text = "Jornada agregada correctamente.";
                 lblMsg.ForeColor = System.Drawing.Color.Green;
 
-                LimpiarControlores();
                 PanelAgregar.Visible = false;
                 CargarJornadas(j.ID_Medico);
             }
@@ -75,24 +74,43 @@ namespace Vistas
             PanelAgregar.Visible = true;   // Mostrar formulario
         }
 
-        public string ObtenerNombreDia(object dia)
+        protected void grdJornadaMedico_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int d = Convert.ToInt32(dia);
+            if (e.CommandName == "Eliminar")
+            {
+                int idJornada = Convert.ToInt32(e.CommandArgument);
 
-            string[] dias = {
-                     "Domingo", "Lunes", "Martes", "Miércoles",
-                      "Jueves", "Viernes", "Sábado"
-             };
+                bool ok = negocio.EliminarJornada(idJornada);
 
-            return dias[d];
+                if (ok)
+                {
+                    lblMsg.Text = "Jornada eliminada correctamente.";
+                    lblMsg.ForeColor = System.Drawing.Color.Green;
+
+                    int idMedico = Convert.ToInt32(Request.QueryString["ID_Medico"]);
+                    CargarJornadas(idMedico); // Recargar grid
+                }
+                else
+                {
+                    lblMsg.Text = "Error al eliminar la jornada.";
+                    lblMsg.ForeColor = System.Drawing.Color.Red;
+                }
+            }
         }
 
-        private void LimpiarControlores()
+        protected string GetNombreDia(int dia)
         {
-            txtEntrada.Text = "";
-            txtSalida.Text = "";
-            txtDuracion.Text = "";
-            ddlDiaSemana.SelectedIndex = 0;
+            switch (dia)
+            {
+                case 1: return "Lunes";
+                case 2: return "Martes";
+                case 3: return "Miércoles";
+                case 4: return "Jueves";
+                case 5: return "Viernes";
+                case 6: return "Sábado";
+                case 7: return "Domingo";
+            }
+            return "";
         }
 
     }

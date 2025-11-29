@@ -46,6 +46,21 @@ namespace Dao
             return ds.Tables[NombreTabla];
         }
 
+        public DataTable ObtenerTablaSQL(string nombreTabla, string consultaSql)
+        {
+            using (SqlConnection cn = ObtenerConexion())
+            {
+                SqlCommand cmd = new SqlCommand(consultaSql, cn);
+                cmd.CommandType = CommandType.Text;
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable tabla = new DataTable(nombreTabla);
+                da.Fill(tabla);
+
+                return tabla;
+            }
+        }
+
         public DataTable ObtenerBusquedaPacientes(string nombreTabla, string nombreSP, SqlCommand comando)
         {
             SqlConnection conexion = ObtenerConexion();
