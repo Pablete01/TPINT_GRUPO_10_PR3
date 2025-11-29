@@ -19,7 +19,9 @@ namespace Vistas
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
             DateTime desde, hasta;
-            LimpiarDatos();
+            LimpiarDatosYOcultarControles();
+            ddlControlFiltros.SelectedIndex = 0;
+
             if (!DateTime.TryParse(txtDesde.Text, out desde) || !DateTime.TryParse(txtHasta.Text, out hasta))
             {
                 lblMensajeError.Text = "Ingrese fechas válidas.";
@@ -31,19 +33,25 @@ namespace Vistas
                 lblMensajeError.Text = "La fecha inicial no puede ser mayor que final.";
                 return;
             }
-            NegocioTurnos negocioTurnos = new NegocioTurnos();
+            NegocioEstadisticas negocioEstadisticas= new NegocioEstadisticas();
 
-            int cantPresentes = negocioTurnos.ContabilizarTurnosPorEstado(desde, hasta, 4);
-            int cantAusentes = negocioTurnos.ContabilizarTurnosPorEstado(desde, hasta, 5);
+            int cantPresentes = negocioEstadisticas.ContabilizarTurnosPorEstado(desde, hasta, 4);
+            int cantAusentes = negocioEstadisticas.ContabilizarTurnosPorEstado(desde, hasta, 5);
 
             int total = cantAusentes + cantPresentes;
 
-            lblAusentes.Text += calcularPorcentajeString(total, cantAusentes);
-            lblPresentes.Text += calcularPorcentajeString(total, cantPresentes);
+            var cultura = new System.Globalization.CultureInfo("es-ES");
 
-            lblDetalleDeTurnos.Text += " (" + total + ")";
+            string fechaDesdeFormateada = desde.ToString("dddd d 'de' MMMM 'del' yyyy", cultura);
+            string fechaHastaFormateada = hasta.ToString("dddd d 'de' MMMM 'del' yyyy", cultura);
 
-            CargarGv(desde, hasta);
+            lblInforme.Text = $"Desde el {fechaDesdeFormateada} hasta el {fechaHastaFormateada} se obtuvo el siguiente registro de turnos:<br/><br/>";
+            lblInforme.Text += $"Presentes: <b>{calcularPorcentajeString(total, cantPresentes)}</b><br/>";
+            lblInforme.Text += $"Ausentes: <b>{calcularPorcentajeString(total, cantAusentes)}</b><br/><br/>";
+
+            MostrarControles();
+
+            CargarGv(desde, hasta, 0);
         }
 
         public string calcularPorcentajeString(int total, int valor)
@@ -56,32 +64,58 @@ namespace Vistas
             return valor + " (" + porcentaje.ToString("0.00") + "%)";
         }
 
-        private void LimpiarDatos()
+        private void LimpiarDatosYOcultarControles()
         {
-            lblAusentes.Text = "Ausentes: ";
-            lblPresentes.Text = "Presentes: ";
+            lblInforme.Text = "";
             lblDetalleDeTurnos.Text = "Detalle de Turnos";
             lblMensajeError.Text = "";
 
             GridViewPersonas.DataSource = null;
             GridViewPersonas.DataBind();
+
+            GridViewPersonas.Visible = false;
+            lblInforme.Visible = false;
+            lblDetalleDeTurnos.Visible = false;
+
+            Label2.Visible = false;
+            ddlControlFiltros.Visible = false;
+            btnControlDDL.Visible = false;
         }
 
-        private void CargarGv(DateTime desde, DateTime hasta)
+        private void MostrarControles()
         {
-            NegocioTurnos negocioTurnos = new NegocioTurnos();
-            DataTable dt = negocioTurnos.ObtenerInformeTurnosPresentesAusentes(desde, hasta);
+            lblInforme.Visible = true;
+            lblDetalleDeTurnos.Visible = true;
+
+            Label2.Visible = true;
+            ddlControlFiltros.Visible = true;
+            btnControlDDL.Visible = true;
+
+            GridViewPersonas.Visible = true;
+        }
+
+        private void CargarGv(DateTime desde, DateTime hasta, int estado)
+        {
+            NegocioEstadisticas negocioEstadisticas = new NegocioEstadisticas();
+
+            DataTable dt;
+            if (estado == 0)
+                dt = negocioEstadisticas.ObtenerInformeTurnosPresentesAusentes(desde, hasta);
+            else
+                dt = negocioEstadisticas.ObtenerInformeTurnosPorEstado(desde, hasta, estado);
 
             if (dt.Rows.Count > 0)
             {
                 GridViewPersonas.DataSource = dt;
                 GridViewPersonas.DataBind();
+                lblDetalleDeTurnos.Text = $"Detalle de Turnos ({dt.Rows.Count})";
                 lblMensajeError.Text = "";
             }
             else
             {
                 GridViewPersonas.DataSource = null;
                 GridViewPersonas.DataBind();
+                lblDetalleDeTurnos.Text = "Detalle de Turnos (0)";
                 lblMensajeError.Text = "No se encontraron turnos en ese rango.";
             }
         }
@@ -89,9 +123,23 @@ namespace Vistas
         protected void GridViewPersonas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridViewPersonas.PageIndex = e.NewPageIndex;
+
             DateTime desde = DateTime.Parse(txtDesde.Text);
             DateTime hasta = DateTime.Parse(txtHasta.Text);
-            CargarGv(desde, hasta);
+
+            int estado = int.Parse(ddlControlFiltros.SelectedValue);
+
+            CargarGv(desde, hasta, estado);
+        }
+
+        protected void btnControlDDL_Click(object sender, EventArgs e)
+        {
+            DateTime desde = DateTime.Parse(txtDesde.Text);
+            DateTime hasta = DateTime.Parse(txtHasta.Text);
+
+            int estado = int.Parse(ddlControlFiltros.SelectedValue);
+
+            CargarGv(desde, hasta, estado);
         }
     }
 }

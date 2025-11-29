@@ -53,7 +53,13 @@ namespace Vistas
             DataTable dtMasJornadas = neg.EspecialidadMasJornadas();
 
             lblInforme.Text = "";
-            lblInforme.Text = "Desde el " + txtDesde.Text + " hasta el " + txtHasta.Text + " obtenemos la siguiente informacion <br/><br/>";
+
+            var cultura = new System.Globalization.CultureInfo("es-ES");
+
+            string fechaDesdeFormateada = desde.ToString("dddd d 'de' MMMM 'del' yyyy", cultura);
+            string fechaHastaFormateada = hasta.ToString("dddd d 'de' MMMM 'del' yyyy", cultura);
+
+            lblInforme.Text = $"Desde el {fechaDesdeFormateada} hasta el {fechaHastaFormateada} obtenemos la siguiente información.<br/><br/>";
 
             if (dtCantTurnosEspecialidad.Rows.Count > 0) 
             {
@@ -101,7 +107,7 @@ namespace Vistas
         private void LimpiarDatos()
         {
             lblMensajeError.Text = "";
-
+            lblInforme.Text = "";
             GridViewPersonas.DataSource = null;
             GridViewPersonas.DataBind();
         }

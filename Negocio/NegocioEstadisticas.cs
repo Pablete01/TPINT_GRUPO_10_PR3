@@ -30,5 +30,26 @@ namespace Negocio
         {
             return dao.CantidadTurnosPorEspecialidad(idEsp, desde, hasta);
         }
+
+        public DataTable ObtenerInformeTurnos(DateTime desde, DateTime hasta)
+        {
+            return dao.ObtenerTurnosPorFecha(desde, hasta);
+        }
+
+        public DataTable ObtenerInformeTurnosPresentesAusentes(DateTime desde, DateTime hasta)
+        {
+            return dao.ObtenerTurnosPresentesAusentesPorFecha(desde, hasta);
+        }
+
+        public int ContabilizarTurnosPorEstado(DateTime desde, DateTime hasta, int estado)
+        {
+            return dao.ContabilizarTurnosPorEstado(desde, hasta, estado);
+        }
+
+        public DataTable ObtenerInformeTurnosPorEstado(DateTime desde, DateTime hasta, int estado)
+        {
+            return dao.ObtenerTurnosPorEstado(desde, hasta, estado);
+        }
+
     }
 }

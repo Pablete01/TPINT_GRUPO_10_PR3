@@ -104,7 +104,7 @@
             </div>
         </div>
 
-        <div style="height: 399px">
+        <div style="height: 399px; margin: 30px;">
             <table style="width:100%; text-align:center; table-layout:fixed;">
                 <tr>
                     <td class="auto-style3">

@@ -132,58 +132,49 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.Label lblMensajeError;
 
         /// <summary>
-        /// Control lblPresentes.
+        /// Control lblInforme.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPresentes;
+        protected global::System.Web.UI.WebControls.Label lblInforme;
 
         /// <summary>
-        /// Control lblAusentes.
+        /// Control Label2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAusentes;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control lblReservados.
+        /// Control ddlControlFiltros.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReservados;
+        protected global::System.Web.UI.WebControls.DropDownList ddlControlFiltros;
 
         /// <summary>
-        /// Control lblCancelado.
+        /// Control btnControlDDL.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCancelado;
+        protected global::System.Web.UI.WebControls.Button btnControlDDL;
 
         /// <summary>
-        /// Control lblReprogramados.
+        /// Control lblDetalleDeTurnos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReprogramados;
-
-        /// <summary>
-        /// Control lblDetalleDePacientes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDetalleDePacientes;
+        protected global::System.Web.UI.WebControls.Label lblDetalleDeTurnos;
 
         /// <summary>
         /// Control GridViewPersonas.

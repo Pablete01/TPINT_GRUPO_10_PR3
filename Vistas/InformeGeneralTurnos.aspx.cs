@@ -32,24 +32,32 @@ namespace Vistas
                 lblMensajeError.Text = "La fecha inicial no puede ser mayor que final.";
                 return;
             }
-            NegocioTurnos negocioTurnos = new NegocioTurnos();
-            int cantReservados = negocioTurnos.ContabilizarTurnosPorEstado(desde, hasta, 1);
-            int cantCancelados = negocioTurnos.ContabilizarTurnosPorEstado(desde, hasta, 2);
-            int cantReprogramados = negocioTurnos.ContabilizarTurnosPorEstado(desde, hasta, 3);
-            int cantPresentes = negocioTurnos.ContabilizarTurnosPorEstado(desde, hasta, 4);
-            int cantAusentes = negocioTurnos.ContabilizarTurnosPorEstado(desde, hasta, 5);
+            NegocioEstadisticas negocioEstadisticas = new NegocioEstadisticas();
+
+            int cantReservados = negocioEstadisticas.ContabilizarTurnosPorEstado(desde, hasta, 1);
+            int cantCancelados = negocioEstadisticas.ContabilizarTurnosPorEstado(desde, hasta, 2);
+            int cantReprogramados = negocioEstadisticas.ContabilizarTurnosPorEstado(desde, hasta, 3);
+            int cantPresentes = negocioEstadisticas.ContabilizarTurnosPorEstado(desde, hasta, 4);
+            int cantAusentes = negocioEstadisticas.ContabilizarTurnosPorEstado(desde, hasta, 5);
 
             int total = cantReservados + cantCancelados + cantReprogramados + cantAusentes + cantPresentes;
 
-            lblAusentes.Text += calcularPorcentajeString(total, cantAusentes);
-            lblPresentes.Text += calcularPorcentajeString(total, cantPresentes);
-            lblReservados.Text += calcularPorcentajeString(total, cantReservados);
-            lblReprogramados.Text += calcularPorcentajeString(total, cantReprogramados);
-            lblCancelado.Text += calcularPorcentajeString(total, cantCancelados);
+            var cultura = new System.Globalization.CultureInfo("es-ES");
 
-            lblDetalleDePacientes.Text += " (" + total + ")";
+            string fechaDesdeFormateada = desde.ToString("dddd d 'de' MMMM 'del' yyyy", cultura);
+            string fechaHastaFormateada = hasta.ToString("dddd d 'de' MMMM 'del' yyyy", cultura);
 
-            CargarGv(desde, hasta);
+            lblInforme.Text = $"Desde el {fechaDesdeFormateada} hasta el {fechaHastaFormateada} se obtuvo el siguiente registro de turnos:<br/><br/>";
+
+            lblInforme.Text += $"Reservados: <b>{calcularPorcentajeString(total, cantReservados)}</b><br/>";
+            lblInforme.Text += $"Reprogramados: <b>{calcularPorcentajeString(total, cantReprogramados)}</b><br/>";
+            lblInforme.Text += $"Cancelados: <b>{calcularPorcentajeString(total, cantCancelados)}</b><br/>";
+            lblInforme.Text += $"Presentes: <b>{calcularPorcentajeString(total, cantPresentes)}</b><br/>";
+            lblInforme.Text += $"Ausentes: <b>{calcularPorcentajeString(total, cantAusentes)}</b><br/><br/>";
+
+            MostrarControles();
+
+            CargarGv(desde, hasta, 0);
         }
 
         public string calcularPorcentajeString(int total, int valor)
@@ -63,43 +71,77 @@ namespace Vistas
         }
         private void LimpiarDatos()
         {
-            lblAusentes.Text = "Ausentes: ";
-            lblPresentes.Text = "Presentes: ";
-            lblReservados.Text = "Reservados: ";
-            lblReprogramados.Text = "Reprogramados: ";
-            lblCancelado.Text = "Cancelados: ";
-            lblDetalleDePacientes.Text = "Detalle de Turnos";
+            lblInforme.Text = "";
+            lblDetalleDeTurnos.Text = "Detalle de Turnos";
             lblMensajeError.Text = "";
 
             GridViewPersonas.DataSource = null;
             GridViewPersonas.DataBind();
+
+            ddlControlFiltros.SelectedIndex = 0;
+            OcultarControles();
         }
 
         protected void GridViewPersonas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridViewPersonas.PageIndex = e.NewPageIndex;
+
             DateTime desde = DateTime.Parse(txtDesde.Text);
             DateTime hasta = DateTime.Parse(txtHasta.Text);
-            CargarGv(desde, hasta);
+
+            int estado = int.Parse(ddlControlFiltros.SelectedValue);
+
+            CargarGv(desde, hasta, estado);
         }
 
-        private void CargarGv(DateTime desde, DateTime hasta) 
+        private void CargarGv(DateTime desde, DateTime hasta, int estado)
         {
-            NegocioTurnos negocioTurnos = new NegocioTurnos();
-            DataTable dt = negocioTurnos.ObtenerInformeTurnos(desde, hasta);
+            NegocioEstadisticas negocioEstadisticas = new NegocioEstadisticas();
+
+            DataTable dt;
+            if (estado == 0)
+                dt = negocioEstadisticas.ObtenerInformeTurnos(desde, hasta);
+            else
+                dt = negocioEstadisticas.ObtenerInformeTurnosPorEstado(desde, hasta, estado);
 
             if (dt.Rows.Count > 0)
             {
                 GridViewPersonas.DataSource = dt;
                 GridViewPersonas.DataBind();
+                lblDetalleDeTurnos.Text = $"Detalle de Turnos ({dt.Rows.Count})";
                 lblMensajeError.Text = "";
             }
             else
             {
                 GridViewPersonas.DataSource = null;
                 GridViewPersonas.DataBind();
+                lblDetalleDeTurnos.Text = "Detalle de Turnos (0)";
                 lblMensajeError.Text = "No se encontraron turnos en ese rango.";
             }
         }
+        private void MostrarControles()
+        {
+            Label2.Visible = true;
+            ddlControlFiltros.Visible = true;
+            btnControlDDL.Visible = true;
+        }
+
+        private void OcultarControles()
+        {
+            Label2.Visible = false;
+            ddlControlFiltros.Visible = false;
+            btnControlDDL.Visible = false;
+        }
+
+        protected void btnControlDDL_Click(object sender, EventArgs e)
+        {
+            DateTime desde = DateTime.Parse(txtDesde.Text);
+            DateTime hasta = DateTime.Parse(txtHasta.Text);
+
+            int estado = int.Parse(ddlControlFiltros.SelectedValue);
+
+            CargarGv(desde, hasta, estado);
+        }
     }
+
 }

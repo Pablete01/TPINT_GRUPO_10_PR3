@@ -96,13 +96,13 @@
         </div>
 
 
-        <div class="container">
-            <asp:Label ID="lblTitulo" runat="server" Text="Informe de Asistencia de Turnos" CssClass="section-title" Font-Size="X-Large" Font-Bold="True"></asp:Label>
+        <div class="container" style="margin: 30px;">
+            <asp:Label ID="lblTitulo" runat="server" Text="Informe de Asistencia de Turnos" CssClass="section-title" Font-Size="40px" Font-Bold="True"></asp:Label>
 
             <div class="filters">
-                <asp:Label ID="lblDesde" runat="server" Text="Desde: "></asp:Label>
+                <asp:Label ID="lblDesde" runat="server" Text="Desde: " Font-Size="Large"></asp:Label>
                 <asp:TextBox ID="txtDesde" runat="server" TextMode="Date"></asp:TextBox>
-                <asp:Label ID="lblHasta" runat="server" Text="Hasta: "></asp:Label>
+                <asp:Label ID="lblHasta" runat="server" Text="Hasta: " Font-Size="Large"></asp:Label>
                 <asp:TextBox ID="txtHasta" runat="server" TextMode="Date"></asp:TextBox>
                 <asp:Button ID="btnFiltrar" runat="server" Text="Generar Informe" BackColor="#004a8f" ForeColor="White" BorderStyle="None" OnClick="btnFiltrar_Click" />
             </div>
@@ -114,19 +114,23 @@
                 </div>
 
                 <div class="summary-box">
-                    <asp:Label ID="lblPresentes" runat="server" Text="Presentes: "></asp:Label>
-                    <br />
-                    <asp:Label ID="lblAusentes" runat="server" Text="Ausentes:"></asp:Label>
+                    <asp:Label ID="lblInforme" runat="server" Font-Size="XX-Large"></asp:Label>
                     <br />
                     <br />
-                    <br />
+&nbsp;<asp:Label ID="Label2" runat="server" Text="Filtrar la lista por:  " Visible="False" Font-Size="Large"></asp:Label>
+&nbsp;<asp:DropDownList ID="ddlControlFiltros" runat="server" Visible="False">
+                        <asp:ListItem Value="0">Todos</asp:ListItem>
+                        <asp:ListItem Value="4">Asistidos</asp:ListItem>
+                        <asp:ListItem Value="5">No Asistidos</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:Button ID="btnControlDDL" runat="server" OnClick="btnControlDDL_Click" Text="Filtrar" Visible="False" />
                     <br />
                 </div>
             </div>
 
             <div class="grid-container">
                 <h3>
-                    <asp:Label ID="lblDetalleDeTurnos" runat="server" Text="Detalle de Turnos"></asp:Label>
+                    <asp:Label ID="lblDetalleDeTurnos" runat="server" Text="Detalle de Turnos" Font-Size="X-Large"></asp:Label>
                 </h3>
                 <asp:GridView ID="GridViewPersonas" runat="server" AutoGenerateColumns="False" BorderColor="#99CCFF" BorderStyle="Solid" CellPadding="5" AllowPaging="True" OnPageIndexChanging="GridViewPersonas_PageIndexChanging" PageSize="5">
                     <Columns>
