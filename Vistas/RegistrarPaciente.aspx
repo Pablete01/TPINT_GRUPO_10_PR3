@@ -77,6 +77,7 @@
             .grid-container tr:nth-child(even) {
                 background-color: #f2f2f2;
             }
+
         .auto-style1 {
             margin-left: 240px;
         }
@@ -85,23 +86,23 @@
 
 <body>
 
-      <form id="form1" runat="server">
-    <!-- Barra superior -->
-    <div class="header">
-        <div class="header-left">
-            <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" />
-            <asp:HyperLink ID="HLVolver" runat="server" NavigateUrl="~/GestionPacientes.aspx">VOLVER</asp:HyperLink>
-        </div>
+    <form id="form1" runat="server">
+        <!-- Barra superior -->
+        <div class="header">
+            <div class="header-left">
+                <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" />
+                <asp:HyperLink ID="HLVolver" runat="server" NavigateUrl="~/GestionPacientes.aspx">VOLVER</asp:HyperLink>
+            </div>
 
-        <div class="header-right">
-            <div class="user-section">
-                <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Gestión Pacientes"></asp:Label>
-                <asp:ImageButton ID="btnUsuario" runat="server" ImageUrl="~/Imagenes/user.png" Width="40px" Height="40px" />
-                <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="user-label"></asp:Label>
+            <div class="header-right">
+                <div class="user-section">
+                    <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Gestión Pacientes"></asp:Label>
+                    <asp:ImageButton ID="btnUsuario" runat="server" ImageUrl="~/Imagenes/user.png" Width="40px" Height="40px" />
+                    <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="user-label"></asp:Label>
+                </div>
             </div>
         </div>
-    </div>
-  
+
         <div style="background-color: #66a1ff;">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblTitulo" runat="server" Font-Size="XX-Large" Text="Registrar Paciente"></asp:Label>
@@ -123,7 +124,7 @@
             </div>
 
             <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" Display="Dynamic" ErrorMessage="Nombre requerido" ForeColor="Red"></asp:RequiredFieldValidator>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" Display="Dynamic" ErrorMessage="Apellido requerido" ForeColor="Red"></asp:RequiredFieldValidator>
 
             <br />
@@ -150,16 +151,28 @@
             <asp:Label ID="lblGenero" runat="server" Text="Género"></asp:Label>
             <br />
             <br />
-            <asp:RadioButton ID="rbFemenino" runat="server" Text="Femenino" GroupName="Sexo" Style="margin-right: 20px;" />
-            <asp:RadioButton ID="rbMasculino" runat="server" Text="Masculino" GroupName="Sexo" Style="margin-right: 20px;" />
+            <asp:RadioButtonList ID="rblSexo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                <asp:ListItem Text="Femenino" Value="F"></asp:ListItem>
+                <asp:ListItem Text="Masculino" Value="M"></asp:ListItem>
+            </asp:RadioButtonList>
+
             <br />
+
+            <asp:RequiredFieldValidator
+                ID="rfvSexo"
+                runat="server"
+                ControlToValidate="rblSexo"
+                InitialValue=""
+                ErrorMessage="Seleccione una opción"
+                ForeColor="Red"
+                Display="Dynamic"></asp:RequiredFieldValidator>
             <br />
 
         </div>
         <p></p>
         <p class="auto-style1">
             &nbsp;&nbsp;<asp:Label ID="Label8" runat="server" Text="Datos de Contacto y Domicilio" Font-Size="Larger"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </p>
         <div style="background-color: #EAF9EE; width: 720px; margin: 6px auto; padding: 18px; border-radius: 8px; border: 1px solid #D7EFE0; box-shadow: 0 1px 2px rgba(0,0,0,0.03);">
             <div style="display: flex; justify-content: space-between; gap: 15px;">
@@ -175,7 +188,7 @@
                 </div>
             </div>
             <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion" Display="Dynamic" ErrorMessage="Dirección requerida" ForeColor="Red"></asp:RequiredFieldValidator>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:RequiredFieldValidator ID="rfvLocalidades" runat="server" ControlToValidate="ddlLocalidades" ErrorMessage="Seleccione una localidad" ForeColor="Red"></asp:RequiredFieldValidator>
             <br />
             <div style="display: inline-block; width: 48%; height: 66px;">
