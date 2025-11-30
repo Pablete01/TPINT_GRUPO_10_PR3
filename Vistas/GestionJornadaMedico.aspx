@@ -77,6 +77,20 @@
                 background-color: #f2f2f2;
             }
     </style>
+
+    <style>
+        .ficha-medico {
+            width: 90%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .ficha-medico h2 {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -103,11 +117,24 @@
         <asp:Panel ID="PanelPrincipal" runat="server" HorizontalAlign="Center">
 
 
+
             <div class="panel-superior">
-                &nbsp;&nbsp;
-                <asp:Button ID="btnAgregarJornada" runat="server" Text="Agregar Jornada" OnClick="btnAgregarJornada_Click" />
-                &nbsp;&nbsp;
+                <div class="info-medico">
+                    <%--<span><b>Legajo:</b> <asp:Label ID="lblLegajo" runat="server" /></span><br />--%>
+                    <span><b>Nombre:</b> <asp:Label ID="lblNombre" runat="server" /></span><br />
+                    <span><b>Apellido:</b> <asp:Label ID="lblApellido" runat="server" /></span><br />
+                    <%--<span><b>Especialidad:</b> <asp:Label ID="lblEspecialidad" runat="server" /></span>--%>
+                </div>
+
+                <div class="acciones">
+                    <asp:Button ID="btnAgregarJornada" 
+                                runat="server" 
+                                Text="Agregar Jornada" 
+                                CssClass="btn-jornada"
+                                OnClick="btnAgregarJornada_Click" />
+                </div>
             </div>
+
 
             <div class="grid-container">
                 <asp:GridView

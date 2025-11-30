@@ -127,6 +127,7 @@ namespace Vistas
             {
                 string idMedico = e.CommandArgument.ToString();
                 Response.Redirect("GestionJornadaMedico.aspx?ID_Medico=" + idMedico);
+
             }
 
         }

@@ -22,6 +22,18 @@ namespace Vistas
                     lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
                     int idMedico = Convert.ToInt32(Request.QueryString["ID_Medico"]);
                     CargarJornadas(idMedico);
+
+                    // Cargar datos del medico para mostrar en la ficha
+                    NegocioMedicos neg = new NegocioMedicos();
+                    Entidades.MedicoAdm medico = neg.ObtenerMedicoPorID(idMedico);
+
+                    if (medico != null)
+                    {
+                        //lblLegajo.Text = medico.Legajo;//.ToString();
+                        lblNombre.Text = medico.Nombre;
+                        lblApellido.Text = medico.Apellido;
+                        //lblEspecialidad.Text = medico.ID_Especialidad.ToString();
+                    }
                 }
             }
         }
