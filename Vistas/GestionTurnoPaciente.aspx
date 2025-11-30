@@ -169,14 +169,16 @@
     <div class="header">
         <div class="header-left">
             <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" OnClick="btnInicio_Click" />
-        </div>
+            <asp:HyperLink ID="HLVolver" runat="server" NavigateUrl="~/GestionTurnos_2.aspx" >VOLVER</asp:HyperLink>
 
-        <div class="header-right">
-            <div class="user-section">
-                <asp:ImageButton ID="btnUsuario" runat="server" ImageUrl="~/Imagenes/user.png" Width="40px" Height="40px" />
-                <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="user-label"></asp:Label>
-            </div>
         </div>
+         <div class="header-right">
+     <div class="user-section">
+         <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Gestión Turnos"></asp:Label>
+         <asp:ImageButton ID="btnUsuario" runat="server" ImageUrl="~/Imagenes/user.png" Width="40px" Height="40px" />
+         <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="user-label"></asp:Label>
+     </div>
+ </div>
     </div>
 
     <asp:Panel ID="PanelPrincipal" runat="server" HorizontalAlign="Center">
@@ -185,6 +187,7 @@
             <h3>Gestión Turno</h3>
 
             <asp:Button ID="btnAgregarTurno" runat="server" Text="Agregar Turno" CssClass="btn-agregar" OnClick="btnAgregarTurno_Click" />
+            <br />
         </div>
 
 
@@ -210,6 +213,7 @@
                     runat="server"
                     Text="Cancelar"
                     CommandName="Cancelar"
+                    OnClientClick="return confirm('¿Está seguro que desea eliminar el registro?');" 
                     CommandArgument='<%# Eval("ID_Turno") %>'
                     CssClass="btn-grid" />
 
@@ -264,7 +268,7 @@
 
     </asp:Panel>
 
-    <asp:Label ID="lblMensaje" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
 
 </form>
 </body>

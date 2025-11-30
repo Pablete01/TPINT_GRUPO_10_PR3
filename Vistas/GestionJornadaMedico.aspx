@@ -141,6 +141,7 @@
                                     runat="server"
                                     Text="Eliminar"
                                     CommandName="Eliminar"
+                                    OnClientClick="return confirm('¿Está seguro que desea cancelar el turno?');" 
                                     CommandArgument='<%# Eval("ID_Jornada") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>

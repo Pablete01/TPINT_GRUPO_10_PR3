@@ -92,7 +92,7 @@
 
             <div class="header-right">
                 <div class="user-section">
-                    <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Gestión Pacientes"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Agenda Pacientes"></asp:Label>
                     <asp:ImageButton ID="btnUsuario" runat="server" ImageUrl="~/Imagenes/user.png" Width="40px" Height="40px" />
                     <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="user-label"></asp:Label>
                 </div>
@@ -107,7 +107,8 @@
                 <asp:TextBox ID="txtBuscar" runat="server" Width="200px" Placeholder="Buscar paciente..."></asp:TextBox>
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
 
-                
+                &nbsp;<br />
+
                 <br />
                 <asp:Label ID="lblNombreMedico" runat="server"></asp:Label>
                 <br />
@@ -118,7 +119,7 @@
                 <asp:GridView ID="gvTurnos" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID_Turno" CellPadding="4" CssClass="grid" ForeColor="#333333" GridLines="None" OnPageIndexChanging="grdPacientes_PageIndexChanging" OnRowCancelingEdit="grdPacientes_RowCancelingEdit" OnRowDataBound="grdPacientes_RowDataBound" OnRowEditing="grdPacientes_RowEditing" OnRowUpdating="grdPacientes_RowUpdating" PageSize="5" Width="1112px" OnRowUpdated="grdPacientes_RowUpdated">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:CommandField EditText="Editar" ShowEditButton="True" ValidationGroup="5" CancelText="Cancelar" ShowDeleteButton="False" />
+                        <asp:CommandField EditText="Editar" ShowEditButton="True" ValidationGroup="5" UpdateText="Actualizar" CancelText="Cancelar" ShowDeleteButton="False" />
                         <asp:TemplateField HeaderText="N Turno">
                             <ItemTemplate>
                                 <asp:Label ID="lblTurno" runat="server" Text='<%# Bind("ID_Turno") %>'></asp:Label>
@@ -157,8 +158,8 @@
 
                             <EditItemTemplate>
                                 <asp:DropDownList ID="ddlEstado" runat="server">
-                                    <asp:ListItem Text="Asistió" Value="4"></asp:ListItem>
-                                    <asp:ListItem Text="No asistió" Value="5"></asp:ListItem>
+                                    <asp:ListItem Text="Presente" Value="4"></asp:ListItem>
+                                    <asp:ListItem Text="Ausente" Value="5"></asp:ListItem>
                                 </asp:DropDownList>
                             </EditItemTemplate>
                         </asp:TemplateField>
