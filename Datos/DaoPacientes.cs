@@ -29,6 +29,7 @@ namespace Datos
             return dm.ObtenerBusquedaPacientes("PacientesBuscados", spBuscarPacientes, comando);
         }
 
+
         public int InsertarPaciente(Paciente paciente, out string mensaje)
         {
             SqlCommand comando = new SqlCommand();
