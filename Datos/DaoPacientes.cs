@@ -108,6 +108,24 @@ namespace Datos
 
             return -1;
         }
+        public DataTable ObtenerPacientesConParametros(string texto, string orden)
+        {
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand("SP_ListarPacientesConParametros", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@texto", string.IsNullOrEmpty(texto) ? (object)DBNull.Value : texto);
+            cmd.Parameters.AddWithValue("@orden", string.IsNullOrEmpty(orden) ? (object)DBNull.Value : orden);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            cn.Close();
+            return dt;
+        }
+
+
 
         //public DataTable cargarGrillaPacientesCompletosxMedico(int idMedico)
         //{

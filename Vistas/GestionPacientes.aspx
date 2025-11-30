@@ -108,9 +108,9 @@
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                 &nbsp;&nbsp; &nbsp;&nbsp;
                 <asp:DropDownList ID="ddlFiltro" runat="server">
-                    <asp:ListItem Text="Predeterminado" Value="Predeterminado"></asp:ListItem>
-                    <asp:ListItem Text="Ordenar alfabéticamente" Value="Ordenar alfabéticamente"></asp:ListItem>
-                    <asp:ListItem Text="Ordenar por especialidad" Value="Ordenar por especialidad"></asp:ListItem>
+                    <asp:ListItem Text="Orden Predeterminado" Value="preterminado"></asp:ListItem>
+                    <asp:ListItem Text="Ordenar alfabéticamente (Nombre)" Value="nombre"></asp:ListItem>
+                    <asp:ListItem Text="Ordenar alfabéticamente (Apellido)" Value="apellido"></asp:ListItem>
                 </asp:DropDownList>
                 <br />
                 <asp:Button ID="btnAgregarPaciente" runat="server" Font-Bold="True" Height="51px" OnClick="btnAgregarPaciente_Click" Text="Agregar Paciente" Width="175px" />
@@ -121,10 +121,10 @@
             <div class="grid-container">
                 <asp:GridView ID="grdPacientes" runat="server"
                     AllowPaging="True" AutoGenerateColumns="False"
-                    DataKeyNames="ID_Pacientes" CellPadding="4" 
+                    DataKeyNames="ID_Pacientes" CellPadding="4"
                     CssClass="grid" ForeColor="#333333" GridLines="None"
-                    OnPageIndexChanging="grdPacientes_PageIndexChanging" 
-                    OnRowCancelingEdit="grdPacientes_RowCancelingEdit" 
+                    OnPageIndexChanging="grdPacientes_PageIndexChanging"
+                    OnRowCancelingEdit="grdPacientes_RowCancelingEdit"
                     OnRowDataBound="grdPacientes_RowDataBound"
                     OnRowEditing="grdPacientes_RowEditing"
                     OnRowUpdating="grdPacientes_RowUpdating"
@@ -274,7 +274,7 @@
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                     <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EFF3FB" />
+                    <RowStyle BackColor="#EFF3FB" Wrap="False" />
                     <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
                     <SortedAscendingCellStyle BackColor="#F5F7FB" />
                     <SortedAscendingHeaderStyle BackColor="#6D95E1" />

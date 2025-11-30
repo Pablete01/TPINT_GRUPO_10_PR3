@@ -55,6 +55,11 @@ namespace Negocio
             return dao.ObtenerIDPacientePorDNI(DNI);
         }
 
+        public DataTable ObtenerPacientesConParametros(string texto, string orden)
+        {
+            return dao.ObtenerPacientesConParametros(texto, orden);
+        }
+
         //public int cargarGrillaPacientesxMedico(int idMedico)
         //{
         //    return dao.cargarGrillaPacientesxMedico(idMedico);
