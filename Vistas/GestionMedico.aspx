@@ -109,10 +109,11 @@
                 &nbsp;&nbsp;
                 <asp:Button ID="btnAgregarMedico" runat="server" Text="Agregar Médico" OnClick="btnAgregarMedico_Click" />
                 &nbsp;&nbsp;
-                <asp:DropDownList ID="ddlFiltro" runat="server">
-                    <asp:ListItem Text="Predeterminado" Value="Predeterminado"></asp:ListItem>
-                    <asp:ListItem Text="Ordenar alfabéticamente" Value="Ordenar alfabéticamente"></asp:ListItem>
-                    <asp:ListItem Text="Ordenar por especialidad" Value="Ordenar por especialidad"></asp:ListItem>
+                <asp:DropDownList ID="ddlFiltro" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFiltro_SelectedIndexChanged1">
+                    <asp:ListItem Text="Predeterminado" Value="preterminado"></asp:ListItem>
+                    <asp:ListItem Text="Ordenar alfabéticamente (Nombre)" Value="nombre"></asp:ListItem>
+                    <asp:ListItem Value="apellido">Ordenar alfabéticamente Apellido)</asp:ListItem>
+                    <asp:ListItem Text="Ordenar por especialidad" Value="especialidad"></asp:ListItem>
                 </asp:DropDownList>
             </div>
 

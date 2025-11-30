@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Entidades;
+using Negocio;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Negocio;
-using Entidades;
-using System.Data;
 
 
 namespace Vistas
@@ -19,24 +20,20 @@ namespace Vistas
             if (!IsPostBack)
             {
                 lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
-                MostrarMedicos();
+                MostrarMedicos(OrdenActual());
             }
         }
 
-        private void MostrarMedicos()
+        private void MostrarMedicos(string orden = "predeterminado")
         {
-            DataTable dt = negocioMedicos.cargarGrillaMedicos();
+            DataTable dt = negocioMedicos.ObtenerMedicosOrdenados(orden);
             grdMedico.DataSource = dt;
             grdMedico.DataBind();
         }
 
-
-
-
-
-        protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        private string OrdenActual()
         {
-
+            return ddlFiltro.SelectedValue;
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,20 +44,20 @@ namespace Vistas
         protected void grdMedico_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grdMedico.PageIndex = e.NewPageIndex;
-            MostrarMedicos(); // vuelve a cargar la grilla
+            MostrarMedicos(OrdenActual()); // vuelve a cargar la grilla
         }
 
         protected void grdMedico_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             grdMedico.EditIndex = -1;   // cancela edición
-            MostrarMedicos();           // recarga datos
+            MostrarMedicos(OrdenActual());           // recarga datos
 
         }
 
         protected void grdMedico_RowEditing(object sender, GridViewEditEventArgs e)
         {
             grdMedico.EditIndex = e.NewEditIndex; // habilita edición
-            MostrarMedicos();                     // recarga datos
+            MostrarMedicos(OrdenActual());                    // recarga datos
         }
 
         protected void grdMedico_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -68,7 +65,7 @@ namespace Vistas
             // Aquí vas a poner la lógica para actualizar médicos,
             // por ahora solo cancelamos y recargamos para evitar errores
             grdMedico.EditIndex = -1;
-            MostrarMedicos();
+            MostrarMedicos(OrdenActual());
         }
 
         protected void grdMedico_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -79,10 +76,32 @@ namespace Vistas
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             string txt = txtBuscar.Text.Trim();
+            DataTable dt = negocioMedicos.BuscarMedicos(txt);
 
-            NegocioMedicos negocio = new NegocioMedicos();
-            grdMedico.DataSource = negocio.BuscarMedicos(txt);
+            if (dt.Rows.Count > 0)
+            {
+                string orden = OrdenActual();
+
+                switch (orden)
+                {
+                    case "nombre":
+                        dt.DefaultView.Sort = "Nombre ASC";
+                        break;
+                    case "apellido":
+                        dt.DefaultView.Sort = "Apellido ASC";
+                        break;
+                    case "especialidad":
+                        dt.DefaultView.Sort = "NombreEspecialidad ASC";
+                        break;
+                    default:
+                        dt.DefaultView.Sort = "ID_Medico ASC";
+                        break;
+                }
+                dt = dt.DefaultView.ToTable();
+            }
+            grdMedico.DataSource = dt;
             grdMedico.DataBind();
+
         }
 
         protected void btnAgregarMedico_Click(object sender, EventArgs e)
@@ -113,7 +132,7 @@ namespace Vistas
 
                 if (resultado)
                 {
-                    MostrarMedicos(); // Recarga la grilla sin el médico
+                    MostrarMedicos(OrdenActual()); // Recarga la grilla sin el médico
                 }
                 else
                 {
@@ -130,6 +149,20 @@ namespace Vistas
 
             }
 
+        }
+
+        protected void ddlFiltro_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            string texto = txtBuscar.Text.Trim();
+
+            if (!string.IsNullOrEmpty(texto))
+            {
+                btnBuscar_Click(null, null);
+            }
+            else
+            {
+                MostrarMedicos(OrdenActual());
+            }
         }
     }
 }

@@ -111,6 +111,11 @@ namespace Negocio
             return dao.ObtenerInformeTrabajoMedicos (desde, hasta);
         }
 
+        public DataTable ObtenerMedicosOrdenados(string orden)
+        {
+            DaoMedicos datos = new DaoMedicos();
+            return datos.ObtenerMedicosOrdenados (orden);
+        }
 
     }
 

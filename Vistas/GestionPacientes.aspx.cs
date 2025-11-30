@@ -33,7 +33,7 @@ namespace Vistas
             //grdPacientes.DataBind();
 
             string texto = txtBuscar.Text.Trim();
-            string orden = ddlFiltro.SelectedValue;
+            string orden = OrdenActual();
 
             var dt = negocioPacientes.ObtenerPacientesConParametros(texto, orden);
 
@@ -41,7 +41,10 @@ namespace Vistas
             grdPacientes.DataBind();
         }
 
-
+        private string OrdenActual()
+        {
+            return ddlFiltro.SelectedValue;
+        }
 
         private void EliminarPaciente(int idPaciente)
         {
@@ -60,7 +63,7 @@ namespace Vistas
 
         protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            MostrarPacientes();
         }
 
         protected void gdrPacientes_SelectedIndexChanged(object sender, EventArgs e)

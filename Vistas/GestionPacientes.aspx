@@ -107,7 +107,7 @@
                 <asp:TextBox ID="txtBuscar" runat="server" Width="200px" Placeholder="Buscar paciente..."></asp:TextBox>
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                 &nbsp;&nbsp; &nbsp;&nbsp;
-                <asp:DropDownList ID="ddlFiltro" runat="server">
+                <asp:DropDownList ID="ddlFiltro" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFiltro_SelectedIndexChanged">
                     <asp:ListItem Text="Orden Predeterminado" Value="preterminado"></asp:ListItem>
                     <asp:ListItem Text="Ordenar alfabéticamente (Nombre)" Value="nombre"></asp:ListItem>
                     <asp:ListItem Text="Ordenar alfabéticamente (Apellido)" Value="apellido"></asp:ListItem>

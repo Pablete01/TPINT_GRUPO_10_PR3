@@ -329,8 +329,25 @@ namespace Datos
             return dt;
         }
 
+        public DataTable ObtenerMedicosOrdenados(string ordenarPor)
+        {
+            SqlConnection cn = dm.ObtenerConexion();
+            SqlCommand cmd = new SqlCommand("SP_ListarMedicosParaPersAdmin_Ordenado", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@OrdenarPor",
+                string.IsNullOrEmpty(ordenarPor) ? "predeterminado" : ordenarPor);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            cn.Close();
+            return dt;
+        }
+
 
     }
 
-    
+
 }
