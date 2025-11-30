@@ -141,6 +141,15 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.TextBox txtEntrada;
 
         /// <summary>
+        /// Control rfvHoraEntrada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHoraEntrada;
+
+        /// <summary>
         /// Control txtSalida.
         /// </summary>
         /// <remarks>
@@ -150,6 +159,15 @@ namespace Vistas
         protected global::System.Web.UI.WebControls.TextBox txtSalida;
 
         /// <summary>
+        /// Control rfvHoraSalida.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHoraSalida;
+
+        /// <summary>
         /// Control txtDuracion.
         /// </summary>
         /// <remarks>
@@ -157,6 +175,24 @@ namespace Vistas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDuracion;
+
+        /// <summary>
+        /// Control RequiredFieldValidator1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+
+        /// <summary>
+        /// Control RegularExpressionValidator1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
 
         /// <summary>
         /// Control btnAceptarNuevaJornada.
@@ -184,5 +220,14 @@ namespace Vistas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMsg;
+
+        /// <summary>
+        /// Control ValidationSummary1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
     }
 }

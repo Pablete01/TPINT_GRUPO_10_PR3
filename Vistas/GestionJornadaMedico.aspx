@@ -168,7 +168,7 @@
                                     runat="server"
                                     Text="Eliminar"
                                     CommandName="Eliminar"
-                                    OnClientClick="return confirm('¿Está seguro que desea cancelar el turno?');" 
+                                    OnClientClick="return confirm('¿Está seguro que desea eliminar jornada?');" 
                                     CommandArgument='<%# Eval("ID_Jornada") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -202,7 +202,7 @@
                     <tr>
                         <td>Día de la Semana:</td>
                         <td>
-                            <asp:DropDownList ID="ddlDiaSemana" runat="server">
+                            <asp:DropDownList ID="ddlDiaSemana" runat="server" ValidationGroup="grupo1">
                                 <asp:ListItem Value="1">Lunes</asp:ListItem>
                                 <asp:ListItem Value="2">Martes</asp:ListItem>
                                 <asp:ListItem Value="3">Miércoles</asp:ListItem>
@@ -217,29 +217,37 @@
                     <tr>
                         <td>Hora Entrada:</td>
                         <td>
-                            <asp:TextBox ID="txtEntrada" runat="server" TextMode="Time"></asp:TextBox></td>
+                            <asp:TextBox ID="txtEntrada" runat="server" TextMode="Time" ValidationGroup="grupo1"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvHoraEntrada" runat="server" ControlToValidate="txtEntrada" ErrorMessage="Ingrese una hora de entrada" ValidationGroup="grupo1">*</asp:RequiredFieldValidator>
+                        </td>
                     </tr>
 
                     <tr>
                         <td>Hora Salida:</td>
                         <td>
-                            <asp:TextBox ID="txtSalida" runat="server" TextMode="Time"></asp:TextBox></td>
+                            <asp:TextBox ID="txtSalida" runat="server" TextMode="Time" ValidationGroup="grupo1"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvHoraSalida" runat="server" ControlToValidate="txtSalida" ErrorMessage="Ingrese una hora de salida." ValidationGroup="grupo1">*</asp:RequiredFieldValidator>
+                        </td>
                     </tr>
 
                     <tr>
                         <td>Duración (minutos):</td>
                         <td>
-                            <asp:TextBox ID="txtDuracion" runat="server" Text="60"></asp:TextBox></td>
+                            <asp:TextBox ID="txtDuracion" runat="server" Text="60" ValidationGroup="grupo1"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDuracion" ErrorMessage="Ingrese un valor en duracion." ValidationGroup="grupo1">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtDuracion" ErrorMessage="Ingrese solo numeros en duracion." ValidationExpression="^\d+$" ValidationGroup="grupo1">*</asp:RegularExpressionValidator>
+                        </td>
                     </tr>
                 </table>
 
-                <asp:Button ID="btnAceptarNuevaJornada" runat="server" Text="Aceptar" OnClick="btnAceptarNuevaJornada_Click" />
+                <asp:Button ID="btnAceptarNuevaJornada" runat="server" Text="Aceptar" OnClick="btnAceptarNuevaJornada_Click" ValidationGroup="grupo1" />
                 <asp:Button ID="btnCancelarNuevaJornada" runat="server" Text="Cancelar" OnClick="btnCancelarNuevaJornada_Click" />
 
             </asp:Panel>
 
         </asp:Panel>
-        <asp:Label ID="lblMsg" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblMsg" runat="server"></asp:Label>
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ValidationGroup="grupo1" />
     </form>
 </body>
 </html>

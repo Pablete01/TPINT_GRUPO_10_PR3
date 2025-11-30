@@ -148,6 +148,7 @@
                     <td>
                         <asp:TextBox ID="txtNombre" runat="server" />
                         <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" Display="Dynamic" ErrorMessage="Ingrese un nombre" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="txtNombre" ErrorMessage="Ingrese solo letras" ForeColor="Red" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
 
@@ -157,6 +158,7 @@
                     <td>
                         <asp:TextBox ID="txtApellido" runat="server" />
                         <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" Display="Dynamic" ErrorMessage="Ingrese un apellido" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revApellido" runat="server" ErrorMessage="Ingrese solo letras" ForeColor="Red" ControlToValidate="txtApellido" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
 
@@ -166,6 +168,7 @@
                     <td>
                         <asp:TextBox ID="txtEmail" runat="server" />
                         <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Ingrese un email" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Ingrese un Email valido" ForeColor="Red" ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
 
