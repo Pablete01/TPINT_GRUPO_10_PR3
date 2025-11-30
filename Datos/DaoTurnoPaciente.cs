@@ -105,7 +105,7 @@ namespace Datos
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@ID_Medico", idMedico)
+                new SqlParameter("@ID_Medico", idMedico),
             };
 
             return ds.ObtenerTablaSP("TurnosxMedico", "SP_ListarTurnosPacientexMedico", parametros);

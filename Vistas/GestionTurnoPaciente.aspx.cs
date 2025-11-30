@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -19,6 +20,7 @@ namespace Vistas
                 lblUsuario.Text = ((Entidades.Usuario)Session["Usuario"]).email;
                 if (Request.QueryString["ID"] != null)
                 {
+                   
                     int idPaciente = Convert.ToInt32(Request.QueryString["ID"]);
                     CargarTurnos(idPaciente);
                     CargarEspecialidades();
@@ -27,6 +29,7 @@ namespace Vistas
                 {
                     // Si no llega el ID, volver a pantalla anterior
                     Response.Redirect("GestionTurnos_2.aspx");
+                   
                 }
             }
         }
@@ -37,7 +40,8 @@ namespace Vistas
         private void CargarTurnos(int idPaciente)
         {
             NegocioTurnoPaciente neg = new NegocioTurnoPaciente();
-            grdTurnosPaciente.DataSource = neg.ObtenerTurnosPaciente(idPaciente);
+            DataTable dt = neg.ObtenerTurnosPaciente(idPaciente);
+            grdTurnosPaciente.DataSource = dt;
             grdTurnosPaciente.DataBind();
         }
 

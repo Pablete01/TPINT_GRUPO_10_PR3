@@ -84,6 +84,7 @@ namespace Vistas
             ddlSexo.Items.Clear();
             ddlSexo.Items.Add("Masculino");
             ddlSexo.Items.Add("Femenino");
+            ddlSexo.Items.Insert(0, new ListItem("--Seleccione sexo--", "0"));
         }
 
         private void CargarEspecialidades()
@@ -93,6 +94,7 @@ namespace Vistas
             ddlEspecialidad.DataTextField = "NombreEspecialidad";   // columna de la BD
             ddlEspecialidad.DataValueField = "ID_Especialidad";     // columna PK
             ddlEspecialidad.DataBind();
+            ddlEspecialidad.Items.Insert(0, new ListItem("--Seleccione una especialidad--", "0"));
         }
 
         private void CargarProvincias()

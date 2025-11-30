@@ -52,8 +52,8 @@ namespace Vistas
         {
             switch (estado.ToString())
             {
-                case "4": return "Asistió";
-                case "5": return "No asistió";
+                case "4": return "Presente";
+                case "5": return "Ausente";
                 default: return "Agendado";
             }
         }
@@ -75,9 +75,14 @@ namespace Vistas
             }
         }
 
-        protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Forzar a que el GridView renderice nuevamente la fila en edición
+            gvTurnos.EditIndex = ((GridViewRow)((Control)sender).NamingContainer).RowIndex;
 
+            CargarGrillaTurnos(); // Recargar grilla
+
+            // No mostramos mensaje aquí
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -123,12 +128,12 @@ namespace Vistas
             if (estadoActualizado)
             {
                 mensaje = "El turno se actualizó correctamente.";
-               
+
             }
             else
             {
                 mensaje = "No se pudo actualizar el turno.";
-               
+
             }
 
             gvTurnos.EditIndex = -1;
@@ -158,5 +163,9 @@ namespace Vistas
         {
 
         }
+
+        
+
+        
     }
 }

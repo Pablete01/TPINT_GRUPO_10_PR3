@@ -44,9 +44,9 @@
             margin: 20px 0;
         }
 
-        .panel-superior input, .panel-superior select, .panel-superior button {
-            margin: 5px;
-        }
+            .panel-superior input, .panel-superior select, .panel-superior button {
+                margin: 5px;
+            }
 
         .grid-container {
             width: 95%;
@@ -57,26 +57,26 @@
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .grid-container table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+            .grid-container table {
+                width: 100%;
+                border-collapse: collapse;
+            }
 
-        .grid-container th {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 8px;
-        }
+            .grid-container th {
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                padding: 8px;
+            }
 
-        .grid-container td {
-            text-align: center;
-            padding: 6px;
-        }
+            .grid-container td {
+                text-align: center;
+                padding: 6px;
+            }
 
-        .grid-container tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+            .grid-container tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
     </style>
 </head>
 
@@ -87,7 +87,7 @@
         <div class="header">
             <div class="header-left">
                 <asp:ImageButton ID="btnInicio" runat="server" ImageUrl="~/Imagenes/inicio.png" Width="35px" Height="35px" />
-                <asp:HyperLink ID="HLVolver" runat="server" NavigateUrl="~/Administrador.aspx" >VOLVER</asp:HyperLink>
+                <asp:HyperLink ID="HLVolver" runat="server" NavigateUrl="~/Administrador.aspx">VOLVER</asp:HyperLink>
             </div>
 
             <div class="header-right">
@@ -104,8 +104,8 @@
 
             <!-- Panel superior con búsqueda y botones -->
             <div class="panel-superior">
-                <asp:TextBox ID="txtBuscar" runat="server" Width="200px" Placeholder="Buscar paciente..." ></asp:TextBox>
-                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click"  />
+                <asp:TextBox ID="txtBuscar" runat="server" Width="200px" Placeholder="Buscar paciente..."></asp:TextBox>
+                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                 &nbsp;&nbsp; &nbsp;&nbsp;
                 <asp:DropDownList ID="ddlFiltro" runat="server">
                     <asp:ListItem Text="Predeterminado" Value="Predeterminado"></asp:ListItem>
@@ -119,10 +119,59 @@
             </div>
 
             <div class="grid-container">
-                <asp:GridView ID="grdPacientes" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID_Pacientes" CellPadding="4" CssClass="grid" ForeColor="#333333" GridLines="None" OnPageIndexChanging="grdPacientes_PageIndexChanging" OnRowCancelingEdit="grdPacientes_RowCancelingEdit" OnRowDataBound="grdPacientes_RowDataBound" OnRowEditing="grdPacientes_RowEditing" OnRowUpdating="grdPacientes_RowUpdating" PageSize="5" Width="509px" OnRowDeleting="grdPacientes_RowDeleting" OnRowUpdated="grdPacientes_RowUpdated" >
+                <asp:GridView ID="grdPacientes" runat="server"
+                    AllowPaging="True" AutoGenerateColumns="False"
+                    DataKeyNames="ID_Pacientes" CellPadding="4" 
+                    CssClass="grid" ForeColor="#333333" GridLines="None"
+                    OnPageIndexChanging="grdPacientes_PageIndexChanging" 
+                    OnRowCancelingEdit="grdPacientes_RowCancelingEdit" 
+                    OnRowDataBound="grdPacientes_RowDataBound"
+                    OnRowEditing="grdPacientes_RowEditing"
+                    OnRowUpdating="grdPacientes_RowUpdating"
+                    PageSize="5" Width="509px" OnRowDeleting="grdPacientes_RowDeleting"
+                    OnRowUpdated="grdPacientes_RowUpdated">
+
                     <AlternatingRowStyle BackColor="White" />
+                    <EditRowStyle BackColor="Red" />
+
                     <Columns>
-                        <asp:CommandField DeleteText="Eliminar" EditText="Modificar" ShowEditButton="True" ValidationGroup="5" CancelText="Cancelar" ShowDeleteButton="True" />
+                        <asp:TemplateField HeaderText="Acciones">
+                            <ItemTemplate>
+                                <asp:LinkButton
+                                    ID="btnEditar"
+                                    runat="server"
+                                    Text="Modificar"
+                                    CommandName="Edit"
+                                    CommandArgument='<%# Eval("ID_Pacientes") %>'
+                                    CssClass="btn-grid" />
+
+                                <asp:LinkButton
+                                    ID="btnEliminar"
+                                    runat="server"
+                                    Text="Eliminar"
+                                    CommandName="Delete"
+                                    CommandArgument='<%# Eval("ID_Pacientes") %>'
+                                    CssClass="btn-grid"
+                                    OnClientClick="return confirm('¿Está seguro que desea eliminar este paciente?');" />
+
+
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:LinkButton
+                                    ID="btnActualizar"
+                                    runat="server"
+                                    Text="Actualizar"
+                                    CommandName="Update"
+                                    CssClass="btn-grid" />
+
+                                <asp:LinkButton
+                                    ID="btnCancelar"
+                                    runat="server"
+                                    Text="Cancelar"
+                                    CommandName="Cancel"
+                                    CssClass="btn-grid" />
+                            </EditItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Nombre">
                             <EditItemTemplate>
                                 <asp:TextBox ID="lbl_eit_nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>

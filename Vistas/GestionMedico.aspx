@@ -137,6 +137,7 @@
                                     runat="server"
                                     Text="Eliminar"
                                     CommandName="Eliminar"
+                                    OnClientClick="return confirm('¿Está seguro que desea eliminar este registro?');"
                                     CommandArgument='<%# Eval("ID_Medico") %>'
                                     CssClass="btn btn-danger btn-sm" />
 

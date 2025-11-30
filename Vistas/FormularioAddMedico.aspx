@@ -146,49 +146,66 @@
                     <td>
                         <label for="txtNombre">Nombre:</label></td>
                     <td>
-                        <asp:TextBox ID="txtNombre" runat="server" /></td>
+                        <asp:TextBox ID="txtNombre" runat="server" />
+                        <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" Display="Dynamic" ErrorMessage="Ingrese un nombre" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
                 </tr>
 
                 <tr>
                     <td>
                         <label for="txtApellido">Apellido:</label></td>
                     <td>
-                        <asp:TextBox ID="txtApellido" runat="server" /></td>
+                        <asp:TextBox ID="txtApellido" runat="server" />
+                        <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="txtApellido" Display="Dynamic" ErrorMessage="Ingrese un apellido" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
                 </tr>
 
                 <tr>
                     <td>
                         <label for="txtEmail">Email:</label></td>
                     <td>
-                        <asp:TextBox ID="txtEmail" runat="server" /></td>
+                        <asp:TextBox ID="txtEmail" runat="server" />
+                        <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Ingrese un email" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
                 </tr>
 
                 <tr>
                     <td class="auto-style1">
                         <label for="txtDNI">DNI:</label></td>
                     <td class="auto-style1">
-                        <asp:TextBox ID="txtDNI" runat="server" /></td>
+                        <asp:TextBox ID="txtDNI" runat="server" />
+                        <asp:RequiredFieldValidator ID="rfvDNI" runat="server" ControlToValidate="txtDNI" ErrorMessage="Ingrese el DNI" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revDNI" runat="server" ControlToValidate="txtDNI" Display="Dynamic" ErrorMessage="Ingrese solo números" ForeColor="Red" ValidationExpression="^\d+$"></asp:RegularExpressionValidator>
+                    </td>
                 </tr>
 
                 <tr>
                     <td>
                         <label for="txtTelefono">Teléfono:</label></td>
                     <td>
-                        <asp:TextBox ID="txtTelefono" runat="server" /></td>
+                        <asp:TextBox ID="txtTelefono" runat="server" />
+                        <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" Display="Dynamic" ErrorMessage="Ingrese un telefono" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" Display="Dynamic" ErrorMessage="Ingrese solo números" ForeColor="Red" ValidationExpression="^\d+$"></asp:RegularExpressionValidator>
+                    </td>
                 </tr>
 
                 <tr>
                     <td>
                         <label for="txtFechaNac">Fecha de Nacimiento:</label></td>
                     <td>
-                        <asp:TextBox ID="txtFechaNac" runat="server" TextMode="Date" /></td>
+                        <asp:TextBox ID="txtFechaNac" runat="server" TextMode="Date" />
+                        <br />
+                        <asp:RequiredFieldValidator ID="rfvNacimiento" runat="server" ControlToValidate="txtFechaNac" Display="Dynamic" ErrorMessage="Seleccione fecha nacimiento" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
                 </tr>
 
                 <tr>
                     <td>
                         <label for="txtNacionalidad">Nacionalidad:</label></td>
                     <td>
-                        <asp:TextBox ID="txtNacionalidad" runat="server" /></td>
+                        <asp:TextBox ID="txtNacionalidad" runat="server" />
+                        <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="txtNacionalidad" Display="Dynamic" ErrorMessage="Ingrese nacionalidad" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
                 </tr>
 
                 <tr>
@@ -196,6 +213,7 @@
                         <label for="txtDireccion">Provincia:</label></td>
                     <td>
                         <asp:DropDownList ID="ddlProvincia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfvProvincia" runat="server" ControlToValidate="ddlProvincia" Display="Dynamic" InitialValue="0" ErrorMessage="Seleccione una provincia" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
 
@@ -204,6 +222,7 @@
                         <label for="txtLocalidad">Localidad:</label></td>
                     <td>
                         <asp:DropDownList ID="ddlLocalidad" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server" ControlToValidate="ddlLocalidad" Display="Dynamic" InitialValue="0" ErrorMessage="Seleccione una localidad" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
 
@@ -211,7 +230,9 @@
                     <td>
                         <label for="txtDireccion">Dirección</label><label for="txtProvincia">:</label></td>
                     <td>
-                        <asp:TextBox ID="txtDireccion" runat="server" /></td>
+                        <asp:TextBox ID="txtDireccion" runat="server" />
+                        <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion" Display="Dynamic" ErrorMessage="Ingrese dirección" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
                 </tr>
 
                 <tr>
@@ -219,6 +240,7 @@
                         <label for="ddlSexo">Sexo:</label></td>
                     <td class="auto-style1">
                         <asp:DropDownList ID="ddlSexo" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfvSexo" runat="server" ControlToValidate="ddlSexo" Display="Dynamic" InitialValue="0" ErrorMessage="Seleccione un sexo" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
 
@@ -227,6 +249,7 @@
                         <label for="ddlEspecialidad">Especialidad:</label></td>
                     <td>
                         <asp:DropDownList ID="ddlEspecialidad" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="rfvEspecialidad" runat="server" ControlToValidate="ddlEspecialidad" Display="Dynamic" InitialValue="0" ErrorMessage="Seleccione una especialidad" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
             </table>
@@ -234,7 +257,7 @@
             <table>
                 <tr>
                     <td class="auto-style1">
-                        <label for="txtDNI">USUARIO:</label></td>
+                        <label for="txtDNI">Usuario:</label></td>
                     <td class="auto-style1">
                         <asp:TextBox ID="txtUsuario" runat="server" />
                         <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ControlToValidate="txtUsuario" Display="Dynamic" ErrorMessage="Ingrese un nombre de usuario" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -243,7 +266,7 @@
 
                 <tr>
                     <td class="auto-style1">
-                        <label for="txtDNI">CONTRASEÑA:</label></td>
+                        <label for="txtDNI">Contraseña:</label></td>
                     <td class="auto-style1">
                         <asp:TextBox ID="txtContrasena" runat="server" />
                         <asp:RequiredFieldValidator ID="rfvContrasena" runat="server" ControlToValidate="txtContrasena" Display="Dynamic" ErrorMessage="Ingrese una contraseña" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -256,7 +279,7 @@
 
                 <tr>
                     <td class="auto-style2">
-                        <label for="txtDNI">REPETIR CONTRASEÑA:</label></td>
+                        <label for="txtDNI">Repetir contraseña:</label></td>
                     <td class="auto-style1">
                         <asp:TextBox ID="txtRepetirContrasena" runat="server" />
                         <br />
