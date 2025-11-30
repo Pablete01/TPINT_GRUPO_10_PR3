@@ -107,7 +107,16 @@
                 <asp:TextBox ID="txtBuscar" runat="server" Width="200px" Placeholder="Buscar paciente..."></asp:TextBox>
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
 
-                &nbsp;<br />
+                &nbsp;<br /> <br />
+
+                <asp:Label ID="Label2" runat="server" Font-Size="Medium" Text="Filtro por Fechas"></asp:Label>
+                <br />
+                <asp:Label ID="Label3" runat="server" Font-Size="Medium" Text="Desde: "></asp:Label>
+                <asp:TextBox ID="txtDesde" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="Label4" runat="server" Font-Size="Medium" Text="Hasta: "></asp:Label>
+                <asp:TextBox ID="txtHasta" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Button ID="btnFiltrar" runat="server" OnClick="btnFiltrar_Click" Text="Filtrar" />
+                <asp:Button ID="btnQuitarFiltro" runat="server" OnClick="btnQuitarFiltro_Click" Text="Quitar Filtro" />
 
                 <br />
                 <asp:Label ID="lblNombreMedico" runat="server"></asp:Label>

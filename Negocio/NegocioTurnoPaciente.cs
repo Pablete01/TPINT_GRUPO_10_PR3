@@ -89,6 +89,9 @@ namespace Negocio
                     return "Error desconocido al cancelar.";
             }
         }
-
+        public DataTable ObtenerTurnosxMedico_Fecha(int idMedico, DateTime desde, DateTime hasta)
+        {
+            return dao.ObtenerTurnosxMedico_Fecha(idMedico, desde, hasta);
+        }
     }
 }

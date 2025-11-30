@@ -136,5 +136,18 @@ namespace Datos
             return ds.ObtenerTablaSP("BuscarPacientesxTurno", "SP_BuscarPacientesxTurno", parametros);
         }
 
+        public DataTable ObtenerTurnosxMedico_Fecha(int idMedico, DateTime desde, DateTime hasta)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@ID_Medico", idMedico),
+                new SqlParameter("@Desde", desde),
+                new SqlParameter("@Hasta", hasta)
+            };
+
+            return ds.ObtenerTablaSP("TurnosxMedicoFecha", "SP_ListarTurnosPacientexMedico_Fecha", parametros);
+        }
+
+
     }
 }

@@ -63,6 +63,8 @@ namespace Vistas
             DataTable dt = neg.BuscarPacientesxTurno(txtBuscar.Text.Trim());
             gvTurnos.DataSource = dt;
             gvTurnos.DataBind();
+            txtDesde.Text = "";
+            txtHasta.Text = "";
             if (dt.Rows.Count == 0)
             {
                 lblMensaje.Text = "No se encontraron pacientes con ese criterio.";
@@ -99,6 +101,8 @@ namespace Vistas
         protected void grdPacientes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gvTurnos.EditIndex = -1;   // cancela edición
+            txtDesde.Text = "";
+            txtHasta.Text = "";
             CargarGrillaTurnos();
 
 
@@ -164,8 +168,44 @@ namespace Vistas
 
         }
 
-        
+        private void CargarGrillaTurnosFecha(DateTime desde, DateTime hasta)
+        {
+            MedicoAdm medicoAdm = negMed.ObtenerMedicoPorIDUsuario(((Usuario)Session["Usuario"]).idUsuario);
+            int idMedico = medicoAdm.ID_Medico;
 
-        
+            DataTable dt = neg.ObtenerTurnosxMedico_Fecha(idMedico, desde, hasta);
+
+            gvTurnos.DataSource = dt;
+            gvTurnos.DataBind();
+
+            lblMensaje.Text = dt.Rows.Count == 0 ? "No hay turnos en ese rango de fechas." : "";
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtDesde.Text) || string.IsNullOrEmpty(txtHasta.Text))
+            {
+                lblMensaje.Text = "Debe ingresar ambas fechas para filtrar.";
+                return;
+            }
+
+            DateTime desde = DateTime.Parse(txtDesde.Text);
+            DateTime hasta = DateTime.Parse(txtHasta.Text);
+
+            if (desde > hasta)
+            {
+                lblMensaje.Text = "La fecha 'Desde' no puede ser mayor que 'Hasta'.";
+                return;
+            }
+
+            CargarGrillaTurnosFecha(desde, hasta);
+        }
+
+        protected void btnQuitarFiltro_Click(object sender, EventArgs e)
+        {
+            txtDesde.Text = "";
+            txtHasta.Text = "";
+            CargarGrillaTurnos();
+        }
     }
 }
