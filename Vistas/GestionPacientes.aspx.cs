@@ -48,11 +48,6 @@ namespace Vistas
         }
 
 
-
-
-
-
-
         protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -124,7 +119,7 @@ namespace Vistas
                 provincia = idProvincia,
                 localidad = idLocalidad,
                 estado = 3,
-                perfil = 1
+                perfil = 3
             }
             );
             if(paciente == 0)
