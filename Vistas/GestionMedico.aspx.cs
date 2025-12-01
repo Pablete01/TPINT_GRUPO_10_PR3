@@ -130,6 +130,8 @@ namespace Vistas
 
                 if (resultado)
                 {
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                        "ok", "alert('Médico eliminado correctamente.');", true);
                     MostrarMedicos(OrdenActual()); 
                 }
                 else

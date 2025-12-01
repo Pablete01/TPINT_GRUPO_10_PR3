@@ -111,7 +111,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblDatosPersonales" runat="server" Text="Datos Personales" Font-Size="Larger"></asp:Label>
         </p>
-        <div style="background-color: #EAF9EE; width: 720px; margin: 6px auto; padding: 18px; border-radius: 8px; border: 1px solid #D7EFE0; box-shadow: 0 1px 2px rgba(0,0,0,0.03);">
+        <div style="background-color: #66a1ff; width: 720px; margin: 6px auto; padding: 18px; border-radius: 8px; border: 1px solid #D7EFE0; box-shadow: 0 1px 2px rgba(0,0,0,0.03);">
             <div style="display: flex; justify-content: space-between; gap: 15px;">
                 <div style="display: inline-block; width: 48%;">
                     <asp:Label ID="LabelNombre" runat="server" Text="Nombre:"></asp:Label><br />
@@ -180,7 +180,7 @@
             &nbsp;&nbsp;<asp:Label ID="Label8" runat="server" Text="Datos de Contacto y Domicilio" Font-Size="Larger"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </p>
-        <div style="background-color: #EAF9EE; width: 720px; margin: 6px auto; padding: 18px; border-radius: 8px; border: 1px solid #D7EFE0; box-shadow: 0 1px 2px rgba(0,0,0,0.03);">
+        <div style="background-color: #66a1ff; width: 720px; margin: 6px auto; padding: 18px; border-radius: 8px; border: 1px solid #D7EFE0; box-shadow: 0 1px 2px rgba(0,0,0,0.03);">
             <div style="display: flex; justify-content: space-between; gap: 15px;">
                 <div style="display: inline-block; width: 48%;">
                     <asp:Label ID="lblDireccion" runat="server" Text="Dirección:"></asp:Label><br />
