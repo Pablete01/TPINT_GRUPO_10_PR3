@@ -115,7 +115,7 @@
                 <br />
                 <asp:Button ID="btnAgregarPaciente" runat="server" Font-Bold="True" Height="51px" OnClick="btnAgregarPaciente_Click" Text="Agregar Paciente" Width="175px" />
                 <br />
-                <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" Text="Label"></asp:Label>
+                <asp:Label ID="lblMensaje" runat="server" Font-Bold="True"></asp:Label>
             </div>
 
             <div class="grid-container">
