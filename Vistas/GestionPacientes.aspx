@@ -175,6 +175,8 @@
                         <asp:TemplateField HeaderText="Nombre">
                             <EditItemTemplate>
                                 <asp:TextBox ID="lbl_eit_nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="lbl_eit_nombre" ErrorMessage="Inserte un Nombre">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="lbl_eit_nombre" ErrorMessage="Ingrese solo letras en nombre." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$">*</asp:RegularExpressionValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblNombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
@@ -183,6 +185,8 @@
                         <asp:TemplateField HeaderText="Apellido">
                             <EditItemTemplate>
                                 <asp:TextBox ID="lbl_eit_apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="lbl_eit_apellido" ErrorMessage="Ingrese un apellido.">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="lbl_eit_apellido" ErrorMessage="Ingrese solo letras en apellido" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$">*</asp:RegularExpressionValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblApellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
