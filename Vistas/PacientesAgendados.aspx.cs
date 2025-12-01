@@ -60,6 +60,13 @@ namespace Vistas
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtBuscar.Text))
+            {
+                txtDesde.Text = "";
+                txtHasta.Text = "";
+                CargarGrillaTurnos();
+                return;
+            }
             DataTable dt = neg.BuscarPacientesxTurno(txtBuscar.Text.Trim());
             gvTurnos.DataSource = dt;
             gvTurnos.DataBind();

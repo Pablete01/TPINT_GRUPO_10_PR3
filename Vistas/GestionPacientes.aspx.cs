@@ -192,8 +192,7 @@ namespace Vistas
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-
-
+            lblMensaje.Text = "";
             string texto = txtBuscar.Text.Trim();
             string orden = ddlFiltro.SelectedValue;
 
