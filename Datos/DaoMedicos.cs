@@ -33,7 +33,7 @@ namespace Datos
             cmd.Parameters.AddWithValue("@Email", m.Email);
             cmd.Parameters.AddWithValue("@Contrasena", m.Contrasena);
             cmd.Parameters.AddWithValue("@ID_Especialidad", m.ID_Especialidad);
-            cmd.Parameters.AddWithValue("@Legajo", m.Legajo);  // aunque no se usa en el SP
+            cmd.Parameters.AddWithValue("@Legajo", m.Legajo);
 
             cn.Open();
             object result = cmd.ExecuteScalar();
@@ -154,8 +154,6 @@ namespace Datos
                 cmd.Parameters.AddWithValue("@Email", m.Email);
                 cmd.Parameters.AddWithValue("@Usuario", m.Usuario);
                 cmd.Parameters.AddWithValue("@Contrasena", m.Contrasena);
-
-                //  cn.Open();
                 cmd.ExecuteNonQuery();
                 cn.Close();
 
@@ -232,8 +230,6 @@ namespace Datos
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@ID_Medico", id);
-
-            //   cn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
 
             MedicoAdm med = null;
@@ -258,7 +254,7 @@ namespace Datos
                 med.ID_Localidad = Convert.ToInt32(dr["ID_Localidad"]);
                 med.ID_Provincia = Convert.ToInt32(dr["ID_Provincia"]);
 
-               
+
             }
 
             dr.Close();
@@ -276,7 +272,7 @@ namespace Datos
             cmd.Parameters.AddWithValue("@ID_Especialidad", especialidad);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
-            da.Fill(dt);  // llena el DataTable con los resultados del SP
+            da.Fill(dt);
             cn.Close();
             return dt;
 
@@ -292,8 +288,6 @@ namespace Datos
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@ID_Usuario", idUsuario);
-
-            //   cn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
 
             MedicoAdm med = null;

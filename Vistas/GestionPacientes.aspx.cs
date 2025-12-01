@@ -27,11 +27,6 @@ namespace Vistas
 
         private void MostrarPacientes()
         {
-            //lblMensaje.Text = string.Empty;
-            //DataTable dt = negocioPacientes.cargarGrillaPacientes();
-            //grdPacientes.DataSource = dt;
-            //grdPacientes.DataBind();
-
             string texto = txtBuscar.Text.Trim();
             string orden = OrdenActual();
 
@@ -74,7 +69,7 @@ namespace Vistas
         protected void grdPacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grdPacientes.PageIndex = e.NewPageIndex;
-            MostrarPacientes(); // vuelve a cargar la grilla
+            MostrarPacientes(); 
         }
 
         protected void grdPacientes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -197,19 +192,7 @@ namespace Vistas
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            //DataTable dt = negocioPacientes.BuscarPacientes(txtBuscar.Text.Trim());
-            //grdPacientes.DataSource = dt;
-            //grdPacientes.DataBind();
-            //if (dt.Rows.Count == 0)
-            //{
-            //    lblMensaje.Text = "No se encontraron pacientes con ese criterio.";
-            //    grdPacientes.Visible = false;
-            //}
-            //else
-            //{
-            //    lblMensaje.Text = string.Empty;
-            //    grdPacientes.Visible = true;
-            //}
+
 
             string texto = txtBuscar.Text.Trim();
             string orden = ddlFiltro.SelectedValue;

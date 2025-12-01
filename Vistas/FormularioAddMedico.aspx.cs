@@ -56,22 +56,17 @@ namespace Vistas
                 txtFechaNac.Text = m.FechaNacimiento.ToString("yyyy-MM-dd");
                 txtTelefono.Text = m.Telefono;
                 txtDireccion.Text = m.Direccion;
-
-                // 🔹 Asignar provincia después de haber llamado a CargarProvincias() en Page_Load
+   
                 ddlProvincia.SelectedValue = m.ID_Provincia.ToString();
 
-                // 🔹 Cargar localidades de ESA provincia
                 CargarLocalidades();
-
-                // 🔹 Recién ahora seleccionar la localidad del médico
+ 
                 ddlLocalidad.SelectedValue = m.ID_Localidad.ToString();
 
-                // 🔹 Usuario
                 txtEmail.Text = m.Email;
                 txtUsuario.Text = m.Usuario;
                 txtContrasena.Text = m.Contrasena;
 
-                // 🔹 Especialidad
                 ddlEspecialidad.SelectedValue = m.ID_Especialidad.ToString();
 
                 hiddenIdMedico.Value = m.ID_Medico.ToString();
@@ -90,9 +85,9 @@ namespace Vistas
         private void CargarEspecialidades()
         {
             NegocioMedicos neg = new NegocioMedicos();
-            ddlEspecialidad.DataSource = neg.GetEspecialidades();   // DataTable
-            ddlEspecialidad.DataTextField = "NombreEspecialidad";   // columna de la BD
-            ddlEspecialidad.DataValueField = "ID_Especialidad";     // columna PK
+            ddlEspecialidad.DataSource = neg.GetEspecialidades();   
+            ddlEspecialidad.DataTextField = "NombreEspecialidad";   
+            ddlEspecialidad.DataValueField = "ID_Especialidad";    
             ddlEspecialidad.DataBind();
             ddlEspecialidad.Items.Insert(0, new ListItem("--Seleccione una especialidad--", "0"));
         }
@@ -135,13 +130,13 @@ namespace Vistas
                 NegocioMedicos neg = new NegocioMedicos();
                 bool ok;
 
-                if (m.ID_Medico > 0) // modo edición
+                if (m.ID_Medico > 0) 
                 {
                     lblTitulo.Text = "Modificar Médico";
                     ok = neg.ModificarMedico(m);
                 }
 
-                else // modo alta
+                else 
                 {
                     lblTitulo.Text = "Registrar Médico";
                     ok = neg.RegistrarMedico(m);
@@ -159,7 +154,7 @@ namespace Vistas
             }
             catch (Exception ex)
             {
-                lblMensaje.Text = ex.Message;// "Error: Verifique los datos ingresados";
+                lblMensaje.Text = ex.Message;
             }
         }
 

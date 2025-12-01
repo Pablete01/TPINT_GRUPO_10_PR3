@@ -44,26 +44,24 @@ namespace Vistas
         protected void grdMedico_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grdMedico.PageIndex = e.NewPageIndex;
-            MostrarMedicos(OrdenActual()); // vuelve a cargar la grilla
+            MostrarMedicos(OrdenActual()); 
         }
 
         protected void grdMedico_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            grdMedico.EditIndex = -1;   // cancela edición
-            MostrarMedicos(OrdenActual());           // recarga datos
+            grdMedico.EditIndex = -1;   
+            MostrarMedicos(OrdenActual());          
 
         }
 
         protected void grdMedico_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            grdMedico.EditIndex = e.NewEditIndex; // habilita edición
-            MostrarMedicos(OrdenActual());                    // recarga datos
+            grdMedico.EditIndex = e.NewEditIndex;
+            MostrarMedicos(OrdenActual());                    
         }
 
         protected void grdMedico_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            // Aquí vas a poner la lógica para actualizar médicos,
-            // por ahora solo cancelamos y recargamos para evitar errores
             grdMedico.EditIndex = -1;
             MostrarMedicos(OrdenActual());
         }
@@ -132,11 +130,11 @@ namespace Vistas
 
                 if (resultado)
                 {
-                    MostrarMedicos(OrdenActual()); // Recarga la grilla sin el médico
+                    MostrarMedicos(OrdenActual()); 
                 }
                 else
                 {
-                    // Podés mostrar un mensaje
+                   
                     ScriptManager.RegisterStartupScript(this, GetType(),
                         "alerta", "alert('No se pudo eliminar el registro.');", true);
                 }

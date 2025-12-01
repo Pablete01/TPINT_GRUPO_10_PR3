@@ -79,12 +79,9 @@ namespace Vistas
 
         protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Forzar a que el GridView renderice nuevamente la fila en edición
             gvTurnos.EditIndex = ((GridViewRow)((Control)sender).NamingContainer).RowIndex;
 
-            CargarGrillaTurnos(); // Recargar grilla
-
-            // No mostramos mensaje aquí
+            CargarGrillaTurnos(); 
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -100,7 +97,7 @@ namespace Vistas
 
         protected void grdPacientes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            gvTurnos.EditIndex = -1;   // cancela edición
+            gvTurnos.EditIndex = -1;  
             txtDesde.Text = "";
             txtHasta.Text = "";
             CargarGrillaTurnos();
@@ -110,7 +107,7 @@ namespace Vistas
 
         protected void grdPacientes_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            gvTurnos.EditIndex = e.NewEditIndex; // habilita edición
+            gvTurnos.EditIndex = e.NewEditIndex; 
             CargarGrillaTurnos();
 
         }
@@ -141,7 +138,7 @@ namespace Vistas
             }
 
             gvTurnos.EditIndex = -1;
-            CargarGrillaTurnos(); // recargar grilla
+            CargarGrillaTurnos(); 
             lblMensaje.Text = mensaje;
 
         }
@@ -151,10 +148,7 @@ namespace Vistas
             if (e.Row.RowType == DataControlRowType.DataRow &&
         (e.Row.RowState & DataControlRowState.Edit) > 0)
             {
-                // Obtener dato actual
                 string estado = DataBinder.Eval(e.Row.DataItem, "ID_Estado").ToString();
-
-                // Buscar el dropdown
                 DropDownList ddl = (DropDownList)e.Row.FindControl("ddlEstado");
                 if (ddl != null)
                 {

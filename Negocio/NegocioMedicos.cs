@@ -46,12 +46,6 @@ namespace Negocio
 
         public int AgregarMedico(MedicoAdm m)
         {
-            // Cálculo de valores automáticos
-
-            // 1) Contrasena = DNI
-            //m.Contrasena = m.DNI;
-
-            // 2) Legajo inicial (lo completará el SP con M10 + ID_Persona)
             m.Legajo = "TEMP";
 
             DaoMedicos dm = new DaoMedicos();
@@ -61,7 +55,7 @@ namespace Negocio
         public bool ModificarMedico(MedicoAdm m)
         {
             DaoMedicos dao = new DaoMedicos();
-            return dao.ModificarMedico(m);  // Delego al DAO
+            return dao.ModificarMedico(m);  
         }
 
         public bool BajaLogicaMedico(int idMedico)

@@ -15,7 +15,7 @@ namespace Vistas
         NegocioJornadas negocio = new NegocioJornadas();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) // SOLO PRIMERA VEZ
+            if (!IsPostBack) 
             {
                 if (Request.QueryString["ID_Medico"] != null)
                 {
@@ -23,16 +23,16 @@ namespace Vistas
                     int idMedico = Convert.ToInt32(Request.QueryString["ID_Medico"]);
                     CargarJornadas(idMedico);
 
-                    // Cargar datos del medico para mostrar en la ficha
+                   
                     NegocioMedicos neg = new NegocioMedicos();
                     Entidades.MedicoAdm medico = neg.ObtenerMedicoPorID(idMedico);
 
                     if (medico != null)
                     {
-                        //lblLegajo.Text = medico.Legajo;//.ToString();
+                       
                         lblNombre.Text = medico.Nombre;
                         lblApellido.Text = medico.Apellido;
-                        //lblEspecialidad.Text = medico.ID_Especialidad.ToString();
+                      
                     }
                 }
             }
@@ -83,7 +83,7 @@ namespace Vistas
 
         protected void btnAgregarJornada_Click(object sender, EventArgs e)
         {
-            PanelAgregar.Visible = true;   // Mostrar formulario
+            PanelAgregar.Visible = true;  
         }
 
         protected void grdJornadaMedico_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -100,7 +100,7 @@ namespace Vistas
                     lblMsg.ForeColor = System.Drawing.Color.Green;
 
                     int idMedico = Convert.ToInt32(Request.QueryString["ID_Medico"]);
-                    CargarJornadas(idMedico); // Recargar grid
+                    CargarJornadas(idMedico); 
                 }
                 else
                 {

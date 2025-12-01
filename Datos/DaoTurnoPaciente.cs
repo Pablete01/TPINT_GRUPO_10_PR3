@@ -42,17 +42,13 @@ namespace Datos
         public List<int> ObtenerDiasJornadaMedico(int idMedico)
         {
             List<int> dias = new List<int>();
-
-            // parámetros del SP
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@ID_Medico", idMedico)
             };
-
-            // llamas correctamente al método
             DataTable tabla = ds.ObtenerTablaSP(
-                "DiasJornada",                // nombre de tabla 
-                "SP_ObtenerDiasJornadaMedico", // nombre del SP
+                "DiasJornada",
+                "SP_ObtenerDiasJornadaMedico",
                 parametros
             );
 
@@ -85,8 +81,6 @@ namespace Datos
             cmd.Parameters.AddWithValue("@ID_Medico", t.ID_Medico);
             cmd.Parameters.AddWithValue("@Fecha", t.Fecha);
             cmd.Parameters.AddWithValue("@Hora", t.Hora);
-
-            // Usamos el método correcto
             return ds.EjecutarSPNonQuery("SP_InsertarTurnoPaciente", cmd);
         }
 
@@ -94,8 +88,6 @@ namespace Datos
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Parameters.AddWithValue("@ID_Turno", idTurno);
-
-            // Se usa el método estándar
             return ds.EjecutarSPNonQuery("SP_CancelarTurnoPaciente", cmd);
         }
 
