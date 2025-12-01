@@ -33,8 +33,6 @@ namespace Datos
             cmd.Parameters.AddWithValue("@HoraEntrada", j.HoraEntrada);
             cmd.Parameters.AddWithValue("@HoraSalida", j.HoraSalida);
             cmd.Parameters.AddWithValue("@Duracion", j.Duracion);
-
-            // Ejecutar y devolver INT (1 ok, -1 error)
             return ds.EjecutarSPNonQuery("sp_AgregarJornadaMedico", cmd);
         }
 
@@ -47,7 +45,7 @@ namespace Datos
 
             int resultado = ad.EjecutarSPNonQuery("SP_BajaLogicaJornadaYTurnos", cmd);
 
-            return resultado >= 0;  // o simplemente return true;
+            return resultado >= 0; 
         }
 
     }

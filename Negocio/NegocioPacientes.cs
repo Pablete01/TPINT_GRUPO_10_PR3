@@ -60,9 +60,5 @@ namespace Negocio
             return dao.ObtenerPacientesConParametros(texto, orden);
         }
 
-        //public int cargarGrillaPacientesxMedico(int idMedico)
-        //{
-        //    return dao.cargarGrillaPacientesxMedico(idMedico);
-        //}
     }
 }

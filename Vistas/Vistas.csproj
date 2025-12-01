@@ -78,7 +78,6 @@
     <Content Include="Imagenes\InformeTurnosGeneral.png" />
     <Content Include="InformeAsistenciaTurnos.aspx" />
     <Content Include="InformeMedicos.aspx" />
-    <Content Include="MisPacientes.aspx" />
     <Content Include="PacientesAgendados.aspx" />
     <Content Include="RegistrarPaciente.aspx" />
     <Content Include="Imagenes\agenda.png" />
@@ -93,7 +92,6 @@
     <Content Include="Imagenes\user.png" />
     <Content Include="InformeGeneralTurnos.aspx" />
     <Content Include="Medico.aspx" />
-    <Content Include="MedicoTurnos.aspx" />
     <Content Include="SeleccionInforme.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
@@ -156,13 +154,6 @@
     <Compile Include="InformeMedicos.aspx.designer.cs">
       <DependentUpon>InformeMedicos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MisPacientes.aspx.cs">
-      <DependentUpon>MisPacientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MisPacientes.aspx.designer.cs">
-      <DependentUpon>MisPacientes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PacientesAgendados.aspx.cs">
       <DependentUpon>PacientesAgendados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -190,13 +181,6 @@
     </Compile>
     <Compile Include="Medico.aspx.designer.cs">
       <DependentUpon>Medico.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MedicoTurnos.aspx.cs">
-      <DependentUpon>MedicoTurnos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MedicoTurnos.aspx.designer.cs">
-      <DependentUpon>MedicoTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="NegocioLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

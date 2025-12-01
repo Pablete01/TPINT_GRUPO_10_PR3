@@ -14,7 +14,6 @@ namespace Datos
 
         public DataTable ObtenerPacientes()
         {
-            // NO requiere parámetros, tu SP no usa ninguno
             return ds.ObtenerTablaSP(
                 "PacientesGT",
                 "SP_ListarPacientes_GestionTurnos",

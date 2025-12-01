@@ -33,7 +33,6 @@ namespace Datos
         public int InsertarPaciente(Paciente paciente, out string mensaje)
         {
             SqlCommand comando = new SqlCommand();
-          //  comando.Parameters.AddWithValue("@ID_Pacientes", paciente.idPaciente);
             comando.Parameters.AddWithValue("@DNI", paciente.dni);
             comando.Parameters.AddWithValue("@Nombre", paciente.nombre);
             comando.Parameters.AddWithValue("@Apellido", paciente.apellido);
@@ -124,15 +123,5 @@ namespace Datos
             cn.Close();
             return dt;
         }
-
-
-
-        //public DataTable cargarGrillaPacientesCompletosxMedico(int idMedico)
-        //{
-        //    string consulta = "SP_ListarPacientesPorMedico";
-        //    SqlCommand comando = new SqlCommand();
-        //    comando.Parameters.AddWithValue("@ID_Medico", idMedico);
-        //    return dm.ObtenerTablaPacientesCompletosxMedico(consulta, comando, "PacientesPorMedico");
-        //}
     }
 }

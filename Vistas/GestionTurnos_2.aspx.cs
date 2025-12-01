@@ -31,7 +31,7 @@ namespace Vistas
         {
             if (e.CommandName == "Gestionar")
             {
-                int idPaciente = Convert.ToInt32(e.CommandArgument); // ya viene directo
+                int idPaciente = Convert.ToInt32(e.CommandArgument); 
                 Response.Redirect("GestionTurnoPaciente.aspx?ID=" + idPaciente);
             }
         }
@@ -44,7 +44,7 @@ namespace Vistas
         protected void grdTurnosPacientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grdTurnosPacientes.PageIndex = e.NewPageIndex;
-            CargarGrillaPacientes(); // ← tu método que vuelve a hacer DataBind
+            CargarGrillaPacientes(); 
         }
     }
 }

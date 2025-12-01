@@ -21,8 +21,6 @@ namespace Negocio
         public bool AgregarJornada(JornadaMedico jornada)
         {
             int resultado = dao.AgregarJornada(jornada);
-
-            // SP: 1 = OK, -1 = superposición, 0 = error
             return resultado == 1;
         }
 

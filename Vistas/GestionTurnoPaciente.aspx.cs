@@ -27,7 +27,7 @@ namespace Vistas
                 }
                 else
                 {
-                    // Si no llega el ID, volver a pantalla anterior
+                  
                     Response.Redirect("GestionTurnos_2.aspx");
                    
                 }
@@ -132,7 +132,7 @@ namespace Vistas
                 NegocioTurnoPaciente neg = new NegocioTurnoPaciente();
                 diasJornada = neg.ObtenerDiasJornada(idMedico);
 
-                // reseteamos calendario
+              
                 calTurno.VisibleDate = DateTime.Today;
                 calTurno.SelectedDates.Clear();
             }
@@ -142,7 +142,7 @@ namespace Vistas
         {
             DateTime hoy = DateTime.Today;
 
-            // ✖ bloquear fechas pasadas
+          
             if (e.Day.Date < hoy)
             {
                 e.Day.IsSelectable = false;
@@ -150,11 +150,10 @@ namespace Vistas
                 return;
             }
 
-            // día semana: 1 lunes → 7 domingo
             int diaSemana = (int)e.Day.Date.DayOfWeek;
             if (diaSemana == 0) diaSemana = 7;
 
-            // ✖ no está en jornada
+        
             if (!diasJornada.Contains(diaSemana))
             {
                 e.Day.IsSelectable = false;
@@ -162,7 +161,6 @@ namespace Vistas
                 return;
             }
 
-            // ✔ día válido
             e.Cell.BackColor = System.Drawing.Color.LightGreen;
         }
 
