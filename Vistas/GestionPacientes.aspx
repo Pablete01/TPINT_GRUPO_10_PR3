@@ -175,8 +175,8 @@
                         <asp:TemplateField HeaderText="Nombre">
                             <EditItemTemplate>
                                 <asp:TextBox ID="lbl_eit_nombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="lbl_eit_nombre" ErrorMessage="Inserte un Nombre">*</asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="lbl_eit_nombre" ErrorMessage="Ingrese solo letras en nombre." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$">*</asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="lbl_eit_nombre" ErrorMessage="Inserte un Nombre" ForeColor="White">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revNombre" runat="server" ControlToValidate="lbl_eit_nombre" ErrorMessage="Ingrese solo letras en nombre." ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$" ForeColor="White">*</asp:RegularExpressionValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblNombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
@@ -185,8 +185,8 @@
                         <asp:TemplateField HeaderText="Apellido">
                             <EditItemTemplate>
                                 <asp:TextBox ID="lbl_eit_apellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="lbl_eit_apellido" ErrorMessage="Ingrese un apellido.">*</asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="lbl_eit_apellido" ErrorMessage="Ingrese solo letras en apellido" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$">*</asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="rfvApellido" runat="server" ControlToValidate="lbl_eit_apellido" ErrorMessage="Ingrese un apellido." ForeColor="White">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revApellido" runat="server" ControlToValidate="lbl_eit_apellido" ErrorMessage="Ingrese solo letras en apellido" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$" ForeColor="White">*</asp:RegularExpressionValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblApellido" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
@@ -202,8 +202,8 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Fecha de Nacimiento">
                             <EditItemTemplate>
-                                <asp:TextBox ID="lbl_eit_fechaNacimiento" runat="server" Text='<%# Bind("FechaNacimiento") %>' TextMode="Date" ValidationGroup="5"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvfechana" runat="server" ControlToValidate="lbl_eit_fechaNacimiento" ErrorMessage="*" ForeColor="Red" ValidationGroup="5"></asp:RequiredFieldValidator>
+                                <asp:TextBox ID="lbl_eit_fechaNacimiento" runat="server" Text='<%# Bind("FechaNacimiento") %>' TextMode="Date"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvfechana" runat="server" ControlToValidate="lbl_eit_fechaNacimiento" ErrorMessage="Ingrese una fecha de nacimiento" ForeColor="White">*</asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblNacimiento" runat="server" Text='<%# Bind("FechaNacimiento") %>'></asp:Label>
@@ -212,6 +212,7 @@
                         <asp:TemplateField HeaderText="Direccion">
                             <EditItemTemplate>
                                 <asp:TextBox ID="lbl_eit_direccion" runat="server" Text='<%# Bind("Direccion") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="lbl_eit_direccion" ErrorMessage="Ingrese una direccion" ForeColor="White">*</asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblDireccion" runat="server" Text='<%# Bind("Direccion") %>'></asp:Label>
@@ -220,6 +221,7 @@
                         <asp:TemplateField HeaderText="Correo Electronico">
                             <EditItemTemplate>
                                 <asp:TextBox ID="lbl_eit_email" runat="server" Text='<%# Bind("Email") %>' TextMode="Email"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="lbl_eit_email" ErrorMessage="Ingrese un correo electronico" ForeColor="White">*</asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblCorreo" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
@@ -228,6 +230,8 @@
                         <asp:TemplateField HeaderText="Telefono">
                             <EditItemTemplate>
                                 <asp:TextBox ID="lbl_eit_telefono" runat="server" Text='<%# Bind("Telefono") %>' TextMode="Phone"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="lbl_eit_telefono" ErrorMessage="Ingrese un telefono" ForeColor="White">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="lbl_eit_telefono" ErrorMessage="El telefono no puede superar los 10 digitos" ForeColor="White" ValidationExpression="^\d{1,10}$">*</asp:RegularExpressionValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblTelefono" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
@@ -240,7 +244,7 @@
                                     <asp:ListItem Value="Femenino">Femenino</asp:ListItem>
                                 </asp:RadioButtonList>
                                 <div class="auto-style67">
-                                    <asp:RequiredFieldValidator ID="rfvsexo" runat="server" ControlToValidate="rbl_eit_sexo" ErrorMessage="*" ForeColor="Red" ValidationGroup="5"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rfvsexo" runat="server" ControlToValidate="rbl_eit_sexo" ErrorMessage="Seleccione un genero" ForeColor="White" ValidationGroup="5">*</asp:RequiredFieldValidator>
                                 </div>
                             </EditItemTemplate>
                             <ItemTemplate>
@@ -250,6 +254,7 @@
                         <asp:TemplateField HeaderText="Nacionalidad">
                             <EditItemTemplate>
                                 <asp:TextBox ID="lbl_eit_nacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvNacionalidad" runat="server" ControlToValidate="lbl_eit_nacionalidad" ErrorMessage="Ingrese una nacionalidad" ForeColor="White">*</asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblNacionalidad" runat="server" Text='<%# Bind("Nacionalidad") %>'></asp:Label>
@@ -287,6 +292,7 @@
                 </asp:GridView>
             </div>
         </asp:Panel>
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" />
     </form>
 </body>
 </html>

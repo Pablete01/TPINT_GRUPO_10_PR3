@@ -107,6 +107,10 @@ namespace Vistas
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            if (!Page.IsValid)
+            {
+                return;
+            }
             try
             {
                 MedicoAdm m = new MedicoAdm
@@ -208,6 +212,20 @@ namespace Vistas
             ddlEspecialidad.SelectedIndex = 0;
 
             hiddenIdMedico.Value = "";
+        }
+
+        protected void cvFechas_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime fecha;
+
+            if (DateTime.TryParse(args.Value, out fecha))
+            {
+                args.IsValid = fecha <= DateTime.Today;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
         }
     }
 }

@@ -51,6 +51,11 @@ namespace Vistas
 
         protected void btnAceptarNuevaJornada_Click(object sender, EventArgs e)
         {
+            if (!Page.IsValid)
+            {
+                return;
+            }
+
             JornadaMedico j = new JornadaMedico();
 
             j.ID_Medico = Convert.ToInt32(Request.QueryString["ID_Medico"]);
@@ -125,6 +130,22 @@ namespace Vistas
             return "";
         }
 
+        protected void cvHoraDeSalida_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            TimeSpan horaEntrada;
+            TimeSpan horaSalida;
+
+            bool okEntrada = TimeSpan.TryParse(txtEntrada.Text, out horaEntrada);
+            bool okSalida = TimeSpan.TryParse(txtSalida.Text, out horaSalida);
+
+            if (!okEntrada || !okSalida)
+            {
+                args.IsValid = false;
+                return;
+            }
+
+            args.IsValid = horaSalida >= horaEntrada;
+        }
     }
 
 }

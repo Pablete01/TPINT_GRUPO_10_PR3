@@ -213,7 +213,7 @@
                     runat="server"
                     Text="Cancelar"
                     CommandName="Cancelar"
-                    OnClientClick="return confirm('¿Está seguro que desea eliminar el registro?');" 
+                    OnClientClick="return confirm('¿Está seguro que desea cancelar el turno?');" 
                     CommandArgument='<%# Eval("ID_Turno") %>'
                     CssClass="btn-grid" />
 

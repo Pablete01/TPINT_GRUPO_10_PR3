@@ -189,6 +189,7 @@
                         <asp:TextBox ID="txtTelefono" runat="server" />
                         <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" Display="Dynamic" ErrorMessage="Ingrese un telefono" ForeColor="Red"></asp:RequiredFieldValidator>
                         <asp:RegularExpressionValidator ID="revTelefono" runat="server" ControlToValidate="txtTelefono" Display="Dynamic" ErrorMessage="Ingrese solo números" ForeColor="Red" ValidationExpression="^\d+$"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revDigitosTelefono" runat="server" ControlToValidate="txtTelefono" ErrorMessage="El telefono no puede superar los 10 digitos" ForeColor="Red" ValidationExpression="^\d{10}$"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
 
@@ -199,6 +200,7 @@
                         <asp:TextBox ID="txtFechaNac" runat="server" TextMode="Date" />
                         <br />
                         <asp:RequiredFieldValidator ID="rfvNacimiento" runat="server" ControlToValidate="txtFechaNac" Display="Dynamic" ErrorMessage="Seleccione fecha nacimiento" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:CustomValidator ID="cvFechas" runat="server" ControlToValidate="txtFechaNac" ErrorMessage="La fecha no puede pertenecer al futuro." ForeColor="Red" OnServerValidate="cvFechas_ServerValidate"></asp:CustomValidator>
                     </td>
                 </tr>
 

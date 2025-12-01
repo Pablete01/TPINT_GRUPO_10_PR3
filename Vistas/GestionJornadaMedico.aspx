@@ -227,6 +227,7 @@
                         <td>
                             <asp:TextBox ID="txtSalida" runat="server" TextMode="Time" ValidationGroup="grupo1"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvHoraSalida" runat="server" ControlToValidate="txtSalida" ErrorMessage="Ingrese una hora de salida." ValidationGroup="grupo1">*</asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="cvHoraDeSalida" runat="server" ControlToValidate="txtSalida" ErrorMessage="La hora de salida no puede estar antes que la hora de entrada." OnServerValidate="cvHoraDeSalida_ServerValidate" Display="Dynamic" ValidationGroup="grupo1">*</asp:CustomValidator>
                         </td>
                     </tr>
 
