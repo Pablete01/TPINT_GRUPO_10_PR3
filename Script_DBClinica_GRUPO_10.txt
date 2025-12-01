@@ -1148,13 +1148,61 @@ BEGIN
 END
 GO
 
+ALTER PROCEDURE [dbo].[SP_BuscarPacientesxTurno]
+    @texto NVARCHAR(50)
+AS
+BEGIN
+    SELECT 
+        -- Datos del turno
+        t.ID_Turno,
+        t.ID_Pacientes,
+        t.ID_Medico,
+        t.Fecha,
+        t.Hora,
+        t.ID_Estado,
+        t.Observaciones,
 
--- INSERTAR NUEVA COLUMNA EN USUARIO
+        -- Datos del paciente
+        pa.ID_Pacientes AS ID_Paciente,
+        perPac.ID_Persona AS ID_Persona_Paciente,
+        perPac.Nombre AS NombrePaciente,
+        perPac.Apellido AS ApellidoPaciente,
+        perPac.DNI AS DNI,
 
+        -- Datos del médico
+        med.ID_Medico AS ID_Medico,
+        perMed.Nombre AS NombreMedico,
+        perMed.Apellido AS ApellidoMedico,
+        esp.NombreEspecialidad AS EspecialidadMedico,
 
-ALTER TABLE Usuarios
-ADD Usuario VARCHAR(20)
-GO
+        -- Estado del turno
+        est.NombreEstado AS EstadoTurno
+
+    FROM Pacientes pa
+    INNER JOIN Persona perPac 
+        ON pa.ID_Persona = perPac.ID_Persona
+
+    INNER JOIN Turnos t 
+        ON pa.ID_Pacientes = t.ID_Pacientes
+
+    INNER JOIN Medicos med 
+        ON t.ID_Medico = med.ID_Medico
+
+    INNER JOIN Persona perMed 
+        ON med.ID_Persona = perMed.ID_Persona
+
+    INNER JOIN Especialidad esp 
+        ON med.ID_Especialidad = esp.ID_Especialidad
+
+    LEFT JOIN EstadoTurno est 
+        ON t.ID_Estado = est.ID_Estado
+    WHERE
+        perPac.Nombre LIKE '%' + @texto + '%' OR
+        perPac.Apellido LIKE '%' + @texto + '%' OR
+        perPac.DNI LIKE '%' + @texto + '%'
+    
+    ORDER BY t.Fecha, t.Hora;
+END
 
 
 
